@@ -15,7 +15,6 @@ public class Jump : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(rb.velocity.y);
         if (Input.GetButtonDown("Jump"))
         {
 
