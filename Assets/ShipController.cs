@@ -11,7 +11,7 @@ public class ShipController : MonoBehaviour
     private float GameTime = 0;
     private PlayerInput input;
 
-    
+
     [Header("Stats")]
     public float maxTurnBackSpeed = 0.5f;
     public float timeSpeedDependence;
@@ -23,7 +23,15 @@ public class ShipController : MonoBehaviour
     private float rapidTurnDegreeSpeed;
     private bool isRapidTurnAway = false;
     private bool isTurningBack = false;
-    
+
+    private void Awake()
+    {
+        Player = GameObject.FindWithTag("Player");
+        var inputPlayer = Player.GetComponent<Player>().Input;
+        inputPlayer.Player.Action.performed += ctx => EbuttonIsPressed = true;
+        inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
+    }
+
     void TurnAway()
     {
         turnBackSpeed = 0.0f;
@@ -57,12 +65,12 @@ public class ShipController : MonoBehaviour
         LevelCamera.transform.Rotate(0.0f,0.0f, rapidTurnDegreeSpeed);
         rapidTurnDegree -= rapidTurnDegreeSpeed;
     }
-    
-    
+
     void OnTriggerStay2D(Collider2D other)
     {
-        if ((EbuttonIsPressed) && (LevelCamera.transform.localRotation.eulerAngles.z != 0) && (other.gameObject.CompareTag("Player"))) //Input.GetKey(KeyCode.E) !
+        if ((EbuttonIsPressed) && (LevelCamera.transform.localRotation.eulerAngles.z != 0) && (other.gameObject.CompareTag("Player")))
         {
+            Debug.Log("knopka");
             isTurningBack = true;
             TurnBack();
         }
@@ -83,12 +91,15 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         LevelCamera = GameObject.FindWithTag("MainCamera");
-        Player = GameObject.FindWithTag("Player");
         GameTime = 0.0f;
     }
 
     void Update()
     {
+        if (EbuttonIsPressed)
+        {
+            Debug.Log("EBUTTONISPRESSED");
+        }
         
         GameTime += Time.deltaTime;
         

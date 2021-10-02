@@ -1,26 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-
-public class PistolBullet : Bullet
+﻿public class PistolBullet : Bullet
 {
-    private void Start()
+    public override void DealDamage(IDamagable enemy)
     {
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        animator = gameObject.GetComponent<Animator>();
-        collider = gameObject.GetComponent<CircleCollider2D>();
-        shootPos = gameObject.transform;
-        speed = 10; //setValue
-        damage = 10; //setValue
-        flyDistance = 10; //setValue
-        attackCooldown = 3; //setValue
-    }
-
-    public override void DealDamage(GameObject enemy)
-    {
-        enemy.GetComponent<IDamagable>().TakeDamage(damage);
+        enemy.TakeDamage(damage);
         Destroy(gameObject);
     }
 
@@ -31,6 +13,12 @@ public class PistolBullet : Bullet
 
     public override void Overheat()
     {
-        throw new NotImplementedException();
+        attackCooldown *= 1.3f;
+    }
+    
+
+    public override void Cooling()
+    {
+        attackCooldown /= 1.3f;
     }
 }

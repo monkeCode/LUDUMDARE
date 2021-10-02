@@ -28,6 +28,7 @@ public class Player : Entity
      private void Awake()
      {
           weapon = gameObject.AddComponent<Weapon>();
+          weapon.weaponPos = gameObject.transform;
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
           Input = new PlayerInput();
