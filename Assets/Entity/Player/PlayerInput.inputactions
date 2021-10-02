@@ -44,14 +44,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "OpenDoor",
-                    "type": "Button",
-                    "id": "21018757-273f-4760-af65-78f1c39f2a1c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -129,17 +121,6 @@
                     "processors": "",
                     "groups": "KeyboardAndMouse",
                     "action": "Throw",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a6471837-806b-4a43-ba15-44ea0bc970e4",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardAndMouse",
-                    "action": "OpenDoor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

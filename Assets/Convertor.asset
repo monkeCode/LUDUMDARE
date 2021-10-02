@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pistolBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}
   laserBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}
-  grenadeLauncherBullet: {fileID: 82654254610961349, guid: c8e61b818c570874db094478cdb8ee0d, type: 3}

@@ -5,8 +5,9 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - bulletType: {instanceID: 0}
+  - bulletSprite: {fileID: 5082916385090401088, guid: 958b74fca370d604880f1e77399fb0db, type: 3}
   - weaponPos: {instanceID: 0}
-  - convertor: {fileID: 11400000, guid: 6656e751c8eb80b4ca187871abb73789, type: 2}
+  - convert: {fileID: 11400000, guid: 6656e751c8eb80b4ca187871abb73789, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
