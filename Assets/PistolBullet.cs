@@ -12,10 +12,10 @@ public class PistolBullet : Bullet
         animator = gameObject.GetComponent<Animator>();
         collider = gameObject.GetComponent<CircleCollider2D>();
         shootPos = gameObject.transform;
-        speed = 0; //setValue
-        damage = 0; //setValue
-        flyDistance = 0; //setValue
-        attackCooldown = 0; //setValue
+        speed = 10; //setValue
+        damage = 10; //setValue
+        flyDistance = 10; //setValue
+        attackCooldown = 3; //setValue
     }
 
     public override void DealDamage(GameObject enemy)

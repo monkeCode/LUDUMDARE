@@ -1,9 +1,10 @@
 ﻿namespace ReactorScripts
 {
-    public interface IItem
+    [System.Serializable]
+    public class ItemData
     {
-        string Name { get; set; }
-        TypeItem Type { get; set; }
-        int Repair { get; set; }
+        public string Name;
+        public TypeItem Type;
+        public int Repair;
     }
 }

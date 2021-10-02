@@ -1,30 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
+using ReactorScripts;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     public int overheat;
     public float offset;
-    public Bullet bullet;
+    // public Bullet bulletType;
+    public Bullet bulletType;
     public Transform weaponPos;
     public bool onCooldown;
     public float attackCooldown;
+    public Dictionary<TypeItem, Bullet> Convertor;
+    public ConvertItemToBullet convert;
 
     private void Start()
     {
-        attackCooldown = bullet.attackCooldown;
-        bullet = gameObject.AddComponent<PistolBullet>();
+        Convertor = convert.GetBulletDictionary();
     }
 
-    public void Shoot(Vector3 direction)
+    public void Shoot(Vector3 direction, ItemData bullet)
     {
         if (!onCooldown)
         {
+            bulletType = Convertor[bullet.Type];
+            attackCooldown = bulletType.attackCooldown;
             var roatZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             var rotation = Quaternion.Euler(0, 0, roatZ + offset);
-            Instantiate(bullet, weaponPos.position, rotation);
+            Instantiate(bulletType, weaponPos.position, rotation);
             StartCoroutine(AttackCooldown());
         }
     }
