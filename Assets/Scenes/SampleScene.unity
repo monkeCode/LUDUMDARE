@@ -879,12 +879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af70d6b11ef1e34d84f0c6db4373caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTurnBackSpeed: 1
-  timeSpeedDependence: 0.000000001
+  maxTurnBackSpeed: 0.5
+  timeSpeedDependence: 0.0001
   EbuttonIsPressed: 0
-  minTimeStartSpinning: 30
-  maxTimeStartSpinning: 60
-  timeNotSpinAfterLevelStart: 30
 --- !u!212 &2146151094
 SpriteRenderer:
   m_ObjectHideFlags: 0
