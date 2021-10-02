@@ -292,6 +292,9 @@ MonoBehaviour:
     m_Bits: 128
   mainCamera: {fileID: 519420031}
   weapon: {fileID: 0}
+  layerDoors:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &846177427
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -880,8 +883,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTurnBackSpeed: 0.5
-  timeSpeedDependence: 0.0001
+  timeSpeedDependence: 0.00000001
   EbuttonIsPressed: 0
+  minTimeStartSpinning: 20
+  maxTimeStartSpinning: 40
+  timeNotSpinAfterLevelStart: 60
 --- !u!212 &2146151094
 SpriteRenderer:
   m_ObjectHideFlags: 0
