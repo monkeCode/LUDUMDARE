@@ -12,7 +12,7 @@ public class Reactor : MonoBehaviour, IDamagable
 
     public event EventHandler<ReactorEventData> OnHealthChanged;
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (Time.time - lastTimeDamageTaken > delayBetweenDamage)
         {
