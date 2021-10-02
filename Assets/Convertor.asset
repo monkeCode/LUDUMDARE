@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68256b64ce6b491ca03c2c4fc7e86880, type: 3}
+  m_Name: Convertor
+  m_EditorClassIdentifier: 
+  pistolBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}
+  laserBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}

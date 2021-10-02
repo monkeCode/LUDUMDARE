@@ -8,7 +8,7 @@ namespace ReactorScripts
         public int health;
         public int maxHealth;
 
-        public IItem requiredItem;
+        public ItemData requiredItem;
         public int requirementHpForRequestItem; 
 
         public int damagePerPeriod = 1;
@@ -29,12 +29,12 @@ namespace ReactorScripts
             }
         }
 
-        public void GetRepair(IItem item)
+        public void GetRepair(ItemData item)
         {
-            if (item.Type != requiredItem.Type)
+            if (item.type != requiredItem.type)
                 return;
             isRequested = false;
-            health = Mathf.Min(health + item.Repair, maxHealth);
+            health = Mathf.Min(health + item.repair, maxHealth);
             Notify(new ReactorEventHealth(health, false));
         }
 
@@ -45,7 +45,7 @@ namespace ReactorScripts
             if (health < requirementHpForRequestItem && isRequested == false)
             {
                 isRequested = true;
-                OnItemRequired?.Invoke(this, new ReactorEventRequirement(requiredItem.Type));
+                OnItemRequired?.Invoke(this, new ReactorEventRequirement(requiredItem.type));
             }
         }
 

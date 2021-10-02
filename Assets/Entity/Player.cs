@@ -1,13 +1,12 @@
 using System.Collections;
 using ReactorScripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : Entity
 { 
      public float fallMultiplier = 2.5f;
      [Range(0, 10)] public float jumpVelocity; 
-     public IItem InventoryItem;
+     public ItemData inventoryItem = new ItemData();
      
      public Transform groundCheck;
      public float groundRadius;
@@ -15,7 +14,8 @@ public class Player : Entity
      public float takeRadius;
      public LayerMask layerItem;
      public Camera mainCamera;
-     
+     public Weapon weapon;
+
      internal PlayerInput Input;
      
      private new Rigidbody2D rigidbody;
@@ -25,6 +25,7 @@ public class Player : Entity
 
      private void Awake()
      {
+          weapon = gameObject.AddComponent<Weapon>();
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
           Input = new PlayerInput();
@@ -34,6 +35,7 @@ public class Player : Entity
           Input.Player.Jump.canceled += ctx => StartCoroutine(CanceledJump());
           Input.Player.Action.performed += ctx => TakeItem();
           Input.Player.Throw.performed += ctx => ThrowItem();
+          Input.Player.Shot.performed += ctx => Shot();
      }
      
      private void Jump()
@@ -62,16 +64,16 @@ public class Player : Entity
           var item = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
           if (item != null)
           {
-               InventoryItem = item.GetComponent<Item>();
+               inventoryItem = item.GetComponent<Item>().data;
                Destroy(item.gameObject);
           }
      }
 
      private void ThrowItem()
      {
-          if (InventoryItem != null) 
-               Debug.Log($"Throw {InventoryItem.Name} {InventoryItem.Type}");
-          InventoryItem = null;
+          if (inventoryItem != null) 
+               Debug.Log($"Throw {inventoryItem.name} {inventoryItem.type}");
+          inventoryItem.type = TypeItem.Item0;
      }
 
      private void Move(float axis)
@@ -83,12 +85,11 @@ public class Player : Entity
      
      public Vector3 GetVectorToMouse() => 
           mainCamera.ScreenToWorldPoint(Input.Mouse.Move.ReadValue<Vector2>()) - transform.position;
-     
-     public float GetAngleToMouse()
+
+     private void Shot()
      {
-          var vector = mainCamera.ScreenToWorldPoint(Input.Mouse.Move.ReadValue<Vector2>()) - transform.position;
-          var angle = Mathf.Atan2(vector.y, vector.x);
-          return angle * Mathf.Rad2Deg - 90f;
+          var vector = GetVectorToMouse();
+          weapon.Shoot(vector, inventoryItem);
      }
 
      private void OnEnable() => Input.Enable();
