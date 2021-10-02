@@ -7,6 +7,9 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.785D90A9" = "layer"
+	"InspectorPreview.785D90A9" = "0"
+	"currentGroup.785D90A9" = "settings"
 }
 providers = {
 	asset = {
@@ -46,6 +49,9 @@ providers = {
 	}
 }
 recentSearches = [
+	"layer"
+	"matrix"
+	"inp"
 ]
 searchItemFavorites = [
 ]

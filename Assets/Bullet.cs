@@ -1,39 +1,51 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 public abstract class Bullet : MonoBehaviour
 {
     public float speed;
     public float attackCooldown;
-    public new Rigidbody2D rigidbody;
-    public LayerMask enemies;
+    public LayerMask layerEnemies;
     public LayerMask map;
     public int damage;
-    public Transform shootPos;
     public float flyDistance;
-    public CircleCollider2D collider;
-    public Animator animator;
 
-    void Update()
+    private Vector3 shootPos;
+    private Animator animator;
+    private new Rigidbody2D rigidbody;
+    private new CircleCollider2D collider;
+
+    private void Start()
     {
-        rigidbody.velocity = (transform.up + transform.right) * speed;
-        if ((transform.position - shootPos.position).magnitude >= flyDistance)
+        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        collider = gameObject.GetComponent<CircleCollider2D>();
+        animator = gameObject.GetComponent<Animator>();
+        shootPos = transform.position;
+        rigidbody.velocity = transform.right * speed;
+    }
+
+    private void Update()
+    {
+        var newVelocity = transform.right * speed;
+        newVelocity.y = rigidbody.velocity.y;
+        rigidbody.velocity = newVelocity;
+        if ((transform.position - shootPos).magnitude >= flyDistance)
             Destroy(gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == enemies)
+        if (((1 << other.gameObject.layer) & layerEnemies) != 0)
         {
-            DealDamage(other.gameObject);
+            DealDamage(other.gameObject.GetComponent<IDamagable>());
         }
-
-        if (other.gameObject.layer == map)
+        if (((1 << other.gameObject.layer) & map) != 0)
         {
             SelfDestroy();
         }
     }
-    public abstract void DealDamage(GameObject enemy);
+    public abstract void DealDamage(IDamagable enemy);
     public abstract void SelfDestroy();
     public abstract void Overheat();
+
+    public abstract void Cooling();
 }
