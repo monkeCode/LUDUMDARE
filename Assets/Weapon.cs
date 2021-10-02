@@ -8,7 +8,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public int overheat;
-    public float offset;
+    public float offset = -45;
     // public Bullet bulletType;
     public Bullet bulletType;
     public Transform weaponPos;
@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
+        weaponPos = gameObject.transform;
         Convertor = convert.GetBulletDictionary();
     }
 
