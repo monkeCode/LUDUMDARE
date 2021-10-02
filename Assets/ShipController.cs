@@ -29,6 +29,7 @@ public class ShipController : MonoBehaviour
     private bool isRapidTurnAway = false;
     private bool isTurningBack = false;
     private int turnDirection;
+    private bool isTurningAway = false;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class ShipController : MonoBehaviour
     }
     void TurnAway()
     {
+        isTurningAway = true;
         turnBackSpeed = 0.0f;
         currentTurnSpeed += SpinTime * timeSpeedDependence;
         LevelCamera.transform.Rotate(0.0f, 0.0f, turnDirection*currentTurnSpeed);
@@ -78,6 +80,7 @@ public class ShipController : MonoBehaviour
             SpinTime = 0;
             currentTurnSpeed = 0;
             ChooseTurnDirection();
+            isTurningAway = false;
         }
     }
 
@@ -129,6 +132,13 @@ public class ShipController : MonoBehaviour
 
         SpinTime += Time.deltaTime;
         TimeAfterTurnBack += Time.deltaTime;
+
+        if (!isTurningAway)
+        {
+            SpinTime = 0;
+            currentTurnSpeed = 0;
+        }
+
         
         if (!isTurningBack && (TimeAfterTurnBack > maxTimeAfterTurnBack))
         {
