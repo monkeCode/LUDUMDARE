@@ -1,15 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon<TBullet> : MonoBehaviour where TBullet : Bullet
 {
-    public float attackCooldown;
-    public int overhear;
+    public int overheat;
     public float offset;
     public TBullet bullet;
     public Transform weaponPos;
     public bool onCooldown;
+    public float attackCooldown;
+
+    private void Start()
+    {
+        attackCooldown = bullet.attackCooldown;
+    }
 
     public void Shoot(Vector3 direction)
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Bullet : MonoBehaviour
 {
     public float speed;
+    public float attackCooldown;
     public new Rigidbody2D rigidbody;
     public LayerMask enemies;
     public LayerMask map;
@@ -34,4 +35,5 @@ public abstract class Bullet : MonoBehaviour
     }
     public abstract void DealDamage(GameObject enemy);
     public abstract void SelfDestroy();
+    public abstract void Overheat();
 }
