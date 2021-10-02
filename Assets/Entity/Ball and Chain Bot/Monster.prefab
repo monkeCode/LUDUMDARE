@@ -131,6 +131,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _distanceToAtk: 3
   _timeToAtk: 2
+  _atkAngle: 20
 --- !u!95 &2603434086958113024
 Animator:
   serializedVersion: 3

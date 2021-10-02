@@ -3,18 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class EyeBallScript : Entity
 {
    [SerializeField] private Transform target;
    [SerializeField] private float waitBeforeRoll;
+   [SerializeField] private float pushForce;
    private Rigidbody2D _rb;
    private Animator _animator;
    private CircleCollider2D _collider;
    private static readonly int Roll1 = Animator.StringToHash("roll");
    private bool roll = true;
    private float lastSpeed = 1;
+   private static readonly int Die1 = Animator.StringToHash("die");
+  
+
    private void Start()
    {
       _rb = GetComponent<Rigidbody2D>();
@@ -30,14 +35,21 @@ public class EyeBallScript : Entity
          if (Vector2.Distance(_rb.position, target.position) < _collider.radius)
          {
             target.GetComponent<IDamagable>()?.TakeDamage(Damage);
-            Debug.Log("DAMAGE");
+            try
+            {
+               target.GetComponent<Rigidbody2D>()?.AddForce((Vector2.left * _rb.velocity.normalized.x + Vector2.up) * pushForce);
+            }
+            catch (Exception _)
+            {
+               // ignored
+            }
          }
 
          if (roll)
          {
             _rb.velocity += Vector2.right * Speed * Time.deltaTime * (target.position.x - _rb.position.x) /
                             Math.Abs(target.position.x - _rb.position.x);
-            if (lastSpeed != math.abs(_rb.velocity.x) / _rb.velocity.x)
+            if (lastSpeed != _rb.velocity.normalized.x)
             {
                roll = false;
                _animator.SetBool(Roll1, false);
@@ -53,7 +65,7 @@ public class EyeBallScript : Entity
    {
       Hp -= damage;
       if(Hp <=0)
-         _animator.SetTrigger("die");
+         _animator.SetTrigger(Die1);
    }
 
    private IEnumerator PrepareRoll()
