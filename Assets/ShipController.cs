@@ -23,7 +23,14 @@ public class ShipController : MonoBehaviour
     private float rapidTurnDegreeSpeed;
     private bool isRapidTurnAway = false;
     private bool isTurningBack = false;
-    
+
+    private void Awake()
+    {
+        var inputPlayer = Player.GetComponent<Player>().Input;
+        inputPlayer.Player.Action.performed += ctx => EbuttonIsPressed = true;
+        inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
+    }
+
     void TurnAway()
     {
         turnBackSpeed = 0.0f;
@@ -57,11 +64,10 @@ public class ShipController : MonoBehaviour
         LevelCamera.transform.Rotate(0.0f,0.0f, rapidTurnDegreeSpeed);
         rapidTurnDegree -= rapidTurnDegreeSpeed;
     }
-    
-    
+
     void OnTriggerStay2D(Collider2D other)
     {
-        if ((EbuttonIsPressed) && (LevelCamera.transform.localRotation.eulerAngles.z != 0) && (other.gameObject.CompareTag("Player"))) //Input.GetKey(KeyCode.E) !
+        if ((EbuttonIsPressed) && (LevelCamera.transform.localRotation.eulerAngles.z != 0) && (other.gameObject.CompareTag("Player")))
         {
             isTurningBack = true;
             TurnBack();
