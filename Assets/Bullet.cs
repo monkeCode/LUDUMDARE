@@ -8,14 +8,15 @@ public abstract class Bullet : MonoBehaviour
     public float attackCooldown;
     public new Rigidbody2D rigidbody;
     public LayerMask enemies;
-    public LayerMask map;
+    public LayerMask ground;
     public int damage;
     public Transform shootPos;
     public float flyDistance;
-    public CircleCollider2D collider;
+    public new CircleCollider2D collider;
     public Animator animator;
+    
 
-    void Update()
+    void FixedUpdate()
     {
         rigidbody.velocity = (transform.up + transform.right) * speed;
         if ((transform.position - shootPos.position).magnitude >= flyDistance)
@@ -28,7 +29,7 @@ public abstract class Bullet : MonoBehaviour
             DealDamage(other.gameObject);
         }
 
-        if (other.gameObject.layer == map)
+        if (other.gameObject.layer == ground)
         {
             SelfDestroy();
         }
@@ -36,4 +37,6 @@ public abstract class Bullet : MonoBehaviour
     public abstract void DealDamage(GameObject enemy);
     public abstract void SelfDestroy();
     public abstract void Overheat();
+
+    public abstract void Cooling();
 }

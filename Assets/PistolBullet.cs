@@ -14,7 +14,7 @@ public class PistolBullet : Bullet
         shootPos = gameObject.transform;
         speed = 10; //setValue
         damage = 10; //setValue
-        flyDistance = 10; //setValue
+        flyDistance = 5; //setValue
         attackCooldown = 3; //setValue
     }
 
@@ -31,6 +31,12 @@ public class PistolBullet : Bullet
 
     public override void Overheat()
     {
-        throw new NotImplementedException();
+        attackCooldown *= 1.3f;
+    }
+    
+
+    public override void Cooling()
+    {
+        attackCooldown /= 1.3f;
     }
 }
