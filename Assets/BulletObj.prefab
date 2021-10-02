@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -136,12 +136,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  attackCooldown: 3
+  attackCooldown: 0.1
   layerEnemies:
     serializedVersion: 2
     m_Bits: 1024
   map:
     serializedVersion: 2
     m_Bits: 64
-  damage: 0
-  flyDistance: 5
+  damage: 10
+  flyDistance: 10
+  velocity: {x: 0, y: 0}
+  overheatAttackCooldownCoefficient: 1.5

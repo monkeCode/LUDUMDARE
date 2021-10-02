@@ -9,7 +9,7 @@ public class GrenadeLauncher : Bullet
         enemy.TakeDamage(damage);
     }
 
-    public override void SelfDestroy()
+    public override void OnCollisionWithGround(Collision2D other)
     {
         var enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerEnemies);
         foreach (var enemy in enemies)

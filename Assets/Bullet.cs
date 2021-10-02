@@ -8,16 +8,15 @@ public abstract class Bullet : MonoBehaviour
     public LayerMask map;
     public int damage;
     public float flyDistance;
+    public Vector2 velocity;
 
     private Vector3 shootPos;
     private Animator animator;
-    private new Rigidbody2D rigidbody;
-    private new CircleCollider2D collider;
+    public new Rigidbody2D rigidbody;
 
     private void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        collider = gameObject.GetComponent<CircleCollider2D>();
         animator = gameObject.GetComponent<Animator>();
         shootPos = transform.position;
         rigidbody.velocity = transform.right * speed;
@@ -28,6 +27,7 @@ public abstract class Bullet : MonoBehaviour
         var newVelocity = transform.right * speed;
         newVelocity.y = rigidbody.velocity.y;
         rigidbody.velocity = newVelocity;
+        velocity = rigidbody.velocity;
         if ((transform.position - shootPos).magnitude >= flyDistance)
             Destroy(gameObject);
     }
@@ -40,11 +40,11 @@ public abstract class Bullet : MonoBehaviour
         }
         if (((1 << other.gameObject.layer) & map) != 0)
         {
-            SelfDestroy();
+            OnCollisionWithGround(other);
         }
     }
     public abstract void DealDamage(IDamagable enemy);
-    public abstract void SelfDestroy();
+    public abstract void OnCollisionWithGround(Collision2D other);
     public abstract void Overheat();
 
     public abstract void Cooling();

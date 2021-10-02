@@ -27,10 +27,9 @@ public class Weapon : MonoBehaviour
         if (!onCooldown)
         {
             bulletType = ConvertTypeItemToBulletType[bullet.type];
-            attackCooldown = bulletType.attackCooldown;
             var roatZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             var rotation = Quaternion.Euler(0, 0, roatZ + offset);
-            var flyingBullet = Instantiate(bulletType, weaponPos.position, rotation);
+            var flyingBullet = Instantiate(bulletType, weaponPos.position + Vector3.up, rotation);
             if (overheat > 33)
                 flyingBullet.Overheat();
             if (overheat > 66)
@@ -38,7 +37,8 @@ public class Weapon : MonoBehaviour
             if (overheat > 99)
                 flyingBullet.Overheat();
             if (overheat < 100)
-                overheat++;
+                overheat += 10;
+            attackCooldown = flyingBullet.attackCooldown;
             StartCoroutine(AttackCooldown());
         }
     }
