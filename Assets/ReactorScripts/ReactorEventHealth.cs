@@ -1,11 +1,11 @@
 ﻿namespace ReactorScripts
 {
-    public class ReactorEventData
+    public class ReactorEventHealth
     {
         public int Health;
         public bool IsExplosion;
 
-        public ReactorEventData(int health, bool isExplosion)
+        public ReactorEventHealth(int health, bool isExplosion)
         {
             Health = health;
             IsExplosion = isExplosion;

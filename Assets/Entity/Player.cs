@@ -9,8 +9,10 @@ public class Player : Entity
      public Transform groundCheck;
      public float groundRadius;
      public LayerMask layerGrounds;
-
-     private PlayerInput input;
+     public Camera mainCamera;
+     
+     internal PlayerInput Input;
+     
      private new Rigidbody2D rigidbody;
      private SpriteRenderer spriteRenderer;
      private float movementX;
@@ -20,19 +22,13 @@ public class Player : Entity
      {
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-          input = new PlayerInput();
-          input.input.Move.performed += ctx => Move(ctx.ReadValue<float>());
-          input.input.Move.canceled += ctx => Move(0);
-          input.input.jump.performed += ctx => Jump();
-          input.input.jump.canceled += ctx => StartCoroutine(CanceledJump());
-     }
-
-     private void Update()
-     {
-          rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
+          Input = new PlayerInput();
+          Input.Player.Move.performed += ctx => Move(ctx.ReadValue<float>());
+          Input.Player.Move.canceled += ctx => Move(0);
+          Input.Player.Jump.performed += ctx => Jump();
+          Input.Player.Jump.canceled += ctx => StartCoroutine(CanceledJump());
      }
      
-
      private void Jump()
      {
           if (isGrounded)
@@ -51,6 +47,7 @@ public class Player : Entity
      private void FixedUpdate()
      {
           isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, layerGrounds);
+          rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
      }
 
      private void Move(float axis)
@@ -59,8 +56,18 @@ public class Player : Entity
                spriteRenderer.flipX = axis < 0;
           movementX = axis * Speed;
      }
+     
+     public Vector3 GetVectorToMouse() => 
+          mainCamera.ScreenToWorldPoint(Input.Mouse.Move.ReadValue<Vector2>()) - transform.position;
+     
+     public float GetAngleToMouse()
+     {
+          var vector = mainCamera.ScreenToWorldPoint(Input.Mouse.Move.ReadValue<Vector2>()) - transform.position;
+          var angle = Mathf.Atan2(vector.y, vector.x);
+          return angle * Mathf.Rad2Deg - 90f;
+     }
 
-     private void OnEnable() => input.Enable();
+     private void OnEnable() => Input.Enable();
 
-     private void OnDisable() => input.Disable();
+     private void OnDisable() => Input.Disable();
 }

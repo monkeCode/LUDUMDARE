@@ -1,40 +1,57 @@
 using System;
 using UnityEngine;
 
-public class Reactor : MonoBehaviour, IDamagable
+namespace ReactorScripts
 {
-    public int health;
-    public int maxHealth;
-
-    public int damagePerPeriod = 1;
-    public float delayBetweenDamage = 1f;
-    private float lastTimeDamageTaken;
-
-    public event EventHandler<ReactorEventData> OnHealthChanged;
-
-    private void LateUpdate()
+    public class Reactor : MonoBehaviour, IDamagable
     {
-        if (Time.time - lastTimeDamageTaken > delayBetweenDamage)
+        public int health;
+        public int maxHealth;
+
+        public IItem requiredItem;
+        public int requirementHpForRequestItem; 
+
+        public int damagePerPeriod = 1;
+        public float delayBetweenDamage = 1f;
+        
+        private float lastTimeDamageTaken;
+        private bool isRequested;
+
+        public event EventHandler<ReactorEventHealth> OnHealthChanged;
+        public event EventHandler<ReactorEventRequirement> OnItemRequired; 
+
+        private void LateUpdate()
         {
-            lastTimeDamageTaken = Time.time;
-            TakeDamage(damagePerPeriod);
+            if (Time.time - lastTimeDamageTaken > delayBetweenDamage)
+            {
+                lastTimeDamageTaken = Time.time;
+                TakeDamage(damagePerPeriod);
+            }
         }
-    }
 
-    public void GetRepair(int repair)
-    {
-        health = Mathf.Min(health + repair, maxHealth);
-        Notify(new ReactorEventData(health, false));
-    }
+        public void GetRepair(IItem item)
+        {
+            if (item.Type != requiredItem.Type)
+                return;
+            isRequested = false;
+            health = Mathf.Min(health + item.Repair, maxHealth);
+            Notify(new ReactorEventHealth(health, false));
+        }
 
-    public void TakeDamage(int damage)
-    {
-        health = Mathf.Max(health - damage, 0);
-        Notify(new ReactorEventData(health, health == 0));
-    }
+        public void TakeDamage(int damage)
+        {
+            health = Mathf.Max(health - damage, 0);
+            Notify(new ReactorEventHealth(health, health == 0));
+            if (health < requirementHpForRequestItem && isRequested == false)
+            {
+                isRequested = true;
+                OnItemRequired?.Invoke(this, new ReactorEventRequirement(requiredItem.Type));
+            }
+        }
 
-    private void Notify(ReactorEventData eventData)
-    {
-        OnHealthChanged?.Invoke(this, eventData);
+        private void Notify(ReactorEventHealth eventHealth)
+        {
+            OnHealthChanged?.Invoke(this, eventHealth);
+        }
     }
 }
