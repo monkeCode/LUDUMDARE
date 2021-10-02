@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68256b64ce6b491ca03c2c4fc7e86880, type: 3}
   m_Name: Convertor
   m_EditorClassIdentifier: 
-  pistolBullet: {fileID: 0}
-  laserBullet: {fileID: 0}
+  pistolBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}
+  laserBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}

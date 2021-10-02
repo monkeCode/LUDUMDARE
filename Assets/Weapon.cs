@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
@@ -27,7 +26,7 @@ public class Weapon : MonoBehaviour
     {
         if (!onCooldown)
         {
-            bulletType = Convertor[bullet.Type];
+            bulletType = Convertor[bullet.type];
             attackCooldown = bulletType.attackCooldown;
             var roatZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             var rotation = Quaternion.Euler(0, 0, roatZ + offset);
