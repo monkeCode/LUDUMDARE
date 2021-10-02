@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine.Utility;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -33,8 +34,8 @@ public class MonsterScript : Entity
         if (Hp > 0)
         {
             Debug.DrawRay(_rb.position, (Vector2)_target.position - _rb.position, Color.white);
-            //Debug.Log(Vector2.Angle((Vector2)_target.position -_rb.position , Math.Abs(_rb.velocity.x) / _rb.velocity.x * Vector2.right)* 180 / Math.PI);
-            if (Vector2.Distance(_target.position, _rb.position) > _distanceToAtk )
+            Debug.Log(Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right));
+            if (Vector2.Distance(_target.position, _rb.position) > _distanceToAtk && Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right) > 20)
             {
                 Move();
             }
