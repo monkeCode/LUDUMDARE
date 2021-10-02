@@ -15,7 +15,6 @@ public class Player : Entity
      {
           rb = GetComponent<Rigidbody2D>();
           _input.Enable();
-          _input.input.Move.performed
      }
      
      void Move(int dir)
