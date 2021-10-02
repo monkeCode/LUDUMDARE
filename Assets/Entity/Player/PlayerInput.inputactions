@@ -2,21 +2,45 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "input",
+            "name": "Player",
             "id": "b35178e8-61c6-43ef-bdd8-0980c1200379",
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "847ab115-48eb-4cf8-9ff0-650e8c7aee8d",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Shot",
+                    "type": "Button",
+                    "id": "7484533a-6c77-4152-bb76-684c534977f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "977e8366-a455-46db-947d-2166b274e60f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "jump",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "e2298a28-1ce9-4b77-a59e-8b0e23adbecd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "c3b0950b-3328-45b1-9100-55da6dd5698c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -37,10 +61,10 @@
                 {
                     "name": "negative",
                     "id": "a7e5d078-2348-4d04-aab7-0f8df073e9ad",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardAndMouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -48,10 +72,10 @@
                 {
                     "name": "positive",
                     "id": "f4b463a2-89b6-4130-8597-0cbc0898ef73",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardAndMouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -62,13 +86,117 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "jump",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38b28215-2363-4458-96fa-cc80404093d5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Shot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4a0acf0-c760-41de-a14b-387aab181eaa",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8646ac91-20ba-49fb-8dde-d230e2f0e2a4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Mouse",
+            "id": "3d3b0652-bedc-42bc-b26b-ff50131452d1",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "ead9bb54-fd7f-441d-abb8-e04e23a925be",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "09de85d1-d666-44b5-97b1-6e70178aa898",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Absolute",
+            "id": "c8dc4046-5e69-4066-a00d-6e98cc11a016",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "94b8270b-2a5b-4e9e-a902-5b15f845afbe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6b54d774-0747-4e1a-975a-0c620895381e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "KeyboardAndMouse",
+            "bindingGroup": "KeyboardAndMouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
