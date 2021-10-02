@@ -1,6 +1,7 @@
 using System.Collections;
 using ReactorScripts;
 using UnityEngine;
+using System;
 
 public class Player : Entity
 { 
@@ -15,6 +16,7 @@ public class Player : Entity
      public LayerMask layerItem;
      public Camera mainCamera;
      public Weapon weapon;
+    public LayerMask layerDoors;
 
      internal PlayerInput Input;
      
@@ -26,6 +28,7 @@ public class Player : Entity
      private void Awake()
      {
           weapon = gameObject.AddComponent<Weapon>();
+          weapon.weaponPos = gameObject.transform;
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
           Input = new PlayerInput();
@@ -36,7 +39,8 @@ public class Player : Entity
           Input.Player.Action.performed += ctx => TakeItem();
           Input.Player.Throw.performed += ctx => ThrowItem();
           Input.Player.Shot.performed += ctx => Shot();
-     }
+          Input.Player.OpenDoor.performed += ctx => OpenDoor();
+    }
      
      private void Jump()
      {
@@ -75,6 +79,33 @@ public class Player : Entity
                Debug.Log($"Throw {inventoryItem.name} {inventoryItem.type}");
           inventoryItem.type = TypeItem.Item0;
      }
+
+    private void OpenDoor()
+    {
+        var doorCollider = Physics2D.OverlapCircle(groundCheck.position, takeRadius, layerDoors);
+        if(doorCollider!= null)
+        {
+            StartCoroutine(EnterDoor(doorCollider ));  
+        }
+    }
+
+    IEnumerator EnterDoor(Collider2D doorCollider)
+    {
+        var door = doorCollider.GetComponent<Door>();
+        var Out = door.Out;
+        door.State = States.open;
+        OnDisable();
+        yield return new WaitForSeconds(1);
+        spriteRenderer.sortingOrder = 4;
+        yield return new WaitForSeconds(1);
+        transform.position = Out.transform.position;
+        var otherDoor = Out.GetComponentInParent<Door>();
+        otherDoor.State = States.open;
+        yield return new WaitForSeconds(1);
+        spriteRenderer.sortingOrder = 6;
+        yield return new WaitForSeconds(1);
+        OnEnable();
+    }
 
      private void Move(float axis)
      {
