@@ -11,7 +11,7 @@ public class ShipController : MonoBehaviour
     private float GameTime = 0;
     private PlayerInput input;
 
-    
+
     [Header("Stats")]
     public float maxTurnBackSpeed = 0.5f;
     public float timeSpeedDependence;
@@ -26,6 +26,7 @@ public class ShipController : MonoBehaviour
 
     private void Awake()
     {
+        Player = GameObject.FindWithTag("Player");
         var inputPlayer = Player.GetComponent<Player>().Input;
         inputPlayer.Player.Action.performed += ctx => EbuttonIsPressed = true;
         inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
@@ -69,6 +70,7 @@ public class ShipController : MonoBehaviour
     {
         if ((EbuttonIsPressed) && (LevelCamera.transform.localRotation.eulerAngles.z != 0) && (other.gameObject.CompareTag("Player")))
         {
+            Debug.Log("knopka");
             isTurningBack = true;
             TurnBack();
         }
@@ -89,12 +91,15 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         LevelCamera = GameObject.FindWithTag("MainCamera");
-        Player = GameObject.FindWithTag("Player");
         GameTime = 0.0f;
     }
 
     void Update()
     {
+        if (EbuttonIsPressed)
+        {
+            Debug.Log("EBUTTONISPRESSED");
+        }
         
         GameTime += Time.deltaTime;
         
