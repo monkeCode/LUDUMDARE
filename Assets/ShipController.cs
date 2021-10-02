@@ -8,7 +8,8 @@ public class ShipController : MonoBehaviour
 {
     private GameObject LevelCamera;
     private GameObject Player;
-    private float GameTime = 0;
+    private float SpinTime = 0;
+    private float TimeAfterTurnBack = 0;
     private PlayerInput input;
 
 
@@ -16,6 +17,10 @@ public class ShipController : MonoBehaviour
     public float maxTurnBackSpeed = 0.5f;
     public float timeSpeedDependence;
     public bool EbuttonIsPressed = false;
+    private float maxTimeAfterTurnBack;
+    public float minTimeStartSpinning;
+    public float maxTimeStartSpinning;
+    public float timeNotSpinAfterLevelStart;
 
     private float currentTurnSpeed = 0;
     private float turnBackSpeed = 0.0f;
@@ -23,6 +28,7 @@ public class ShipController : MonoBehaviour
     private float rapidTurnDegreeSpeed;
     private bool isRapidTurnAway = false;
     private bool isTurningBack = false;
+    private int turnDirection;
 
     private void Awake()
     {
@@ -32,23 +38,46 @@ public class ShipController : MonoBehaviour
         inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
     }
 
+    void ChooseTurnDirection()
+    {
+        turnDirection = UnityEngine.Random.Range(-2, 1);
+        if (turnDirection == -2)
+        {
+            turnDirection += 1;
+        }
+
+        if (turnDirection == 0)
+        {
+            turnDirection += 1;
+        }
+    }
     void TurnAway()
     {
         turnBackSpeed = 0.0f;
-        currentTurnSpeed += GameTime * timeSpeedDependence;
-        LevelCamera.transform.Rotate(0.0f, 0.0f, currentTurnSpeed);
+        currentTurnSpeed += SpinTime * timeSpeedDependence;
+        LevelCamera.transform.Rotate(0.0f, 0.0f, turnDirection*currentTurnSpeed);
     }
 
     void TurnBack()
     {
-        turnBackSpeed = Mathf.Lerp(turnBackSpeed, maxTurnBackSpeed, 2*GameTime);
+        isTurningBack = true;
+        turnBackSpeed = Mathf.Lerp(turnBackSpeed, maxTurnBackSpeed, SpinTime);
         if (LevelCamera.transform.localRotation.eulerAngles.z - turnBackSpeed < 0)
         {
             LevelCamera.transform.localRotation = Quaternion.Euler(LevelCamera.transform.localRotation.eulerAngles.x,LevelCamera.transform.localRotation.eulerAngles.y , 0);
         }
         else
         {
-            LevelCamera.transform.Rotate(0.0f, 0.0f, -turnBackSpeed);   
+            LevelCamera.transform.Rotate(0.0f, 0.0f, turnDirection*(-turnBackSpeed));   
+        }
+        
+        if (LevelCamera.transform.localRotation.eulerAngles.z == 0)
+        {
+            TimeAfterTurnBack = 0;
+            maxTimeAfterTurnBack = UnityEngine.Random.Range(minTimeStartSpinning,maxTimeStartSpinning);
+            SpinTime = 0;
+            currentTurnSpeed = 0;
+            ChooseTurnDirection();
         }
     }
 
@@ -56,22 +85,21 @@ public class ShipController : MonoBehaviour
     {
         isRapidTurnAway = true;
         rapidTurnDegree = UnityEngine.Random.Range(5, 15);
-        Debug.Log(rapidTurnDegree);
     }
     
     void RapidTurnAway()
     {
-        rapidTurnDegreeSpeed = Mathf.Lerp(0, 0.01f, GameTime);
-        LevelCamera.transform.Rotate(0.0f,0.0f, rapidTurnDegreeSpeed);
+        rapidTurnDegreeSpeed = Mathf.Lerp(0, 0.01f, SpinTime);
+        LevelCamera.transform.Rotate(0.0f,0.0f, turnDirection*rapidTurnDegreeSpeed);
         rapidTurnDegree -= rapidTurnDegreeSpeed;
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if ((EbuttonIsPressed) && (LevelCamera.transform.localRotation.eulerAngles.z != 0) && (other.gameObject.CompareTag("Player")))
+
+        if ((EbuttonIsPressed)  && (other.gameObject.CompareTag("Player")))
         {
-            Debug.Log("knopka");
-            isTurningBack = true;
+
             TurnBack();
         }
         else
@@ -91,19 +119,18 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         LevelCamera = GameObject.FindWithTag("MainCamera");
-        GameTime = 0.0f;
+        SpinTime = 0.0f;
+        maxTimeAfterTurnBack = timeNotSpinAfterLevelStart;
+        ChooseTurnDirection();
     }
 
     void Update()
     {
-        if (EbuttonIsPressed)
-        {
-            Debug.Log("EBUTTONISPRESSED");
-        }
+
+        SpinTime += Time.deltaTime;
+        TimeAfterTurnBack += Time.deltaTime;
         
-        GameTime += Time.deltaTime;
-        
-        if (!isTurningBack)
+        if (!isTurningBack && (TimeAfterTurnBack > maxTimeAfterTurnBack))
         {
             TurnAway();
         }
