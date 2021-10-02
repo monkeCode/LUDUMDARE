@@ -272,8 +272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885d1467da079be448ed8475a014efea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 0
-  Damage: 0
+  Hp: 10
+  Damage: 10
   Speed: 5
   fallMultiplier: 2.5
   jumpVelocity: 5.55
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     name: 
-    type: 0
+    type: 2
     repair: 0
 --- !u!61 &1857325750
 BoxCollider2D:
@@ -883,11 +883,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTurnBackSpeed: 0.5
-  timeSpeedDependence: 0.00000001
+  timeSpeedDependence: 0.001
   EbuttonIsPressed: 0
   minTimeStartSpinning: 20
   maxTimeStartSpinning: 40
-  timeNotSpinAfterLevelStart: 60
+  timeNotSpinAfterLevelStart: 0
 --- !u!212 &2146151094
 SpriteRenderer:
   m_ObjectHideFlags: 0
