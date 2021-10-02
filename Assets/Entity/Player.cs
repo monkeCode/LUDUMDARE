@@ -1,14 +1,19 @@
 using System.Collections;
+using ReactorScripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : Entity
 { 
      public float fallMultiplier = 2.5f;
-     [Range(0, 10)] public float jumpVelocity;
+     [Range(0, 10)] public float jumpVelocity; 
+     public IItem InventoryItem;
      
      public Transform groundCheck;
      public float groundRadius;
      public LayerMask layerGrounds;
+     public float takeRadius;
+     public LayerMask layerItem;
      public Camera mainCamera;
      
      internal PlayerInput Input;
@@ -27,6 +32,8 @@ public class Player : Entity
           Input.Player.Move.canceled += ctx => Move(0);
           Input.Player.Jump.performed += ctx => Jump();
           Input.Player.Jump.canceled += ctx => StartCoroutine(CanceledJump());
+          Input.Player.Action.performed += ctx => TakeItem();
+          Input.Player.Throw.performed += ctx => ThrowItem();
      }
      
      private void Jump()
@@ -48,6 +55,23 @@ public class Player : Entity
      {
           isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, layerGrounds);
           rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
+     }
+
+     private void TakeItem()
+     {
+          var item = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
+          if (item != null)
+          {
+               InventoryItem = item.GetComponent<Item>();
+               Destroy(item.gameObject);
+          }
+     }
+
+     private void ThrowItem()
+     {
+          if (InventoryItem != null) 
+               Debug.Log($"Throw {InventoryItem.Name} {InventoryItem.Type}");
+          InventoryItem = null;
      }
 
      private void Move(float axis)
