@@ -20,9 +20,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""847ab115-48eb-4cf8-9ff0-650e8c7aee8d"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -50,7 +50,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""a7e5d078-2348-4d04-aab7-0f8df073e9ad"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +61,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""f4b463a2-89b6-4130-8597-0cbc0898ef73"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

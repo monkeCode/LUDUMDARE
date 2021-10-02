@@ -1,44 +1,66 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : Entity
 { 
      public float fallMultiplier = 2.5f;
-     public float lowJumpMultiplier = 2f;
-     private PlayerInput _input = new PlayerInput();
-     private Rigidbody2D rb;
-     [Range(0,10)]
-     public float jumpVelocity;
-     void Start()
+     [Range(0, 10)] public float jumpVelocity;
+     
+     public Transform groundCheck;
+     public float groundRadius;
+     public LayerMask layerGrounds;
+
+     private PlayerInput input;
+     private new Rigidbody2D rigidbody;
+     private SpriteRenderer spriteRenderer;
+     private float movementX;
+     private bool isGrounded;
+
+     private void Awake()
      {
-          rb = GetComponent<Rigidbody2D>();
-          _input.Enable();
-          _input.input.Move.performed
+          rigidbody = GetComponent<Rigidbody2D>();
+          spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+          input = new PlayerInput();
+          input.input.Move.performed += ctx => Move(ctx.ReadValue<float>());
+          input.input.Move.canceled += ctx => Move(0);
+          input.input.jump.performed += ctx => Jump();
+          input.input.jump.canceled += ctx => StartCoroutine(CanceledJump());
+     }
+
+     private void Update()
+     {
+          rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
      }
      
-     void Move(int dir)
-     {
-          rb.velocity = new Vector2(Time.deltaTime * Speed * dir, rb.velocity.y);
-          Debug.Log(dir);
-     }
-     void Update()
-     {
-          /*if (Input.GetButtonDown("Jump"))
-          {
 
-               rb.velocity = Vector2.up * jumpVelocity;
-          }
-          if(rb.velocity.y<0)
-          {
-               rb.velocity+=Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-          }
-          else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
-          {
-               rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-          } */
-          Move(_input.input.Move.ReadValue<int>());
+     private void Jump()
+     {
+          if (isGrounded)
+               rigidbody.velocity = new Vector2(movementX, jumpVelocity);
      }
-    
+     
+     private IEnumerator CanceledJump()
+     {
+          while (rigidbody.velocity.y > 0)
+          {
+               rigidbody.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
+               yield return null;
+          }
+     }
+
+     private void FixedUpdate()
+     {
+          isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, layerGrounds);
+     }
+
+     private void Move(float axis)
+     {
+          if (axis != 0)
+               spriteRenderer.flipX = axis < 0;
+          movementX = axis * Speed;
+     }
+
+     private void OnEnable() => input.Enable();
+
+     private void OnDisable() => input.Disable();
 }
