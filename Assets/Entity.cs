@@ -6,10 +6,11 @@ using UnityEngine;
 public class Entity : MonoBehaviour, IDamagable
 {
     [SerializeField]
-    private int Hp;
+    protected int Hp;
     [SerializeField]
-    private int Damage;
-    
+    protected int Damage;
+    [SerializeField]
+    protected float Speed;
     public virtual void TakeDamage(int damage)
     {
         Hp -= damage;
