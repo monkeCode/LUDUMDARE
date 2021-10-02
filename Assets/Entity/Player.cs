@@ -15,6 +15,7 @@ public class Player : Entity
      public float takeRadius;
      public LayerMask layerItem;
      public Camera mainCamera;
+     public Weapon weapon;
      
      internal PlayerInput Input;
      
@@ -25,6 +26,7 @@ public class Player : Entity
 
      private void Awake()
      {
+          weapon = gameObject.AddComponent<Weapon>();
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
           Input = new PlayerInput();
@@ -32,8 +34,12 @@ public class Player : Entity
           Input.Player.Move.canceled += ctx => Move(0);
           Input.Player.Jump.performed += ctx => Jump();
           Input.Player.Jump.canceled += ctx => StartCoroutine(CanceledJump());
+<<<<<<< HEAD
           Input.Player.Action.performed += ctx => TakeItem();
           Input.Player.Throw.performed += ctx => ThrowItem();
+=======
+          Input.Player.Shot.performed += ctx => Shot();
+>>>>>>> f6db9a8 (Small changes)
      }
      
      private void Jump()
@@ -89,6 +95,12 @@ public class Player : Entity
           var vector = mainCamera.ScreenToWorldPoint(Input.Mouse.Move.ReadValue<Vector2>()) - transform.position;
           var angle = Mathf.Atan2(vector.y, vector.x);
           return angle * Mathf.Rad2Deg - 90f;
+     }
+
+     private void Shot()
+     {
+          var vector = GetVectorToMouse();
+          weapon.Shoot(vector);
      }
 
      private void OnEnable() => Input.Enable();

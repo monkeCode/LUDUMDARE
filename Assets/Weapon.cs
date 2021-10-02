@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon<TBullet> : MonoBehaviour where TBullet : Bullet
+public class Weapon : MonoBehaviour
 {
     public int overheat;
     public float offset;
-    public TBullet bullet;
+    public Bullet bullet;
     public Transform weaponPos;
     public bool onCooldown;
     public float attackCooldown;
@@ -15,6 +15,7 @@ public class Weapon<TBullet> : MonoBehaviour where TBullet : Bullet
     private void Start()
     {
         attackCooldown = bullet.attackCooldown;
+        bullet = gameObject.AddComponent<PistolBullet>();
     }
 
     public void Shoot(Vector3 direction)
