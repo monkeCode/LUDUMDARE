@@ -20,14 +20,18 @@ public abstract class Bullet : MonoBehaviour
         collider = gameObject.GetComponent<CircleCollider2D>();
         animator = gameObject.GetComponent<Animator>();
         shootPos = transform.position;
+        rigidbody.velocity = transform.right * speed;
     }
 
     private void Update()
     {
-        rigidbody.velocity = (transform.up + transform.right) * speed;
+        var newVelocity = transform.right * speed;
+        newVelocity.y = rigidbody.velocity.y;
+        rigidbody.velocity = newVelocity;
         if ((transform.position - shootPos).magnitude >= flyDistance)
             Destroy(gameObject);
     }
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (((1 << other.gameObject.layer) & layerEnemies) != 0)

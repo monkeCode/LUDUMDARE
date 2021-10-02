@@ -7,7 +7,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public int overheat;
-    public float offset = -45;
+    public float offset = 0;
     // public Bullet bulletType;
     public Bullet bulletType;
     public Transform weaponPos;
