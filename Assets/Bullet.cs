@@ -2,39 +2,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 public abstract class Bullet : MonoBehaviour
 {
     public float speed;
     public float attackCooldown;
-    public new Rigidbody2D rigidbody;
-    public LayerMask enemies;
-    public LayerMask ground;
+    public LayerMask layerEnemies;
+    public LayerMask map;
     public int damage;
-    public Transform shootPos;
     public float flyDistance;
-    public new CircleCollider2D collider;
-    public Animator animator;
-    
 
-    void FixedUpdate()
+    private Vector3 shootPos;
+    private Animator animator;
+    private new Rigidbody2D rigidbody;
+    private new CircleCollider2D collider;
+
+    private void Start()
+    {
+        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        collider = gameObject.GetComponent<CircleCollider2D>();
+        animator = gameObject.GetComponent<Animator>();
+        shootPos = transform.position;
+    }
+
+    private void Update()
     {
         rigidbody.velocity = (transform.up + transform.right) * speed;
-        if ((transform.position - shootPos.position).magnitude >= flyDistance)
+        if ((transform.position - shootPos).magnitude >= flyDistance)
             Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == enemies)
+        if (other.gameObject.layer == layerEnemies)
         {
-            DealDamage(other.gameObject);
+            DealDamage(other.GetComponent<IDamagable>());
         }
 
-        if (other.gameObject.layer == ground)
+        if (other.gameObject.layer == map)
         {
             SelfDestroy();
         }
     }
-    public abstract void DealDamage(GameObject enemy);
+    public abstract void DealDamage(IDamagable enemy);
     public abstract void SelfDestroy();
     public abstract void Overheat();
 

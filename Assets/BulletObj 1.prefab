@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7487789416580075011}
   - component: {fileID: 171990469392406468}
   - component: {fileID: 1793768032366601420}
-  - component: {fileID: 1158486831841848659}
+  - component: {fileID: 82654254610961349}
   m_Layer: 8
-  m_Name: BulletObj
+  m_Name: BulletObj 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5082916385090401088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.19, y: -0.4, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.02, z: 0.3}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -123,7 +123,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
---- !u!114 &1158486831841848659
+--- !u!114 &82654254610961349
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,20 +132,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5082916385090401088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2682e3e9be534052b36b028f802ee9bb, type: 3}
+  m_Script: {fileID: 11500000, guid: b3b2bd9f74d8431d801c047423721698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  attackCooldown: 3
+  speed: 10
+  attackCooldown: 2
   rigidbody: {fileID: 171990469392406468}
   layerEnemies:
     serializedVersion: 2
-    m_Bits: 0
-  ground:
+    m_Bits: 1024
+  map:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 0
+    m_Bits: 64
+  damage: 2
   shootPos: {fileID: 0}
-  flyDistance: 5
+  flyDistance: 10
   collider: {fileID: 1793768032366601420}
   animator: {fileID: 0}
+  explosionRadius: 5

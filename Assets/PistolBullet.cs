@@ -6,21 +6,10 @@ using UnityEngine;
 
 public class PistolBullet : Bullet
 {
-    private void Start()
-    {
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        animator = gameObject.GetComponent<Animator>();
-        collider = gameObject.GetComponent<CircleCollider2D>();
-        shootPos = gameObject.transform;
-        speed = 10; //setValue
-        damage = 10; //setValue
-        flyDistance = 5; //setValue
-        attackCooldown = 3; //setValue
-    }
 
-    public override void DealDamage(GameObject enemy)
+    public override void DealDamage(IDamagable enemy)
     {
-        enemy.GetComponent<IDamagable>().TakeDamage(damage);
+        enemy.TakeDamage(damage);
         Destroy(gameObject);
     }
 
