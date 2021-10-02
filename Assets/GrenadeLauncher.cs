@@ -23,4 +23,9 @@ public class GrenadeLauncher : Bullet
     {
         throw new System.NotImplementedException();
     }
+
+    public override void Cooling()
+    {
+        throw new System.NotImplementedException();
+    }
 }

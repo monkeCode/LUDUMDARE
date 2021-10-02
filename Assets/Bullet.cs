@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
 {
@@ -32,14 +28,13 @@ public abstract class Bullet : MonoBehaviour
         if ((transform.position - shootPos).magnitude >= flyDistance)
             Destroy(gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == layerEnemies)
+        if (((1 << other.gameObject.layer) & layerEnemies) != 0)
         {
-            DealDamage(other.GetComponent<IDamagable>());
+            DealDamage(other.gameObject.GetComponent<IDamagable>());
         }
-
-        if (other.gameObject.layer == map)
+        if (((1 << other.gameObject.layer) & map) != 0)
         {
             SelfDestroy();
         }
