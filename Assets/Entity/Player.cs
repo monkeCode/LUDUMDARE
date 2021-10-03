@@ -17,7 +17,9 @@ public class Player : Entity
     public Camera mainCamera;
     public Weapon weapon;
     public LayerMask layerDoors;
+    public LayerMask layerSideDoors;
     public SpawnItemInspector itemInspector;
+
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
@@ -47,8 +49,9 @@ public class Player : Entity
           Input.Player.Shot.performed += ctx => isShoted = true;
           Input.Player.Shot.canceled += ctx => isShoted = false;
           Input.Player.OpenDoor.performed += ctx => OpenDoor();
-    }
-
+          Input.Player.OpenDoor.performed += ctx => InteractSideDoor();
+     }
+ 
      private void Jump()
      {
           if (isGrounded)
@@ -106,6 +109,7 @@ public class Player : Entity
         }
     }
 
+    
     IEnumerator EnterDoor(Collider2D doorCollider)
     {
         var door = doorCollider.GetComponent<Door>();
@@ -124,7 +128,16 @@ public class Player : Entity
         OnEnable();
     }
 
-     private void Move(float axis)
+    void InteractSideDoor()
+    {
+         var doorCollider = Physics2D.OverlapCircle(transform.position, takeRadius, layerSideDoors);
+         if (doorCollider != null)
+         {
+              Debug.Log("find");
+              doorCollider.GetComponent<SideDoor>().InteractWithDoor();
+         }
+    }
+    private void Move(float axis)
      {
           if (axis != 0)
                spriteRenderer.flipX = axis < 0;

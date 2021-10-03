@@ -61,7 +61,6 @@ public class ShipController : MonoBehaviour
     void TurnBack()
     {
         isTurningBack = true;
-        Debug.Log("isTurningBack = " + isTurningBack);
         turnBackSpeed = Mathf.Lerp(turnBackSpeed, maxTurnBackSpeed, SpinTime);
         if (LevelCamera.transform.localRotation.eulerAngles.z - turnBackSpeed < 0)
         {
@@ -142,7 +141,6 @@ public class ShipController : MonoBehaviour
         else
         {
             isTurningBack = false;
-            Debug.Log(isTurningBack);
         }
         //
 
@@ -157,7 +155,6 @@ public class ShipController : MonoBehaviour
         if (!isTurningBack && (TimeAfterTurnBack > maxTimeAfterTurnBack))
         {
             TurnAway();
-            Debug.Log("isTurningAway");
         }
 
         if (isRapidTurnAway)
@@ -171,6 +168,5 @@ public class ShipController : MonoBehaviour
                 RapidTurnAway();
             }
         }
-        
     }
 }
