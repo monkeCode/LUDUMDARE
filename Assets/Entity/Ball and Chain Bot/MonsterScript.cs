@@ -52,7 +52,7 @@ public class MonsterScript : Entity
             (_target.position.x -
             _rb.position.x) / Math.Abs(_target.position.x - _rb.position.x) * Speed * Time.deltaTime,
             _rb.velocity.y);
-        _rb.transform.localScale = new Vector3(_rb.velocity.normalized.x, 1, 1);
+        _rb.transform.localScale = new Vector3((_rb.velocity.x >0?1:-1) * Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         if (Math.Abs(_rb.velocity.x) > 0.1f)
             _animator.SetBool(Move1, true);
         else
