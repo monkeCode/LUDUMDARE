@@ -733,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     name: 
-    type: 2
+    type: 3
     repair: 0
 --- !u!61 &1857325750
 BoxCollider2D:
@@ -883,7 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTurnBackSpeed: 0.5
-  timeSpeedDependence: 0.001
+  timeSpeedDependence: 0.000001
   EbuttonIsPressed: 0
   minTimeStartSpinning: 20
   maxTimeStartSpinning: 40

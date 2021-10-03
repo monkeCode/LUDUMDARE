@@ -14,7 +14,7 @@ public abstract class Bullet : MonoBehaviour
     private Animator animator;
     public new Rigidbody2D rigidbody;
 
-    private void Start()
+    protected void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();

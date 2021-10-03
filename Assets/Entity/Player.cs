@@ -77,7 +77,7 @@ public class Player : Entity
      {
           if (inventoryItem != null) 
                Debug.Log($"Throw {inventoryItem.name} {inventoryItem.type}");
-          inventoryItem.type = TypeItem.Item0;
+          inventoryItem.type = TypeItem.Default;
      }
 
     private void OpenDoor()

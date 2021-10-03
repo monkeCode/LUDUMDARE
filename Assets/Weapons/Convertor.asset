@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68256b64ce6b491ca03c2c4fc7e86880, type: 3}
   m_Name: Convertor
   m_EditorClassIdentifier: 
-  pistolBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}
-  laserBullet: {fileID: 1158486831841848659, guid: 958b74fca370d604880f1e77399fb0db, type: 3}
-  grenadeLauncherBullet: {fileID: 82654254610961349, guid: c8e61b818c570874db094478cdb8ee0d, type: 3}
+  pistolBullet: {fileID: 1158486831841848659, guid: 2e5db369d3d34c72a09fef04da570dd3, type: 3}
+  laserBullet: {fileID: 258203081110592869, guid: ef24168699974a70a939c439b4b18bf2, type: 3}
+  grenadeLauncherBullet: {fileID: 82654254610961349, guid: fda987449bf441e89ac8935792898f4e, type: 3}
+  flamethrowerBullet: {fileID: -298587657632779659, guid: 4225a3dea4c768c42b9ceb10778521d7, type: 3}

@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - bulletType: {instanceID: 0}
   - weaponPos: {instanceID: 0}
-  - convertor: {fileID: 11400000, guid: 6656e751c8eb80b4ca187871abb73789, type: 2}
+  - convertor: {fileID: 11400000, guid: ee5e0612cd0242159fd4d9fd24d6c4a8, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

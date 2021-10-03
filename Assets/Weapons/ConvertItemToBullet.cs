@@ -10,13 +10,15 @@ namespace DefaultNamespace
         public Bullet pistolBullet;
         public Bullet laserBullet;
         public Bullet grenadeLauncherBullet;
+        public Bullet flamethrowerBullet;
 
         public Dictionary<TypeItem, Bullet> GetBulletDictionary()
         {
             var dic = new Dictionary<TypeItem, Bullet>();
-            dic[TypeItem.Item1] = laserBullet;
-            dic[TypeItem.Item0] = pistolBullet;
-            dic[TypeItem.Item2] = grenadeLauncherBullet;
+            dic[TypeItem.Default] = pistolBullet;
+            dic[TypeItem.Laser] = laserBullet;
+            dic[TypeItem.Grenade] = grenadeLauncherBullet;
+            dic[TypeItem.Flamethrower] = flamethrowerBullet;
             return dic;
         }
     }
