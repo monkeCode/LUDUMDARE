@@ -3064,13 +3064,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8666283163810024624, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: babcf8ce923e5434e8eb2272563b6bab, type: 2}
-    - target: {fileID: 8666283163810024624, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: m_Constraints
-      value: 4
+    - target: {fileID: 5457149447512611014, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
+      propertyPath: m_Size.x
+      value: 0.21446419
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457149447512611014, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
+      propertyPath: m_Size.y
+      value: 0.42310208
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457149447512611014, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.058272522
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457149447512611014, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.055358253
       objectReference: {fileID: 0}
     - target: {fileID: 8666283163810024626, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
       propertyPath: m_RootOrder
@@ -3120,10 +3128,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 8666283163810024629, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8666283163810024630, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
       propertyPath: mainCamera
       value: 
@@ -3132,30 +3136,6 @@ PrefabInstance:
       propertyPath: itemInspector
       value: 
       objectReference: {fileID: 188387842}
-    - target: {fileID: 8666283163810024630, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: layerDoors.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666283163810024630, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: layerSideDoors.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666283164480054803, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666283164781435707, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666283165194230806, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666283165354369511, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
 --- !u!1001 &1151237754
@@ -18271,6 +18251,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c64c134ccdeae1d468099fca178de376, type: 3}
+--- !u!114 &1540224388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8666283163810024630, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
+  m_PrefabInstance: {fileID: 1141721384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885d1467da079be448ed8475a014efea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1545887253
 GameObject:
   m_ObjectHideFlags: 0
@@ -34207,6 +34198,7 @@ GameObject:
   - component: {fileID: 1587984435}
   - component: {fileID: 1587984434}
   - component: {fileID: 1587984433}
+  - component: {fileID: 1587984437}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -34311,6 +34303,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1587984437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587984432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e80116b22df0a488abc9ce17975d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1540224388}
+  camera: {fileID: 1587984435}
+  isFocused: 0
+  CameraSize: 0
+  objectInFocus: {fileID: 0}
+  size: 5
 --- !u!1001 &1613620994
 PrefabInstance:
   m_ObjectHideFlags: 0
