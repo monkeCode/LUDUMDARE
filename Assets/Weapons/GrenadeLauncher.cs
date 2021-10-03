@@ -15,6 +15,7 @@ public class GrenadeLauncher : Bullet
     public override void OnCollisionWithGround(Collision2D other)
     {
         Explosion();
+        Destroy(gameObject);
     }
         
     public override void Overheat()
@@ -39,12 +40,12 @@ public class GrenadeLauncher : Bullet
         {
             DealDamage(enemy.GetComponent<IDamagable>());
         }
-        Destroy(gameObject);
     }
 
     private IEnumerator OverheatExplosion()
     {
         yield return new WaitForSeconds(overheatTimeToExplosion);
         Explosion();
+        Destroy(gameObject);
     }
 }
