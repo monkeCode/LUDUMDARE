@@ -133,9 +133,16 @@ public class Player : Entity
          var doorCollider = Physics2D.OverlapCircle(transform.position, takeRadius, layerSideDoors);
          if (doorCollider != null)
          {
-              Debug.Log("find");
-              doorCollider.GetComponent<SideDoor>().InteractWithDoor();
+            StartCoroutine(EnterSideDoor(doorCollider));
+             ;
          }
+    }
+    IEnumerator EnterSideDoor(Collider2D doorCollider)
+    {
+        doorCollider.GetComponent<SideDoor>().InteractWithDoor();
+        OnDisable();
+        yield return new WaitForSeconds(1);
+        OnEnable();
     }
     private void Move(float axis)
      {

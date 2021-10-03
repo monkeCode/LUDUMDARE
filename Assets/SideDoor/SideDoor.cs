@@ -12,8 +12,9 @@ public class SideDoor : MonoBehaviour
  private BoxCollider2D _collider;
  private static readonly int Close = Animator.StringToHash("close");
  private static readonly int Open = Animator.StringToHash("open");
+   public AudioSource sound;
 
- void Start()
+    void Start()
     {
       _animator = GetComponent<Animator>();
       _collider = GetComponent<BoxCollider2D>();
@@ -28,6 +29,7 @@ public class SideDoor : MonoBehaviour
             _animator.SetTrigger(Close);
        else 
            _animator.SetTrigger(Open);
+        sound.Play();
        blockCollider.enabled = isClose;
    }
    
