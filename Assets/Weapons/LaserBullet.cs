@@ -10,7 +10,7 @@ public class LaserBullet : Bullet
     private int overheatReflectionCount = 2;
     public int currentReflection = 0;
     private LineRenderer lineRenderer;
-    private float destroyTime = 10f;
+    private float destroyTime = 1f;
     public LayerMask player;
     
     private new void Start()
