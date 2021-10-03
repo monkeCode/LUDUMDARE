@@ -1,29 +1,40 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using DefaultNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class SideDoor : MonoBehaviour
+public class SideDoor : RootDoor
 {
     [SerializeField] private BoxCollider2D blockCollider;
-    private bool isClose = true;
-    private Animator _animator;
-    private BoxCollider2D _collider;
-    private static readonly int Close = Animator.StringToHash("close");
-    private static readonly int Open = Animator.StringToHash("open");
-    public AudioSource sound;
+ private bool isClose = true;
+ private Animator _animator;
+ private BoxCollider2D _collider;
+ private static readonly int Close = Animator.StringToHash("close");
+ private static readonly int OpenAnim = Animator.StringToHash("open");
+   public AudioSource sound;
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
-        _collider = GetComponent<BoxCollider2D>();
+      _animator = GetComponent<Animator>();
+      _collider = GetComponent<BoxCollider2D>();
+    }
+
+    public override void Open()
+    {
+        InteractWithDoor();
     }
 
     public void InteractWithDoor()
-    {
-        isClose = !isClose;
-        if (isClose)
+   {
+       isClose = !isClose;
+       if(isClose)
             _animator.SetTrigger(Close);
-        else
-            _animator.SetTrigger(Open);
+       else 
+           _animator.SetTrigger(OpenAnim);
         sound.Play();
-        blockCollider.enabled = isClose;
-    }
+       blockCollider.enabled = isClose;
+   }
+   
 }

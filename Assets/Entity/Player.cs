@@ -2,7 +2,7 @@ using System.Collections;
 using ReactorScripts;
 using UnityEngine;
 using System;
-using UnityEngine.Experimental.Rendering.Universal;
+using System.Collections.Generic;
 
 public class Player : Entity
 {
@@ -18,10 +18,9 @@ public class Player : Entity
     public Camera mainCamera;
     public Weapon weapon;
     public LayerMask layerDoors;
-    public LayerMask layerSideDoors;
+    // public LayerMask layerSideDoors;
     public SpawnItemInspector itemInspector;
-    public Light2D leftLight;
-    public Light2D rightLight;
+    public static List<string> Keys;
 
 
     [SerializeField] private Transform attackPoint;
@@ -37,6 +36,7 @@ public class Player : Entity
 
      private void Awake()
      {
+          Keys = new List<string>();
           weapon = gameObject.AddComponent<Weapon>();
           weapon.weaponPos = attackPoint.transform;
           rigidbody = GetComponent<Rigidbody2D>();
@@ -52,7 +52,7 @@ public class Player : Entity
           Input.Player.Shot.performed += ctx => isShoted = true;
           Input.Player.Shot.canceled += ctx => isShoted = false;
           Input.Player.OpenDoor.performed += ctx => OpenDoor();
-          Input.Player.OpenDoor.performed += ctx => InteractSideDoor();
+          // Input.Player.OpenDoor.performed += ctx => InteractSideDoor();
      }
  
      private void Jump()
@@ -106,7 +106,7 @@ public class Player : Entity
     private void OpenDoor()
     {
         var doorCollider = Physics2D.OverlapCircle(groundCheck.position, takeRadius, layerDoors);
-        if(doorCollider!= null)
+        if(doorCollider != null)
         {
             StartCoroutine(EnterDoor(doorCollider ));  
         }
@@ -115,45 +115,49 @@ public class Player : Entity
     
     IEnumerator EnterDoor(Collider2D doorCollider)
     {
-        var door = doorCollider.GetComponent<Door>();
-        var Out = door.Out;
-        door.Open();
-        OnDisable();
-        yield return new WaitForSeconds(1);
-        spriteRenderer.sortingOrder = 4;
-        yield return new WaitForSeconds(1);
-        transform.position = Out.transform.position;
-        var otherDoor = Out.GetComponentInParent<Door>();
-        otherDoor.Open();
-        yield return new WaitForSeconds(1);
-        spriteRenderer.sortingOrder = 6;
-        yield return new WaitForSeconds(1);
-        OnEnable();
+        // var door = doorCollider.GetComponent<Door>();
+        var door = doorCollider.GetComponent<RootDoor>();
+        var Out = door.@out;
+        door.TryOpen();
+        if (Out != null)
+        {
+             OnDisable();
+             yield return new WaitForSeconds(1);
+             spriteRenderer.sortingOrder = 4;
+             yield return new WaitForSeconds(1);
+             transform.position = Out.transform.position;
+             var otherDoor = Out.GetComponentInParent<Door>();
+             otherDoor.Open();
+             yield return new WaitForSeconds(1);
+             spriteRenderer.sortingOrder = 6;
+             yield return new WaitForSeconds(1);
+             OnEnable();
+        }
+        else
+        {
+             StartCoroutine(EnterSideDoor(doorCollider));
+        }
     }
 
-    void InteractSideDoor()
-    {
-         var doorCollider = Physics2D.OverlapCircle(transform.position, takeRadius, layerSideDoors);
-         if (doorCollider != null)
-         {
-            StartCoroutine(EnterSideDoor(doorCollider));
-         }
-    }
+    // void InteractSideDoor()
+    // {
+    //      var doorCollider = Physics2D.OverlapCircle(transform.position, takeRadius, layerSideDoors);
+    //      if (doorCollider != null)
+    //      {
+    //         StartCoroutine(EnterSideDoor(doorCollider));
+    //          ;
+    //      }
+    // }
     IEnumerator EnterSideDoor(Collider2D doorCollider)
-    {
-        doorCollider.GetComponent<SideDoor>().InteractWithDoor();
-        OnDisable();
+    { 
+         OnDisable();
         yield return new WaitForSeconds(1);
         OnEnable();
     }
     private void Move(float axis)
      {
           if (axis != 0)
-        {
-                spriteRenderer.flipX = axis < 0;
-                leftLight.enabled = axis < 0;
-                rightLight.enabled = !(axis < 0);
-         }
+               spriteRenderer.flipX = axis < 0;
           movementX = axis * Speed;
      }
      
