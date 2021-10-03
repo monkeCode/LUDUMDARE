@@ -27,7 +27,8 @@ public class EyeBallScript : Entity
       _rb = GetComponent<Rigidbody2D>();
       _animator = GetComponent<Animator>();
       _collider = GetComponent<CircleCollider2D>();
-   }
+      target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
    private void Update()
    {
