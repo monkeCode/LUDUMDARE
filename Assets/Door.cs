@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public GameObject Out;
+    public AudioSource sound;
     private Animator animator;
 
     private void Awake()
@@ -14,6 +15,7 @@ public class Door : MonoBehaviour
     public void Open()
     {
         State = States.open;
+        sound.Play();
     }
 
     public void Close()

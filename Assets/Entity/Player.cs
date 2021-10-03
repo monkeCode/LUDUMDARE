@@ -93,14 +93,14 @@ public class Player : Entity
     {
         var door = doorCollider.GetComponent<Door>();
         var Out = door.Out;
-        door.State = States.open;
+        door.Open();
         OnDisable();
         yield return new WaitForSeconds(1);
         spriteRenderer.sortingOrder = 4;
         yield return new WaitForSeconds(1);
         transform.position = Out.transform.position;
         var otherDoor = Out.GetComponentInParent<Door>();
-        otherDoor.State = States.open;
+        otherDoor.Open();
         yield return new WaitForSeconds(1);
         spriteRenderer.sortingOrder = 6;
         yield return new WaitForSeconds(1);
