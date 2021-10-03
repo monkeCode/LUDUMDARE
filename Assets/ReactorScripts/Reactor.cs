@@ -17,8 +17,8 @@ namespace ReactorScripts
         private float lastTimeDamageTaken;
         private bool isRequested;
 
-        public event EventHandler<ReactorEventHealth> OnHealthChanged;
-        public event EventHandler<ReactorEventRequirement> OnItemRequired;
+        public static event EventHandler<ReactorEventHealth> OnHealthChanged;
+        public static event EventHandler<ReactorEventRequirement> OnItemRequired;
         
         private Animator animator;
 
@@ -56,7 +56,7 @@ namespace ReactorScripts
             }
             if (health > maxHealth * 0.66)
                 state = States.fullHP;
-            else if (health < maxHealth * 0.66 && health > maxHealth * 0.33)
+            else if ( health > maxHealth * 0.33)
                 state = States.mediumHP;
             else
                 state = States.lowHP;
