@@ -196,7 +196,6 @@ GameObject:
   - component: {fileID: 6184789798394405608}
   - component: {fileID: 4306191354374345891}
   - component: {fileID: 2381417920339637751}
-  - component: {fileID: 8813068525661756161}
   m_Layer: 7
   m_Name: Item1(Laser)
   m_TagString: Untagged
@@ -262,21 +261,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8813068525661756161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7212523150273067928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af70d6b11ef1e34d84f0c6db4373caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxTurnBackSpeed: 0.5
-  timeSpeedDependence: 0.000001
-  EbuttonIsPressed: 0
-  minTimeStartSpinning: 20
-  maxTimeStartSpinning: 40
-  timeNotSpinAfterLevelStart: 0
