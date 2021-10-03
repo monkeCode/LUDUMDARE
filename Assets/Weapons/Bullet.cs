@@ -30,7 +30,10 @@ public abstract class Bullet : MonoBehaviour
         Rigidbody.velocity = newVelocity;
         velocity = Rigidbody.velocity;
         if ((transform.position - shootPos).magnitude >= flyDistance)
-            Destroy(gameObject);
+        {
+            OnTheEdge();
+            Destroy(gameObject, 1f);
+        }
     }
     
     private void OnCollisionEnter2D(Collision2D other)
@@ -43,6 +46,11 @@ public abstract class Bullet : MonoBehaviour
         {
             OnCollisionWithGround(other);
         }
+    }
+
+    protected virtual void OnTheEdge()
+    {
+        
     }
     public abstract void DealDamage(IDamagable enemy);
     public abstract void OnCollisionWithGround(Collision2D other);

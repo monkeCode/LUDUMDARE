@@ -60,6 +60,14 @@ public class LaserBullet : Bullet
         Destroy(gameObject);
     }
 
+    protected override void OnTheEdge()
+    {
+        var point = transform.position;
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(currentReflection+1, point);
+        
+    }
+
 
     public override void Overheat()
     {
