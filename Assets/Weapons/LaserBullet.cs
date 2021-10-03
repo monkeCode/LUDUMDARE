@@ -11,8 +11,7 @@ public class LaserBullet : Bullet
     public int currentReflection = 0;
     private LineRenderer lineRenderer;
     private float destroyTime = 1f;
-    public LayerMask player;
-    
+
     private new void Start()
     {
         base.Start();
@@ -21,6 +20,7 @@ public class LaserBullet : Bullet
         lineRenderer.endWidth = 0.1f;
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(currentReflection, shootPos);
+        // LaserMagic(shootPos, Rigidbody.velocity);
         StartCoroutine(DestroyAfterTime());
     }
     public override void DealDamage(IDamagable enemy)
@@ -42,10 +42,6 @@ public class LaserBullet : Bullet
             {
                 DealDamage(hit.rigidbody.gameObject.GetComponent<IDamagable>());
             }
-
-            var playerHit = Physics2D.Raycast(other.contacts[0].point, Rigidbody.velocity, flyDistance, player);
-            if (playerHit)
-                DealDamage(playerHit.rigidbody.gameObject.GetComponent<IDamagable>());
             currentReflection++;
         }
         else
@@ -53,7 +49,7 @@ public class LaserBullet : Bullet
             Destroy(gameObject);
         }
     }
-    
+
     IEnumerator DestroyAfterTime()
     {
         yield return new WaitForSeconds(destroyTime);
@@ -65,7 +61,6 @@ public class LaserBullet : Bullet
         var point = transform.position;
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(currentReflection+1, point);
-        
     }
 
 
