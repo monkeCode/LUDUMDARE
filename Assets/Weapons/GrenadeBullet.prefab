@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  attackCooldown: 2
+  attackCooldown: 1
   layerEnemies:
     serializedVersion: 2
     m_Bits: 1536
@@ -146,4 +146,6 @@ MonoBehaviour:
   damage: 2
   flyDistance: 10
   overheatIncrement: 2
-  explosionRadius: 5
+  explosionRadius: 1.5
+  overheatTimeToExplosion: 0.08
+  explosion: {fileID: 4703996392976682830, guid: 8f72815867abc8e40a35402513eb58de, type: 3}
