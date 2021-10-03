@@ -7,7 +7,6 @@ public class Door : MonoBehaviour
     public GameObject Out;
     public AudioSource sound;
     private Animator animator;
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
