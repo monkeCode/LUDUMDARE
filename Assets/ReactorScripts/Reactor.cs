@@ -42,13 +42,13 @@ namespace ReactorScripts
                 return;
             isRequested = false;
             health = Mathf.Min(health + item.repair, maxHealth);
-            Notify(new ReactorEventHealth(health, false));
+            Notify(new ReactorEventHealth(health, state, false));
         }
 
         public void TakeDamage(int damage)
         {
             health = Mathf.Max(health - damage, 0);
-            Notify(new ReactorEventHealth(health, health == 0));
+            Notify(new ReactorEventHealth(health, state, health == 0));
             if (health < requirementHpForRequestItem && isRequested == false)
             {
                 isRequested = true;
@@ -77,12 +77,5 @@ namespace ReactorScripts
         {
             OnHealthChanged?.Invoke(this, eventHealth);
         }
-    }
-
-    public enum States
-    {
-        fullHP,
-        mediumHP,
-        lowHP
     }
 }
