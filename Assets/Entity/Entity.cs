@@ -15,6 +15,7 @@ public class Entity : MonoBehaviour, IDamagable
     [SerializeField]
     protected float Speed;
 
+    protected bool isLife = true;
     public event EventHandler<(int Current, int Max)> HealthChanged;
 
     public virtual void TakeDamage(int damage)

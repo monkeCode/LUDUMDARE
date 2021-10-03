@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7894064436176353321}
   - component: {fileID: 7894064436176353320}
   - component: {fileID: 7894064436176353323}
-  - component: {fileID: 7894064436176353322}
   - component: {fileID: 7894064436176353327}
   - component: {fileID: 7894064436176353326}
+  - component: {fileID: 1042493678842863885}
   m_Layer: 10
   m_Name: DistanceMonster
   m_TagString: Untagged
@@ -107,32 +107,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &7894064436176353322
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7894064436176353317}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.036981344, y: 0.7375492}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.8125, y: 1.0625}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7191186, y: 1.4965599}
-  m_EdgeRadius: 0
 --- !u!114 &7894064436176353327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 7
+  MaxHp: 0
   Damage: 7
   Speed: 300
   target: {fileID: 0}
@@ -153,6 +128,9 @@ MonoBehaviour:
   minimalDistance: 3
   bullet: {fileID: 8857660191386235388, guid: eeabeac2a28bbb54193c286eb7609ee6, type: 3}
   gunPos: {fileID: 7894064436515027538}
+  retreatlayers:
+    serializedVersion: 2
+    m_Bits: 0
   bulletForce: 1.54
 --- !u!50 &7894064436176353326
 Rigidbody2D:
@@ -166,7 +144,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1.0762041
+  m_Mass: 0.8070216
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -175,6 +153,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &1042493678842863885
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894064436176353317}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.055081844, y: 0.6498878}
+  m_Size: {x: 0.7023363, y: 1.2997756}
+  m_Direction: 0
 --- !u!1 &7894064436515027533
 GameObject:
   m_ObjectHideFlags: 0

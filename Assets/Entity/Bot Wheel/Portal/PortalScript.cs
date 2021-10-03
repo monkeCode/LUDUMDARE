@@ -15,6 +15,7 @@ public class PortalScript : MonoBehaviour
     [SerializeField] private float explosiveRadiusModifier;
     [SerializeField] private float pushForce;
     [SerializeField] private int damage;
+    [SerializeField] private float timeToDestroyParticles;
     private Rigidbody2D _rb;
     // Start is called before the first frame update
     void Start()
@@ -49,14 +50,13 @@ public class PortalScript : MonoBehaviour
     {
         pS.Play();
         pS.gameObject.transform.SetParent(null);
-        pS.GetComponent<SelfDestroyByTime>().StartDestroy();
+        Destroy(pS, timeToDestroyParticles);
        var colliders = Physics2D.OverlapCircleAll(_rb.position, GetComponent<CircleCollider2D>().radius * explosiveRadiusModifier);
        foreach (var collider in colliders)
        {
            collider.TryGetComponent(out IDamagable component);
            if (component != null)
            {
-               Debug.Log("entity");
                if (collider.gameObject == target.gameObject)
                { 
                    component.TakeDamage(damage);

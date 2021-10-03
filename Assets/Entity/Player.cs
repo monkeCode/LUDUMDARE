@@ -176,8 +176,8 @@ public class Player : Entity
 
      protected override void Die()
      {
-          GameObject DeadMenu;
-          DeadMenu = GameObject.Find("DeadMenu");
-          DeadMenu.SetActive(true);
+          //GameObject DeadMenu;
+          //DeadMenu = GameObject.Find("DeadMenu");
+          //DeadMenu.SetActive(true);
      }
 }

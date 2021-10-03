@@ -97,9 +97,10 @@ public class BotScript : Entity
     public override void TakeDamage(int damage)
     {
         Hp -= damage;
-        if (Hp <= 0)
+        if (Hp <= 0 && isLife)
         {
             _animator.SetTrigger(Die1);
+            isLife = false;
         }
     }
 }

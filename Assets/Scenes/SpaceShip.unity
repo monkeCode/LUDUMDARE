@@ -387,6 +387,10 @@ PrefabInstance:
       propertyPath: Out
       value: 
       objectReference: {fileID: 372133509}
+    - target: {fileID: 522784616415450996, guid: c64c134ccdeae1d468099fca178de376, type: 3}
+      propertyPath: out
+      value: 
+      objectReference: {fileID: 372133509}
     - target: {fileID: 522784616415450997, guid: c64c134ccdeae1d468099fca178de376, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2023,6 +2027,10 @@ PrefabInstance:
       propertyPath: Out
       value: 
       objectReference: {fileID: 191659918}
+    - target: {fileID: 522784616415450996, guid: c64c134ccdeae1d468099fca178de376, type: 3}
+      propertyPath: out
+      value: 
+      objectReference: {fileID: 191659918}
     - target: {fileID: 522784616415450997, guid: c64c134ccdeae1d468099fca178de376, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2369,11 +2377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081556913187329767, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.722458
+      value: 9.752
       objectReference: {fileID: 0}
     - target: {fileID: 4081556913187329767, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.17
+      value: 3.081
       objectReference: {fileID: 0}
     - target: {fileID: 4081556913187329767, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2782,6 +2790,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 522784616415450996, guid: c64c134ccdeae1d468099fca178de376, type: 3}
       propertyPath: Out
+      value: 
+      objectReference: {fileID: 183272920}
+    - target: {fileID: 522784616415450996, guid: c64c134ccdeae1d468099fca178de376, type: 3}
+      propertyPath: out
       value: 
       objectReference: {fileID: 183272920}
     - target: {fileID: 522784616415450997, guid: c64c134ccdeae1d468099fca178de376, type: 3}
@@ -5010,6 +5022,10 @@ PrefabInstance:
       propertyPath: itemInspector
       value: 
       objectReference: {fileID: 188387842}
+    - target: {fileID: 8666283163810024630, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
+      propertyPath: layerDoors.m_Bits
+      value: 6144
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5d2a36eb55eaf448f42eecf5c7e422, type: 3}
 --- !u!1001 &1151237754
@@ -20771,6 +20787,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 522784616415450996, guid: c64c134ccdeae1d468099fca178de376, type: 3}
       propertyPath: Out
+      value: 
+      objectReference: {fileID: 1904377727}
+    - target: {fileID: 522784616415450996, guid: c64c134ccdeae1d468099fca178de376, type: 3}
+      propertyPath: out
       value: 
       objectReference: {fileID: 1904377727}
     - target: {fileID: 522784616415450997, guid: c64c134ccdeae1d468099fca178de376, type: 3}
