@@ -10,6 +10,7 @@ public abstract class Bullet : MonoBehaviour
     public float flyDistance;
     public float overheatIncrement;
     public Vector2 velocity;
+    public float onTheEdgeConst;
 
     protected Vector3 shootPos;
     private Animator animator;
@@ -32,7 +33,7 @@ public abstract class Bullet : MonoBehaviour
         if ((transform.position - shootPos).magnitude >= flyDistance)
         {
             OnTheEdge();
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, onTheEdgeConst);
         }
     }
     
