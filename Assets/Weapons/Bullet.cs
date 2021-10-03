@@ -10,7 +10,7 @@ public abstract class Bullet : MonoBehaviour
     public float flyDistance;
     public float overheatIncrement;
 
-    private Vector3 shootPos;
+    protected Vector3 shootPos;
     private Animator animator;
     protected Rigidbody2D Rigidbody;
 
