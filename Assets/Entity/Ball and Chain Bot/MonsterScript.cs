@@ -25,6 +25,7 @@ public class MonsterScript : Entity
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _target = GameObject.FindGameObjectWithTag("Player").transform;
         _readyToAtk = true;
     }
 
