@@ -17,6 +17,7 @@ public class Player : Entity
     public Camera mainCamera;
     public Weapon weapon;
     public LayerMask layerDoors;
+    public SpawnItemInspector itemInspector;
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
@@ -76,15 +77,20 @@ public class Player : Entity
 
      private void TakeItem()
      {
-          var item = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
-          if (item != null)
+         var itemCollider = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
+          if (itemCollider != null)
           {
-               inventoryItem = item.GetComponent<Item>().data;
-               Destroy(item.gameObject);
+            var item = itemCollider.GetComponent<Item>();
+            Debug.Log("1");
+            inventoryItem = item.data;
+            Debug.Log("2");
+            itemInspector.TakeItem(item);
+            Debug.Log("3");
+            Destroy(itemCollider.gameObject);
           }
      }
 
-     private void ThrowItem()
+    private void ThrowItem()
      {
           if (inventoryItem != null) 
                Debug.Log($"Throw {inventoryItem.name} {inventoryItem.type}");
