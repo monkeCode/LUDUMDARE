@@ -129,8 +129,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 10
   flyDistance: 10
-  velocity: {x: 0, y: 0}
-  rigidbody: {fileID: 0}
+  overheatIncrement: 1
   reflections: 2
 --- !u!61 &1761082000116883384
 BoxCollider2D:

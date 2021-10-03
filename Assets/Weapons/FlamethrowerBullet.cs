@@ -13,7 +13,7 @@ namespace Weapons
         private new void Start()
         {
             base.Start();
-            rigidbody.velocity = Vector2.zero;
+            Rigidbody.velocity = Vector2.zero;
             Destroy(gameObject, timeAlive);
         }
         

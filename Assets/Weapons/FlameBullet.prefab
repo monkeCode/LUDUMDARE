@@ -93,8 +93,7 @@ MonoBehaviour:
     m_Bits: 0
   damage: 5
   flyDistance: 1
-  velocity: {x: 0, y: 0}
-  rigidbody: {fileID: 0}
+  overheatIncrement: 0.2
   burnDamage: 1
   burnTimes: 3
   timeBetweenBurn: 1

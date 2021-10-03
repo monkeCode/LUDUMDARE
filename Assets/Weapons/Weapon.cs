@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int overheat;
+    public float overheat;
     public float offset = 0;
     // public Bullet bulletType;
     public Bullet bulletType;
@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
             if (overheat > 99)
                 flyingBullet.Overheat();
             if (overheat < 100)
-                overheat += 10;
+                overheat += flyingBullet.overheatIncrement;
             attackCooldown = flyingBullet.attackCooldown;
             StartCoroutine(AttackCooldown());
         }
