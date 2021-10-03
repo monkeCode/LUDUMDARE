@@ -48,7 +48,7 @@ public class Player : Entity
           Input.Player.Shot.canceled += ctx => isShoted = false;
           Input.Player.OpenDoor.performed += ctx => OpenDoor();
     }
-     
+
      private void Jump()
      {
           if (isGrounded)
