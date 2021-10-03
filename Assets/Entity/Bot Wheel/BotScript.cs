@@ -18,7 +18,7 @@ public class BotScript : Entity
     private Rigidbody2D _rb;
     private Animator _animator;
     private BoxCollider2D _collider;
-    private bool canShoot = true;
+    private bool _canShoot = true;
     private static readonly int Shoot1 = Animator.StringToHash("shoot");
     private static readonly int Move1 = Animator.StringToHash("move");
     private static readonly int Die1 = Animator.StringToHash("die");
@@ -39,9 +39,9 @@ public class BotScript : Entity
                 -((Vector2) target.position - _rb.position).normalized, minimalDistance).ToList();
           bool isWall =  hits.Find(hit2D => hit2D.rigidbody.gameObject.layer == LayerMask.NameToLayer("Ground") ||hit2D.rigidbody.gameObject.layer == LayerMask.NameToLayer("Walls") );
           float distance = Vector2.Distance(target.position, _rb.position);
-          if ((distance > distanceToAtk || (distance < minimalDistance && !isWall )) && canShoot)
+          if ((distance > distanceToAtk || (distance < minimalDistance && !isWall )) && _canShoot)
             {
-                Move((distance > distanceToAtk?1:-1) * (int)((target.position.x - _rb.position.x) / Math.Abs(target.position.x - _rb.position.x)) );
+                Move((distance > distanceToAtk?1:-1) * (target.position.x - _rb.position.x> 0?1:-1));
             }
             else
             {
@@ -50,16 +50,17 @@ public class BotScript : Entity
         }
     }
 
+    
     void Shoot()
     {
         int dir = (int)((target.position.x - _rb.position.x) / Math.Abs(target.position.x - _rb.position.x));
         if(dir == 0)
             return;
         transform.localScale = new Vector3(dir, transform.localScale.y, transform.localScale.z);
-        if (canShoot)
+        if (_canShoot)
         {
             _animator.SetTrigger(Shoot1);
-            canShoot = false;
+            _canShoot = false;
         }
     }
 
@@ -70,7 +71,7 @@ public class BotScript : Entity
         b.transform.position = gunPos.position;
         b.GetComponent<Rigidbody2D>().AddForce(new Vector2(_rb.velocity.normalized.x * bulletForce,0));
         b.GetComponent<PortalScript>().SetTarget(target);
-        canShoot = true;
+        _canShoot = true;
     }
     void Move(int dir)
     {
