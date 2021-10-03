@@ -18,7 +18,7 @@ public class LaserBullet : Bullet
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
-        lineRenderer.positionCount = reflections + 1;
+        lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(currentReflection, shootPos);
     }
     public override void DealDamage(IDamagable enemy)
@@ -31,6 +31,7 @@ public class LaserBullet : Bullet
         if (currentReflection < reflections)
         {
             var reflection = Vector2.Reflect(velocity, other.contacts[0].normal);
+            lineRenderer.positionCount++;
             lineRenderer.SetPosition(currentReflection+1, other.contacts[0].point);
             // reflectionData.Add(new Tuple<Vector2, Vector2>(reflection, other.contacts[0].point));
             rigidbody.velocity = reflection;
