@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class BotScript : Entity
 {
@@ -35,10 +38,8 @@ public class BotScript : Entity
     {
         if (Hp > 0)
         {
-            var hits = Physics2D.RaycastAll(_rb.transform.position,
-                -((Vector2) target.position - _rb.position).normalized, minimalDistance).ToList();
-          bool isWall =  hits.Find(hit2D => hit2D.rigidbody.gameObject.layer == LayerMask.NameToLayer("Ground") ||hit2D.rigidbody.gameObject.layer == LayerMask.NameToLayer("Walls") );
-          float distance = Vector2.Distance(target.position, _rb.position);
+           bool isWall = WallCheck();
+           float distance = Vector2.Distance(target.position, _rb.position);
           if ((distance > distanceToAtk || (distance < minimalDistance && !isWall )) && _canShoot)
             {
                 Move((distance > distanceToAtk?1:-1) * (target.position.x - _rb.position.x> 0?1:-1));
@@ -50,7 +51,13 @@ public class BotScript : Entity
         }
     }
 
-    
+    bool WallCheck()
+    {
+        var hits = Physics2D.RaycastAll(_rb.position,
+            new Vector2(-((Vector2) target.position - _rb.position).normalized.x, 0), minimalDistance/2).ToList();
+        
+        return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") ||hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") );
+    }
     void Shoot()
     {
         int dir = (int)((target.position.x - _rb.position.x) / Math.Abs(target.position.x - _rb.position.x));
@@ -75,11 +82,8 @@ public class BotScript : Entity
     }
     void Move(int dir)
     {
-        Debug.Log(dir);
-        if(dir == 0)
-            return;
         _rb.velocity = new Vector2(dir * Speed * Time.deltaTime, _rb.velocity.y);
-        transform.localScale = new Vector3(dir, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(dir * Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         _animator.SetBool(Move1,true);
     }
 

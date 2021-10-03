@@ -9,8 +9,9 @@ public abstract class Bullet : MonoBehaviour
     public int damage;
     public float flyDistance;
     public float overheatIncrement;
+    public Vector2 velocity;
 
-    private Vector3 shootPos;
+    protected Vector3 shootPos;
     private Animator animator;
     protected Rigidbody2D Rigidbody;
 
@@ -27,6 +28,7 @@ public abstract class Bullet : MonoBehaviour
         var newVelocity = transform.right * speed;
         newVelocity.y = Rigidbody.velocity.y;
         Rigidbody.velocity = newVelocity;
+        velocity = Rigidbody.velocity;
         if ((transform.position - shootPos).magnitude >= flyDistance)
             Destroy(gameObject);
     }
