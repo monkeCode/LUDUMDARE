@@ -1,24 +1,27 @@
-﻿public class PistolBullet : Bullet
+﻿using UnityEngine;
+
+public class PistolBullet : Bullet
 {
+    public float overheatAttackCooldownCoefficient = 1.5f;
     public override void DealDamage(IDamagable enemy)
     {
         enemy.TakeDamage(damage);
         Destroy(gameObject);
     }
 
-    public override void SelfDestroy()
+    public override void OnCollisionWithGround(Collision2D other)
     {
         Destroy(gameObject);
     }
 
     public override void Overheat()
     {
-        attackCooldown *= 1.3f;
+        attackCooldown *= overheatAttackCooldownCoefficient;
     }
     
 
     public override void Cooling()
     {
-        attackCooldown /= 1.3f;
+        attackCooldown /= overheatAttackCooldownCoefficient;
     }
 }
