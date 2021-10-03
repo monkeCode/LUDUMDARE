@@ -73,7 +73,7 @@ public class EyeBallScript : Entity
       
       var hits = Physics2D.RaycastAll(new Vector2(_rb.position.x, _rb.position.y + _collider.radius),
          _rb.velocity.normalized, _collider.radius).ToList();
-      return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") );
+      return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") || hit2D.rigidbody?.gameObject?.layer == LayerMask.GetMask("SideDoors") );
       
    }
    void DealDamage()

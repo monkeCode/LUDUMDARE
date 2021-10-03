@@ -56,7 +56,7 @@ public class BotScript : Entity
         var hits = Physics2D.RaycastAll(_rb.position,
             new Vector2(-((Vector2) target.position - _rb.position).normalized.x, 0), minimalDistance/2).ToList();
         
-        return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") ||hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") );
+        return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("SideDoors") );
     }
     void Shoot()
     {
