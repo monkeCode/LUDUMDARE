@@ -16,7 +16,10 @@ public class Player : Entity
      public LayerMask layerItem;
      public Camera mainCamera;
      public Weapon weapon;
-    public LayerMask layerDoors;
+     public LayerMask layerDoors;
+     
+     [SerializeField] private Transform attackPoint;
+     [SerializeField] private Transform rotatePoint;
 
      internal PlayerInput Input;
      
@@ -24,13 +27,14 @@ public class Player : Entity
      private SpriteRenderer spriteRenderer;
      private float movementX;
      private bool isGrounded;
+     private bool isShoted;
 
      private void Awake()
      {
           weapon = gameObject.AddComponent<Weapon>();
-          weapon.weaponPos = gameObject.transform;
+          weapon.weaponPos = attackPoint.transform;
           rigidbody = GetComponent<Rigidbody2D>();
-          spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+          spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
           Input = new PlayerInput();
           Input.Player.Move.performed += ctx => Move(ctx.ReadValue<float>());
           Input.Player.Move.canceled += ctx => Move(0);
@@ -38,7 +42,8 @@ public class Player : Entity
           Input.Player.Jump.canceled += ctx => StartCoroutine(CanceledJump());
           Input.Player.Action.performed += ctx => TakeItem();
           Input.Player.Throw.performed += ctx => ThrowItem();
-          Input.Player.Shot.performed += ctx => Shot();
+          Input.Player.Shot.performed += ctx => isShoted = true;
+          Input.Player.Shot.canceled += ctx => isShoted = false;
           Input.Player.OpenDoor.performed += ctx => OpenDoor();
     }
      
@@ -59,8 +64,13 @@ public class Player : Entity
 
      private void FixedUpdate()
      {
+          if (isShoted)
+               Shot();
           isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, layerGrounds);
           rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
+          var vector = GetVectorToMouse();
+          var angle = Mathf.Atan2(vector.y, vector.x)  * Mathf.Rad2Deg - 90f;
+          rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
      }
 
      private void TakeItem()

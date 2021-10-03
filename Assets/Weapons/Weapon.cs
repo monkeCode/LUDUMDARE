@@ -18,7 +18,6 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        weaponPos = gameObject.transform;
         ConvertTypeItemToBulletType = convertor.GetBulletDictionary();
     }
 
@@ -29,7 +28,7 @@ public class Weapon : MonoBehaviour
             bulletType = ConvertTypeItemToBulletType[bullet.type];
             var roatZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             var rotation = Quaternion.Euler(0, 0, roatZ + offset);
-            var flyingBullet = Instantiate(bulletType, weaponPos.position + Vector3.up, rotation);
+            var flyingBullet = Instantiate(bulletType, weaponPos.position, rotation);
             if (overheat > 33)
                 flyingBullet.Overheat();
             if (overheat > 66)

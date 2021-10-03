@@ -38,7 +38,7 @@ namespace Weapons
 
         public override void Overheat()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Cooling()

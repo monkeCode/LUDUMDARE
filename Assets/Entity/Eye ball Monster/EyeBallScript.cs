@@ -31,7 +31,7 @@ public class EyeBallScript : Entity
    {
       if (Hp > 0)
       {
-         transform.localScale = new Vector3(lastSpeed, transform.localScale.y, transform.localScale.z);
+         transform.localScale = new Vector3(lastSpeed * Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
          if (Vector2.Distance(_rb.position, target.position) < _collider.radius)
          {
             target.GetComponent<IDamagable>()?.TakeDamage(Damage);
@@ -47,8 +47,7 @@ public class EyeBallScript : Entity
 
          if (roll)
          {
-            _rb.velocity += Vector2.right * Speed * Time.deltaTime * (target.position.x - _rb.position.x) /
-                            Math.Abs(target.position.x - _rb.position.x);
+            _rb.velocity += Vector2.right * Speed * Time.deltaTime * ((target.position.x - _rb.position.x)>0?1:-1);
             if (lastSpeed != _rb.velocity.normalized.x)
             {
                roll = false;
