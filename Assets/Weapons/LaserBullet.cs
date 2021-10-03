@@ -34,7 +34,7 @@ public class LaserBullet : Bullet
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(currentReflection+1, other.contacts[0].point);
             // reflectionData.Add(new Tuple<Vector2, Vector2>(reflection, other.contacts[0].point));
-            rigidbody.velocity = reflection;
+            Rigidbody.velocity = reflection;
             transform.right = reflection.normalized;
             currentReflection++;
         }
