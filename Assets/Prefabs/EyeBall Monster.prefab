@@ -140,12 +140,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 5
+  MaxHp: 0
   Damage: 15
   Speed: 100
   target: {fileID: 0}
   waitBeforeRoll: 1
   pushForce: 10
   groundRadius: 0.4
+  reboundLayer:
+    serializedVersion: 2
+    m_Bits: 6216
 --- !u!58 &2428027731902861490
 CircleCollider2D:
   m_ObjectHideFlags: 0

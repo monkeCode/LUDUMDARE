@@ -16,6 +16,7 @@ public class BotScript : Entity
     [SerializeField] private float minimalDistance;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform gunPos;
+    [SerializeField] private LayerMask retreatlayers;
     [Range(0,10)]
     [SerializeField] private float bulletForce;
     private Rigidbody2D _rb;
@@ -31,6 +32,7 @@ public class BotScript : Entity
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _collider = GetComponent<BoxCollider2D>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -51,12 +53,17 @@ public class BotScript : Entity
         }
     }
 
+    bool LookOnTarget()
+    {
+     var hits =  Physics2D.RaycastAll(_rb.position, (Vector2) target.position - _rb.position).ToList();
+     return true;
+    }
     bool WallCheck()
     {
         var hits = Physics2D.RaycastAll(_rb.position,
-            new Vector2(-((Vector2) target.position - _rb.position).normalized.x, 0), minimalDistance/2).ToList();
-        
-        return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("SideDoors") );
+            new Vector2(-((Vector2) target.position - _rb.position).normalized.x, 0), minimalDistance/2, retreatlayers).ToList();
+        return hits.Count > 0;
+        //return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("SideDoors") );
     }
     void Shoot()
     {
