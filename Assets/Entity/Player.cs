@@ -2,6 +2,7 @@ using System.Collections;
 using ReactorScripts;
 using UnityEngine;
 using System;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Player : Entity
 {
@@ -19,6 +20,8 @@ public class Player : Entity
     public LayerMask layerDoors;
     public LayerMask layerSideDoors;
     public SpawnItemInspector itemInspector;
+    public Light2D leftLight;
+    public Light2D rightLight;
 
 
     [SerializeField] private Transform attackPoint;
@@ -134,7 +137,6 @@ public class Player : Entity
          if (doorCollider != null)
          {
             StartCoroutine(EnterSideDoor(doorCollider));
-             ;
          }
     }
     IEnumerator EnterSideDoor(Collider2D doorCollider)
@@ -147,7 +149,11 @@ public class Player : Entity
     private void Move(float axis)
      {
           if (axis != 0)
-               spriteRenderer.flipX = axis < 0;
+        {
+                spriteRenderer.flipX = axis < 0;
+                leftLight.enabled = axis < 0;
+                rightLight.enabled = !(axis < 0);
+         }
           movementX = axis * Speed;
      }
      
