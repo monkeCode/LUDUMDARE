@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnTrigger : MonoBehaviour
 {
-    bool isTriggered;
+   public bool canSpawn;
     List<SpawnPoint> points;
     private void Start()
     {
@@ -21,9 +21,9 @@ public class SpawnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player") || isTriggered)
+        if (!other.CompareTag("Player") || !canSpawn)
             return;
-        isTriggered = true;
+        canSpawn = false;
         foreach(var point in points)
         {
             StartCoroutine(SpawnMonsters(point.mobCount, point.gameObject, point.Mob));

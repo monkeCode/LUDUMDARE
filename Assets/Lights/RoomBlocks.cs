@@ -15,14 +15,17 @@ public class RoomBlocks : MonoBehaviour
     {
         public List<Light2D> Lights;
         public bool isLight;
-        
+        public List<SpawnTrigger> Triggers;
         public void LightOn()
         {
             foreach (var light in Lights)
             {
                 light.intensity = 1;
             }
-
+            foreach (var trigger in Triggers)
+            {
+                trigger.canSpawn = false;
+            }
             isLight = true;
         }
 
@@ -33,6 +36,10 @@ public class RoomBlocks : MonoBehaviour
                 light.intensity = 0;
             }
 
+            foreach (var trigger in Triggers)
+            {
+                trigger.canSpawn = true;
+            }
             isLight = false;
         }
     }
