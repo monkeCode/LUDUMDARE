@@ -34,9 +34,6 @@ public class ShipController : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.FindWithTag("Player");
-        var inputPlayer = Player.GetComponent<Player>().Input;
-        inputPlayer.Player.Action.performed += ctx => EbuttonIsPressed = true;
-        inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
     }
 
     void ChooseTurnDirection()
@@ -121,6 +118,9 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
+        var inputPlayer = Player.GetComponent<Player>().Input;
+        inputPlayer.Player.Action.performed += ctx => EbuttonIsPressed = true;
+        inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
         LevelCamera = GameObject.FindWithTag("MainCamera");
         SpinTime = 0.0f;
         maxTimeAfterTurnBack = timeNotSpinAfterLevelStart;
