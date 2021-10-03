@@ -173,4 +173,11 @@ public class Player : Entity
      private void OnEnable() => Input.Enable();
 
      private void OnDisable() => Input.Disable();
+
+     protected override void Die()
+     {
+          GameObject DeadMenu;
+          DeadMenu = GameObject.Find("DeadMenu");
+          DeadMenu.SetActive(true);
+     }
 }
