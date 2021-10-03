@@ -12,7 +12,7 @@ public class MonsterScript : Entity
     [SerializeField] private Transform _target;
     [SerializeField] private float _distanceToAtk;
     [SerializeField] private float _timeToAtk;
-    
+    [SerializeField] private float _atkAngle;
     private Rigidbody2D _rb;
     private Animator _animator;
     private bool _readyToAtk;
@@ -33,9 +33,9 @@ public class MonsterScript : Entity
     {
         if (Hp > 0)
         {
-            Debug.DrawRay(_rb.position, (Vector2)_target.position - _rb.position, Color.white);
-            Debug.Log(Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right));
-            if (Vector2.Distance(_target.position, _rb.position) > _distanceToAtk && Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right) > 20)
+            //Debug.DrawRay(_rb.position, (Vector2)_target.position - _rb.position, Color.white);
+            //Debug.Log(Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right));
+            if (Vector2.Distance(_target.position, _rb.position) > _distanceToAtk || Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right) > _atkAngle)
             {
                 Move();
             }
@@ -52,7 +52,7 @@ public class MonsterScript : Entity
             (_target.position.x -
             _rb.position.x) / Math.Abs(_target.position.x - _rb.position.x) * Speed * Time.deltaTime,
             _rb.velocity.y);
-        _rb.transform.localScale = new Vector3(Math.Abs(_rb.velocity.x) / _rb.velocity.x, 1, 1);
+        _rb.transform.localScale = new Vector3(_rb.velocity.normalized.x, 1, 1);
         if (Math.Abs(_rb.velocity.x) > 0.1f)
             _animator.SetBool(Move1, true);
         else
@@ -80,12 +80,15 @@ public class MonsterScript : Entity
 
     void DealDamage()
     {
-        var hits =  Physics2D.RaycastAll(_rb.position, (Vector2)_target.position - _rb.position, _distanceToAtk).ToList();
-        if (hits.Find(hit2D => hit2D.transform.gameObject == _target.gameObject ))
+        if (Vector2.Angle(((Vector2) _target.position - _rb.position).Abs(), Vector2.right) < _atkAngle)
         {
-            _target.GetComponent<IDamagable>()?.TakeDamage(Damage);
+            var hits = Physics2D.RaycastAll(_rb.position, (Vector2) _target.position - _rb.position, _distanceToAtk)
+                .ToList();
+            if (hits.Find(hit2D => hit2D.transform.gameObject == _target.gameObject))
+            {
+                _target.GetComponent<IDamagable>()?.TakeDamage(Damage);
+            }
         }
-            
     }
     IEnumerator PrepairingToATK()
     {
