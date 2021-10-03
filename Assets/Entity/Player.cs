@@ -37,7 +37,7 @@ public class Player : Entity
      private void Awake()
      {
           Keys = new List<string>();
-          weapon = gameObject.AddComponent<Weapon>();
+          weapon = gameObject.GetComponent<Weapon>();
           weapon.weaponPos = attackPoint.transform;
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -173,4 +173,11 @@ public class Player : Entity
      private void OnEnable() => Input.Enable();
 
      private void OnDisable() => Input.Disable();
+
+     protected override void Die()
+     {
+          GameObject DeadMenu;
+          DeadMenu = GameObject.Find("DeadMenu");
+          DeadMenu.SetActive(true);
+     }
 }

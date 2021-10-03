@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
     
     public void PlayGame ()
     {
         SceneManager.LoadScene("SpaceShip");
     }
+
+    public void GoMainMenu ()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
 
     public void QuitGame ()
     {
