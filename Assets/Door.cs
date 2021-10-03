@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : RootDoor
 {
-    public GameObject Out;
+    // public GameObject Out;
     public AudioSource sound;
     private Animator animator;
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
-    public void Open()
+    public override void Open()
     {
         State = States.open;
         sound.Play();
