@@ -149,7 +149,7 @@ public class Player : Entity
     //      }
     // }
     IEnumerator EnterSideDoor(Collider2D doorCollider)
-    { 
+    {
          OnDisable();
         yield return new WaitForSeconds(1);
         OnEnable();
