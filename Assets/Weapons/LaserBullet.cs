@@ -1,25 +1,27 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LaserBullet : Bullet
 {
-    [SerializeField] private int reflections = 2;
-    public LaserTrigger trigger;
-    // public List<Tuple<Vector2, Vector2>> reflectionData = new List<Tuple<Vector2, Vector2>>();
+    [SerializeField] private int reflections;
+    private int overheatReflectionCount = 2;
     public int currentReflection = 0;
     private LineRenderer lineRenderer;
+    private float destroyTime = 10f;
+    public LayerMask player;
     
     private new void Start()
     {
         base.Start();
-        speed = 10f;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(currentReflection, shootPos);
+        StartCoroutine(DestroyAfterTime());
     }
     public override void DealDamage(IDamagable enemy)
     {
@@ -33,9 +35,17 @@ public class LaserBullet : Bullet
             var reflection = Vector2.Reflect(velocity, other.contacts[0].normal);
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(currentReflection+1, other.contacts[0].point);
-            // reflectionData.Add(new Tuple<Vector2, Vector2>(reflection, other.contacts[0].point));
             Rigidbody.velocity = reflection;
             transform.right = reflection.normalized;
+            var hits = Physics2D.RaycastAll(other.contacts[0].point, Rigidbody.velocity, flyDistance, layerEnemies);
+            foreach (var hit in hits)
+            {
+                DealDamage(hit.rigidbody.gameObject.GetComponent<IDamagable>());
+            }
+
+            var playerHit = Physics2D.Raycast(other.contacts[0].point, Rigidbody.velocity, flyDistance, player);
+            if (playerHit)
+                DealDamage(playerHit.rigidbody.gameObject.GetComponent<IDamagable>());
             currentReflection++;
         }
         else
@@ -44,10 +54,16 @@ public class LaserBullet : Bullet
         }
     }
     
+    IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
+    }
+
 
     public override void Overheat()
     {
-        //attackCooldown *= overheatAttackCooldownCoefficient;
+        reflections += overheatReflectionCount;
     }
     
 
