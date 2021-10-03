@@ -10,7 +10,7 @@ public abstract class Bullet : MonoBehaviour
     public float flyDistance;
     public Vector2 velocity;
 
-    private Vector3 shootPos;
+    protected Vector3 shootPos;
     private Animator animator;
     public new Rigidbody2D rigidbody;
 
