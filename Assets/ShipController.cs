@@ -17,6 +17,7 @@ public class ShipController : MonoBehaviour
     public float maxTurnBackSpeed = 0.5f;
     public float timeSpeedDependence;
     public bool EbuttonIsPressed = false;
+    public bool playerNearYoke = false;
     private float maxTimeAfterTurnBack;
     public float minTimeStartSpinning;
     public float maxTimeStartSpinning;
@@ -60,6 +61,7 @@ public class ShipController : MonoBehaviour
     void TurnBack()
     {
         isTurningBack = true;
+        Debug.Log("isTurningBack = " + isTurningBack);
         turnBackSpeed = Mathf.Lerp(turnBackSpeed, maxTurnBackSpeed, SpinTime);
         if (LevelCamera.transform.localRotation.eulerAngles.z - turnBackSpeed < 0)
         {
@@ -97,14 +99,13 @@ public class ShipController : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
 
-        if ((EbuttonIsPressed)  && (other.gameObject.CompareTag("Player")))
+        if (other.gameObject.CompareTag("Player"))
         {
-
-            TurnBack();
+            playerNearYoke = true;
         }
         else
         {
-            isTurningBack = false;
+            playerNearYoke = false;
         }
     }
 
@@ -112,7 +113,7 @@ public class ShipController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            isTurningBack = false;
+            playerNearYoke = false;
         }
     }
 
@@ -132,6 +133,19 @@ public class ShipController : MonoBehaviour
 
         SpinTime += Time.deltaTime;
         TimeAfterTurnBack += Time.deltaTime;
+        
+        //
+        if ((EbuttonIsPressed)  && (playerNearYoke) && (isTurningAway))
+        {
+            TurnBack();
+        }
+        else
+        {
+            isTurningBack = false;
+            Debug.Log(isTurningBack);
+        }
+        //
+
 
         if (!isTurningAway)
         {
@@ -143,6 +157,7 @@ public class ShipController : MonoBehaviour
         if (!isTurningBack && (TimeAfterTurnBack > maxTimeAfterTurnBack))
         {
             TurnAway();
+            Debug.Log("isTurningAway");
         }
 
         if (isRapidTurnAway)
