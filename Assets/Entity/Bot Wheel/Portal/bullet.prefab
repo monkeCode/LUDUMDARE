@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8857660191386235332}
   - component: {fileID: 8857660191386235333}
   - component: {fileID: 8857660191386235330}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,10 +160,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  offcetSpeed: 0.01
+  offcetSpeed: 1
   target: {fileID: 0}
   pS: {fileID: 8857660191405311931}
   lifeTime: 3
+  explosiveRadiusModifier: 4
+  pushForce: 100
+  damage: 3
 --- !u!198 &8857660191386235333
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4950,7 +4953,7 @@ GameObject:
   - component: {fileID: 8857660191405311931}
   - component: {fileID: 8857660191405311930}
   - component: {fileID: 8691778895967080837}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: explosivePS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9826,7 +9829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8857660191996841256}
   - component: {fileID: 8857660191996841259}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
