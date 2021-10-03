@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
@@ -15,6 +16,8 @@ public class Weapon : MonoBehaviour
     public float attackCooldown;
     public Dictionary<TypeItem, Bullet> ConvertTypeItemToBulletType;
     public ConvertItemToBullet convertor;
+
+    public event EventHandler<float> OverheatChanged;
 
     private void Start()
     {
@@ -37,7 +40,9 @@ public class Weapon : MonoBehaviour
                 flyingBullet.Overheat();
             if (overheat < 100)
                 overheat += flyingBullet.overheatIncrement;
+            OverheatChanged?.Invoke(this, overheat);
             attackCooldown = flyingBullet.attackCooldown;
+            
             StartCoroutine(AttackCooldown());
         }
     }
