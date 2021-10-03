@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GrenadeLauncher : Bullet
 {
     public float explosionRadius;
+    public float overheatTimeToExplosion = .3f;
+    public GameObject explosion;
         
     public override void DealDamage(IDamagable enemy)
     {
@@ -11,6 +14,26 @@ public class GrenadeLauncher : Bullet
 
     public override void OnCollisionWithGround(Collision2D other)
     {
+        Explosion();
+    }
+        
+    public override void Overheat()
+    {
+        var rnd = Random.Range(0, 200);
+        if (rnd < 30)
+        {
+            StartCoroutine(OverheatExplosion());
+        }
+    }
+
+    public override void Cooling()
+    {
+        
+    }
+
+    private void Explosion()
+    {
+        Instantiate(explosion, transform.position, Quaternion.identity);
         var enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerEnemies);
         foreach (var enemy in enemies)
         {
@@ -18,14 +41,10 @@ public class GrenadeLauncher : Bullet
         }
         Destroy(gameObject);
     }
-        
-    public override void Overheat()
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public override void Cooling()
+    private IEnumerator OverheatExplosion()
     {
-        throw new System.NotImplementedException();
+        yield return new WaitForSeconds(overheatTimeToExplosion);
+        Explosion();
     }
 }

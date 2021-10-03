@@ -10,8 +10,8 @@ public class LaserBullet : Bullet
 
     public override void OnCollisionWithGround(Collision2D other)
     {
-        var reflection = Vector2.Reflect(velocity, other.contacts[0].normal);
-        rigidbody.velocity = reflection;
+        var reflection = Vector2.Reflect(Rigidbody.velocity, other.contacts[0].normal);
+        Rigidbody.velocity = reflection;
         transform.right = reflection.normalized;
     }
 

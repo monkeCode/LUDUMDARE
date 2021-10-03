@@ -145,5 +145,5 @@ MonoBehaviour:
     m_Bits: 64
   damage: 10
   flyDistance: 10
-  velocity: {x: 0, y: 0}
+  overheatIncrement: 1
   overheatAttackCooldownCoefficient: 1.5
