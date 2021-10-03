@@ -93,7 +93,7 @@ MonoBehaviour:
     m_Bits: 0
   damage: 5
   flyDistance: 1
-  overheatIncrement: 0.2
+  overheatIncrement: 2
   burnDamage: 1
   burnTimes: 3
   timeBetweenBurn: 1

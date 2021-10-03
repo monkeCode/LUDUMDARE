@@ -742,42 +742,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6276078127604320018, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.067
-      objectReference: {fileID: 0}
-    - target: {fileID: 6276078127604320018, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.154
-      objectReference: {fileID: 0}
-    - target: {fileID: 6276078127964093721, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6276078128072311022, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6276078128072311022, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.149
-      objectReference: {fileID: 0}
-    - target: {fileID: 6276078128072311023, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6276078128542789048, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 6276078128542789049, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_Size.x
-      value: 0.2228558
-      objectReference: {fileID: 0}
-    - target: {fileID: 6276078128542789049, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6276078128542789051, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
       propertyPath: m_Name
       value: Player

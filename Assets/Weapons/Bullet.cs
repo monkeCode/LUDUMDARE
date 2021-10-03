@@ -12,7 +12,7 @@ public abstract class Bullet : MonoBehaviour
 
     private Vector3 shootPos;
     private Animator animator;
-    protected new Rigidbody2D Rigidbody;
+    protected Rigidbody2D Rigidbody;
 
     protected void Start()
     {
