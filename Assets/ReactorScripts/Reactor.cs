@@ -18,7 +18,14 @@ namespace ReactorScripts
         private bool isRequested;
 
         public event EventHandler<ReactorEventHealth> OnHealthChanged;
-        public event EventHandler<ReactorEventRequirement> OnItemRequired; 
+        public event EventHandler<ReactorEventRequirement> OnItemRequired;
+        
+        private Animator animator;
+
+        private void Awake()
+        {
+            animator = GetComponent<Animator>();
+        }
 
         private void LateUpdate()
         {
@@ -47,11 +54,35 @@ namespace ReactorScripts
                 isRequested = true;
                 OnItemRequired?.Invoke(this, new ReactorEventRequirement(requiredItem.type));
             }
+            if (health > maxHealth * 0.66)
+                state = States.fullHP;
+            else if (health < maxHealth * 0.66 && health > maxHealth * 0.33)
+                state = States.mediumHP;
+            else
+                state = States.lowHP;
+        }
+        public States state
+        {
+            get
+            {
+                return (States)animator.GetInteger("state");
+            }
+            set
+            {
+                animator.SetInteger("state", (int)value);
+            }
         }
 
         private void Notify(ReactorEventHealth eventHealth)
         {
             OnHealthChanged?.Invoke(this, eventHealth);
         }
+    }
+
+    public enum States
+    {
+        fullHP,
+        mediumHP,
+        lowHP
     }
 }

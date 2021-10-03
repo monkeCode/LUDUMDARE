@@ -4,24 +4,25 @@ using UnityEngine;
 using System;
 
 public class Player : Entity
-{ 
-     public float fallMultiplier = 2.5f;
-     [Range(0, 10)] public float jumpVelocity; 
-     public ItemData inventoryItem = new ItemData();
-     
-     public Transform groundCheck;
-     public float groundRadius;
-     public LayerMask layerGrounds;
-     public float takeRadius;
-     public LayerMask layerItem;
-     public Camera mainCamera;
-     public Weapon weapon;
-     public LayerMask layerDoors;
-     
-     [SerializeField] private Transform attackPoint;
-     [SerializeField] private Transform rotatePoint;
+{
+    public float fallMultiplier = 2.5f;
+    [Range(0, 10)] public float jumpVelocity;
+    public ItemData inventoryItem = new ItemData();
 
-     internal PlayerInput Input;
+    public Transform groundCheck;
+    public float groundRadius;
+    public LayerMask layerGrounds;
+    public float takeRadius;
+    public LayerMask layerItem;
+    public Camera mainCamera;
+    public Weapon weapon;
+    public LayerMask layerDoors;
+    public SpawnItemInspector itemInspector;
+
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private Transform rotatePoint;
+
+    [SerializeField] internal PlayerInput Input;
      
      private new Rigidbody2D rigidbody;
      private SpriteRenderer spriteRenderer;
@@ -36,6 +37,7 @@ public class Player : Entity
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
           Input = new PlayerInput();
+        Debug.Log("PlayerInput");
           Input.Player.Move.performed += ctx => Move(ctx.ReadValue<float>());
           Input.Player.Move.canceled += ctx => Move(0);
           Input.Player.Jump.performed += ctx => Jump();
@@ -75,15 +77,20 @@ public class Player : Entity
 
      private void TakeItem()
      {
-          var item = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
-          if (item != null)
+         var itemCollider = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
+          if (itemCollider != null)
           {
-               inventoryItem = item.GetComponent<Item>().data;
-               Destroy(item.gameObject);
+            var item = itemCollider.GetComponent<Item>();
+            Debug.Log("1");
+            inventoryItem = item.data;
+            Debug.Log("2");
+            itemInspector.TakeItem(item);
+            Debug.Log("3");
+            Destroy(itemCollider.gameObject);
           }
      }
 
-     private void ThrowItem()
+    private void ThrowItem()
      {
           if (inventoryItem != null) 
                Debug.Log($"Throw {inventoryItem.name} {inventoryItem.type}");

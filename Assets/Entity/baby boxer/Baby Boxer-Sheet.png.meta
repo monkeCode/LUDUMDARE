@@ -1,0 +1,840 @@
+fileFormatVersion: 2
+guid: b0afced2ecfd5b44fa5a5bdc91b53751
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -364322161935354110
+    second: Baby Boxer-Sheet_0
+  - first:
+      213: -2402767709325687193
+    second: Baby Boxer-Sheet_1
+  - first:
+      213: -7257139517582904461
+    second: Baby Boxer-Sheet_2
+  - first:
+      213: 6454467362928962260
+    second: Baby Boxer-Sheet_3
+  - first:
+      213: 4462051364314852769
+    second: Baby Boxer-Sheet_4
+  - first:
+      213: 1061643641883212131
+    second: Baby Boxer-Sheet_5
+  - first:
+      213: -6694987758323235346
+    second: Baby Boxer-Sheet_7
+  - first:
+      213: -8759406412962260654
+    second: Baby Boxer-Sheet_8
+  - first:
+      213: 279308997682984392
+    second: Baby Boxer-Sheet_9
+  - first:
+      213: -4650201370148389193
+    second: Baby Boxer-Sheet_10
+  - first:
+      213: 737689155956920178
+    second: Baby Boxer-Sheet_11
+  - first:
+      213: 7094298111003163204
+    second: Baby Boxer-Sheet_12
+  - first:
+      213: -8293202082132647939
+    second: Baby Boxer-Sheet_13
+  - first:
+      213: -4721548567036821628
+    second: Baby Boxer-Sheet_14
+  - first:
+      213: -6203969195590228323
+    second: Baby Boxer-Sheet_16
+  - first:
+      213: 1725118678650051062
+    second: Baby Boxer-Sheet_18
+  - first:
+      213: 5500377723770067091
+    second: Baby Boxer-Sheet_19
+  - first:
+      213: -1116239543677576312
+    second: Baby Boxer-Sheet_22
+  - first:
+      213: -2866852960890991778
+    second: Baby Boxer-Sheet_24
+  - first:
+      213: -230701898506591914
+    second: Baby Boxer-Sheet_25
+  - first:
+      213: -162913721312281061
+    second: Baby Boxer-Sheet_26
+  - first:
+      213: -5368652393999945227
+    second: Baby Boxer-Sheet_29
+  - first:
+      213: 937559098874585902
+    second: Baby Boxer-Sheet_30
+  - first:
+      213: -9161074668300069495
+    second: Baby Boxer-Sheet_31
+  - first:
+      213: 8914779598340937091
+    second: Baby Boxer-Sheet_32
+  - first:
+      213: 1550113477644058580
+    second: Baby Boxer-Sheet_40
+  - first:
+      213: 6857137712555617129
+    second: Baby Boxer-Sheet_41
+  - first:
+      213: -9117305843315581796
+    second: Baby Boxer-Sheet_42
+  - first:
+      213: 8818366398244847290
+    second: Baby Boxer-Sheet_43
+  - first:
+      213: 6030638793029314482
+    second: Baby Boxer-Sheet_44
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1936
+        width: 14
+        height: 23
+      alignment: 9
+      pivot: {x: 0.37900433, y: 0.000005307405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2077a0a8ceaa1faf0800000000000000
+      internalID: -364322161935354110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1888
+        width: 14
+        height: 23
+      alignment: 9
+      pivot: {x: 0.36626816, y: 0.003879713}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7660ddfaf77a7aed0800000000000000
+      internalID: -2402767709325687193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1840
+        width: 14
+        height: 23
+      alignment: 9
+      pivot: {x: 0.37900433, y: 0.0038850203}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37375090f06794b90800000000000000
+      internalID: -7257139517582904461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1792
+        width: 14
+        height: 23
+      alignment: 9
+      pivot: {x: 0.37263626, y: 0.000005307405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4daabbd8edfd29950800000000000000
+      internalID: 6454467362928962260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1744
+        width: 14
+        height: 23
+      alignment: 9
+      pivot: {x: 0.37900433, y: 0.003879713}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ada88b23146ced30800000000000000
+      internalID: 4462051364314852769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1696
+        width: 14
+        height: 23
+      alignment: 9
+      pivot: {x: 0.37263626, y: 0.000005307405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36930887447bbbe00800000000000000
+      internalID: 1061643641883212131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1649
+        width: 10
+        height: 16
+      alignment: 9
+      pivot: {x: 0.49108467, y: 0.19426727}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee50e89fa10a613a0800000000000000
+      internalID: -6694987758323235346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1600
+        width: 9
+        height: 17
+      alignment: 9
+      pivot: {x: 0.42381117, y: 0.23048311}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2591b18d646507680800000000000000
+      internalID: -8759406412962260654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1552
+        width: 14
+        height: 17
+      alignment: 9
+      pivot: {x: 0.57641846, y: 0.28844497}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c5f675bd0e40e300800000000000000
+      internalID: 279308997682984392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1504
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3629935}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be354edd7a277fb0800000000000000
+      internalID: -4650201370148389193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1458
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.41084558, y: 0.21652658}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27f487ff06ccc3a00800000000000000
+      internalID: 737689155956920178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1410
+        width: 10
+        height: 17
+      alignment: 9
+      pivot: {x: 0.43759194, y: 0.17307416}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44a71157b82047260800000000000000
+      internalID: 7094298111003163204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1364
+        width: 13
+        height: 16
+      alignment: 9
+      pivot: {x: 0.47771338, y: -0.0000076293945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dff14f345a0a8ec80800000000000000
+      internalID: -8293202082132647939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1312
+        width: 18
+        height: 26
+      alignment: 9
+      pivot: {x: 0.44527456, y: 0.19165978}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ff3081890b97eb0800000000000000
+      internalID: -4721548567036821628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1265
+        width: 24
+        height: 25
+      alignment: 9
+      pivot: {x: 0.4130833, y: 0.19469239}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d96e06bf2e217e9a0800000000000000
+      internalID: -6203969195590228323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1216
+        width: 13
+        height: 11
+      alignment: 9
+      pivot: {x: 0.5433928, y: 0.435902}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f9d3545c4ad0f710800000000000000
+      internalID: 1725118678650051062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1167
+        width: 5
+        height: 11
+      alignment: 9
+      pivot: {x: 0.6410263, y: 0.41025612}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39859c3c564455c40800000000000000
+      internalID: 5500377723770067091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1072
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.51142216, y: 0.4031372}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88b9ad29c025280f0800000000000000
+      internalID: -1116239543677576312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 931
+        width: 10
+        height: 8
+      alignment: 9
+      pivot: {x: 0.4908928, y: 0.27320862}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bc0dadb64e638d0800000000000000
+      internalID: -2866852960890991778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 979
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.54597026, y: 0.33328587}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 651a18a78d16cccf0800000000000000
+      internalID: -230701898506591914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1024
+        width: 9
+        height: 11
+      alignment: 9
+      pivot: {x: 0.44798407, y: 0.4521928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1ef42865d63dbdf0800000000000000
+      internalID: -162913721312281061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 832
+        width: 13
+        height: 17
+      alignment: 9
+      pivot: {x: 0.5988153, y: 0.23614143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f1351d8717be75b0800000000000000
+      internalID: -5368652393999945227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 784
+        width: 13
+        height: 17
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e23ea547801e20d00800000000000000
+      internalID: 937559098874585902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 736
+        width: 14
+        height: 17
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 985152b60235dd080800000000000000
+      internalID: -9161074668300069495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 688
+        width: 10
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385d20aefc8a7bb70800000000000000
+      internalID: 8914779598340937091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 305
+        width: 5
+        height: 9
+      alignment: 9
+      pivot: {x: 0.5835289, y: 0.33643258}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dff48cbefb138510800000000000000
+      internalID: 1550113477644058580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 258
+        width: 6
+        height: 9
+      alignment: 9
+      pivot: {x: 0.59237033, y: 0.4310642}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96befcc3b62792f50800000000000000
+      internalID: 6857137712555617129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 210
+        width: 7
+        height: 9
+      alignment: 9
+      pivot: {x: 0.48020607, y: 0.4310625}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9cd49c14a2d87180800000000000000
+      internalID: -9117305843315581796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 165
+        width: 9
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5923699, y: 0.46184793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abeff9a7481216a70800000000000000
+      internalID: 8818366398244847290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Baby Boxer-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 118
+        width: 8
+        height: 6
+      alignment: 9
+      pivot: {x: 0.5089129, y: 0.42931238}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b7e333d70221b350800000000000000
+      internalID: 6030638793029314482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
