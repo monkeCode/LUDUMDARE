@@ -117,7 +117,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0024795532, y: -0.18967596}
@@ -147,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Out: {fileID: 0}
   sound: {fileID: 3795671941612898314}
-  openSound: {fileID: 8300000, guid: 76309125b1b3cf44088e02049c00cece, type: 3}
 --- !u!82 &3795671941612898314
 AudioSource:
   m_ObjectHideFlags: 0
