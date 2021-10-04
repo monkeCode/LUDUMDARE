@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,16 +16,15 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
-
     public void QuitGame ()
     {
         Debug.Log("QUIT!"); // because you can't quit from unity editor
         Application.Quit();
     }
+   
 
     void Start()
     {
         SceneManager.UnloadSceneAsync("SpaceShip");
     }
-
 }
