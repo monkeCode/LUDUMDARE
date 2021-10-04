@@ -50,7 +50,7 @@ MonoBehaviour:
   data:
     name: Grenade
     type: 2
-    repair: 25
+    repair: 30
 --- !u!61 &6090768878262539492
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -216,7 +216,7 @@ MonoBehaviour:
   data:
     name: Laser
     type: 1
-    repair: 25
+    repair: 30
 --- !u!61 &2381417920339637751
 BoxCollider2D:
   m_ObjectHideFlags: 0

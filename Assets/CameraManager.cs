@@ -16,6 +16,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager Instance;
     public GameObject offCourceMenu;
     public GameObject planet;
+    public GameObject WinMenu;
 
     private void Awake()
     {
@@ -80,8 +81,14 @@ public class CameraManager : MonoBehaviour
          var distance = this.transform.position.magnitude - gameObject.transform.position.magnitude;
         if (distance * distance < 0.2)
         {
-            /**/player.OnEnable();
-            IsFocusedGameOver = false;
+            //player.OnEnable();
+            if (IsFocusedGameOver)
+            {
+                IsFocusedGameOver = false;
+                WinMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
+                
         }
         camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, -10f);
         if (IsFocusedGameOver)

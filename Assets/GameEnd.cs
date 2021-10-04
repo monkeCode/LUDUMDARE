@@ -6,6 +6,7 @@ public class GameEnd : MonoBehaviour
 {
     private Camera LevelCamera;
     private CameraManager CameraManagerScript;
+    public GameObject WinMenu;
 
     void Start()
     {
@@ -23,5 +24,6 @@ public class GameEnd : MonoBehaviour
     void GameWin()
     {
         CameraManagerScript.IsFocusedGameOver = true;
+        
     }
 }
