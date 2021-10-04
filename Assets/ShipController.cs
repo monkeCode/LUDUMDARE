@@ -91,9 +91,9 @@ public class ShipController : MonoBehaviour
             }
         }
         
-        
-       // Debug.Log("IF -1 " + (LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed));
-        if ((LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed >= -1) && (LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed <= 0.02f) && (turnDirection == -1))
+        Debug.Log(LevelCamera.transform.localRotation.eulerAngles.z);
+        // Debug.Log("IF -1 " + (LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed));
+        if ((LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed >= -1) && (LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed <= 0.7f) && (turnDirection == -1))
         {
          //   Debug.Log("2 here 1");
             LevelCamera.transform.localRotation = Quaternion.Euler(LevelCamera.transform.localRotation.eulerAngles.x,LevelCamera.transform.localRotation.eulerAngles.y , 0);
@@ -166,7 +166,7 @@ public class ShipController : MonoBehaviour
         ChooseTurnDirection();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         spinTime += Time.deltaTime;
         timeAfterTurnBack += Time.deltaTime;
@@ -210,6 +210,8 @@ public class ShipController : MonoBehaviour
                 {
                     OffCourseMenu.SetActive(true);
                     Player.GetComponent<Player>().OnDisable();
+                    Time.timeScale = 0;
+
                     //Debug.Log("Dead 1");
                 }
             }
@@ -219,21 +221,10 @@ public class ShipController : MonoBehaviour
                 {
                     OffCourseMenu.SetActive(true);
                     Player.GetComponent<Player>().OnDisable();
+                    Time.timeScale = 0;
+
                     //Debug.Log("Dead 2");
                 }
-            }
-        }
-
-
-        if (isRapidTurnAway)
-        {
-            if (rapidTurnDegree <= 0)
-            {
-                isRapidTurnAway = false;
-            }
-            else
-            {
-                RapidTurnAway();
             }
         }
     }

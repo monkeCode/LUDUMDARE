@@ -275,5 +275,6 @@ public class Player : Entity
           ShipController ShipControllerScript = GameObject.Find("ShipController").GetComponent<ShipController>();
           ShipControllerScript.DeadMenu.SetActive(true);
           OnDisable();
+          Time.timeScale = 0;
      }
 }
