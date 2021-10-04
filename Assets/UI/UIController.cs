@@ -41,6 +41,7 @@ public class UIController : MonoBehaviour
 
     private void ChangeReactorRequirement(TypeItem type)
     {
+        if (reactorBgImage == null || reactorImage == null) return;
         var isNotNull = images[(int) type] != null;
         reactorBgImage.enabled = isNotNull;
         reactorImage.texture = images[(int)type];
