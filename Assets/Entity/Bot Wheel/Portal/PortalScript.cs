@@ -38,6 +38,7 @@ public class PortalScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.gameObject.name);
         Explosive();
     }
 
@@ -61,7 +62,7 @@ public class PortalScript : MonoBehaviour
                { 
                    component.TakeDamage(damage);
                }
-               collider.GetComponent<Rigidbody2D>()?.AddForce(-((Vector2)target.position - _rb.position) * pushForce);
+               collider.GetComponent<Rigidbody2D>()?.AddForce(((Vector2)target.position - _rb.position).normalized * pushForce);
            }
 
        }

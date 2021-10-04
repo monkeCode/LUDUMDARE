@@ -7,10 +7,15 @@ public abstract class RootDoor : MonoBehaviour
     public bool locked = false;
     public string key;
 
-    public void TryOpen()
+    public bool TryOpen()
     {
         if (!locked || Player.Keys.Contains(key))
+        {
             Open();
+            return true;
+        }
+
+        return false;
     }
     public abstract void Open();
 }

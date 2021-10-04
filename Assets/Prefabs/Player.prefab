@@ -428,6 +428,9 @@ PrefabInstance:
       propertyPath: FlamethrowerSound
       value: 
       objectReference: {fileID: 8300000, guid: 68c3a6db66c1fc749a600cccab8da7b3, type: 3}
+      propertyPath: damageInterval
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6276078128542789048, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
       propertyPath: layerDoors.m_Bits
       value: 6144
@@ -503,6 +506,10 @@ PrefabInstance:
     - target: {fileID: 6276078128542789052, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276078128542789054, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6276078128542789054, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
       propertyPath: m_Material

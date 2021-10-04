@@ -17,22 +17,24 @@ public class BotScript : Entity
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform gunPos;
     [SerializeField] private LayerMask retreatlayers;
+    [SerializeField] private LayerMask lookMask;
     [Range(0,10)]
     [SerializeField] private float bulletForce;
     private Rigidbody2D _rb;
     private Animator _animator;
-    private BoxCollider2D _collider;
     private bool _canShoot = true;
+    private AudioSource _source;
     private static readonly int Shoot1 = Animator.StringToHash("shoot");
     private static readonly int Move1 = Animator.StringToHash("move");
     private static readonly int Die1 = Animator.StringToHash("die");
-
+    private CapsuleCollider2D _collider;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _collider = GetComponent<BoxCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        _source = GetComponent<AudioSource>();
+        _collider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -40,28 +42,32 @@ public class BotScript : Entity
     {
         if (Hp > 0)
         {
-           bool isWall = WallCheck();
-           float distance = Vector2.Distance(target.position, _rb.position);
-          if ((distance > distanceToAtk || (distance < minimalDistance && !isWall )) && _canShoot)
+            bool isWall = WallCheck();
+            float distance = Vector2.Distance(target.position, _rb.position);
+            if ((distance > distanceToAtk || (distance < minimalDistance && !isWall)) && _canShoot )
             {
                 Move((distance > distanceToAtk?1:-1) * (target.position.x - _rb.position.x> 0?1:-1));
             }
-            else
+            else if(LookOnTarget())
             {
                 Shoot();
             }
+            else _animator.SetBool(Move1, false);
         }
     }
 
     bool LookOnTarget()
     {
-     var hits =  Physics2D.RaycastAll(_rb.position, (Vector2) target.position - _rb.position).ToList();
-     return true;
+        var vec = (Vector2) target.position - new Vector2(_rb.position.x, _rb.position.y + _collider.size.y/2);
+        //Debug.DrawRay(new Vector2(_rb.position.x,_collider.size.y/2 + _rb.position.y), vec);
+        var hit =  Physics2D.Raycast(new Vector2(_rb.position.x,_collider.size.y/2 + _rb.position.y), vec, vec.magnitude,lookMask);
+        Debug.Log(hit.rigidbody?.gameObject?.name);
+        return hit.rigidbody?.gameObject?.tag == "Player";
     }
     bool WallCheck()
     {
         var hits = Physics2D.RaycastAll(_rb.position,
-            new Vector2(-((Vector2) target.position - _rb.position).normalized.x, 0), minimalDistance/2, retreatlayers).ToList();
+            new Vector2(-((Vector2) target.position - _rb.position).x > 0?1:-1, 0), minimalDistance/2, retreatlayers).ToList();
         return hits.Count > 0;
         //return hits.Find(hit2D => hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Ground") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("Walls") || hit2D.rigidbody?.gameObject?.layer == LayerMask.NameToLayer("SideDoors") );
     }
@@ -82,6 +88,7 @@ public class BotScript : Entity
     {
         //target.GetComponent<IDamagable>()?.TakeDamage(Damage);
         var b = Instantiate(bullet);
+        _source.Play();
         b.transform.position = gunPos.position;
         b.GetComponent<Rigidbody2D>().AddForce(new Vector2(_rb.velocity.normalized.x * bulletForce,0));
         b.GetComponent<PortalScript>().SetTarget(target);

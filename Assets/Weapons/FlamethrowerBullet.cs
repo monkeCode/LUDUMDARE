@@ -10,7 +10,7 @@ namespace Weapons
         public float timeBetweenBurn = 1;
         public float timeAlive = 5;
 
-        private static Coroutine _playerBurning;
+        internal static Coroutine PlayerBurning;
 
         private new void Start()
         {
@@ -40,16 +40,10 @@ namespace Weapons
 
         public override void Overheat()
         {
-            if (_playerBurning != null)
+            if (PlayerBurning != null)
                 return;
             var player = FindObjectOfType<Player>();
-            _playerBurning = StartCoroutine(Burn(player, true));
-        }
-
-        public override void Cooling()
-        {
-            if (_playerBurning != null)
-                StopCoroutine(_playerBurning);
+            PlayerBurning = StartCoroutine(Burn(player, true));
         }
 
         private IEnumerator Burn(IDamagable enemy, bool isPlayer = false)
@@ -60,7 +54,7 @@ namespace Weapons
                 enemy.TakeDamage(burnDamage);
             }
             if (isPlayer)
-                _playerBurning = null;
+                PlayerBurning = null;
             Destroy(gameObject, timeAlive);
         }
     }

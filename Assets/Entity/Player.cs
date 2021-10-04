@@ -3,6 +3,7 @@ using ReactorScripts;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class Player : Entity
@@ -10,6 +11,7 @@ public class Player : Entity
     public float fallMultiplier = 2.5f;
     [Range(0, 10)] public float jumpVelocity;
     public ItemData inventoryItem = new ItemData();
+    public SpriteRenderer weaponSprite;
 
     public Transform groundCheck;
     public float groundRadius;
@@ -32,6 +34,7 @@ public class Player : Entity
     public AudioClip GunSound;
     private bool isDelay;
 
+    public float damageInterval;
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
@@ -42,7 +45,8 @@ public class Player : Entity
      private SpriteRenderer spriteRenderer;
      private float movementX;
      private bool isGrounded;
-     [SerializeField]private bool isShoted;
+     private bool isShoted;
+     private bool _canTakeDamage = true;
 
      public event EventHandler<ItemData> itemChanged;  
 
@@ -83,16 +87,20 @@ public class Player : Entity
           }
      }
 
-    private void FixedUpdate()
-    {
-        if (isShoted)
-            Shot();
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, layerGrounds);
-        rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
-        var vector = GetVectorToMouse();
-        var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg - 90f;
-        rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
-    }
+     private void FixedUpdate()
+     {
+          if (isShoted)
+               Shot();
+          isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, layerGrounds);
+          rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
+          var vector = GetVectorToMouse();
+          var angle = Mathf.Atan2(vector.y, vector.x)  * Mathf.Rad2Deg - 90f;
+          var isRight = -180 < angle && angle < 0;
+          rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
+          weaponSprite.flipY = !isRight;
+          spriteRenderer.flipX = !isRight;
+
+     }
 
      private void TakeItem()
      { 
@@ -152,24 +160,29 @@ public class Player : Entity
         // var door = doorCollider.GetComponent<Door>();
         var door = doorCollider.GetComponent<RootDoor>();
         var Out = door.@out;
-        door.TryOpen();
-        if (Out != null)
+        var doorIsOpening = door.TryOpen();
+        if (doorIsOpening)
         {
-             OnDisable();
-             yield return new WaitForSeconds(1);
-             spriteRenderer.sortingOrder = 4;
-             yield return new WaitForSeconds(1);
-             transform.position = Out.transform.position;
-             var otherDoor = Out.GetComponentInParent<Door>();
-             otherDoor.Open();
-             yield return new WaitForSeconds(1);
-             spriteRenderer.sortingOrder = 8;
-             yield return new WaitForSeconds(1);
-             OnEnable();
-        }
-        else
-        {
-             StartCoroutine(EnterSideDoor(doorCollider));
+             if (Out != null)
+             {
+                  _canTakeDamage = false;
+                  OnDisable();
+                  yield return new WaitForSeconds(1);
+                  spriteRenderer.sortingOrder = 4;
+                  yield return new WaitForSeconds(1);
+                  transform.position = Out.transform.position;
+                  var otherDoor = Out.GetComponentInParent<Door>();
+                  otherDoor.Open();
+                  yield return new WaitForSeconds(1);
+                  spriteRenderer.sortingOrder = 8;
+                  yield return new WaitForSeconds(1);
+                  OnEnable();
+                  _canTakeDamage = true;
+             }
+             else
+             {
+                  StartCoroutine(EnterSideDoor(doorCollider));
+             }
         }
     }
 
@@ -183,16 +196,17 @@ public class Player : Entity
     //      }
     // }
     IEnumerator EnterSideDoor(Collider2D doorCollider)
-    { 
+    {
+         _canTakeDamage = false;
          OnDisable(); 
          yield return new WaitForSeconds(1); 
          OnEnable();
+         _canTakeDamage = true;
     }
     private void Move(float axis)
      {
           if (axis != 0) {
-            spriteRenderer.flipX = axis < 0;
-            LeftLight.enabled = axis < 0;
+               LeftLight.enabled = axis < 0;
             RightLight.enabled = !(axis < 0);
           }
           movementX = axis * Speed;
@@ -235,6 +249,27 @@ public class Player : Entity
 
      public void OnDisable() => Input.Disable();
 
+     public override void TakeDamage(int damage)
+     {
+          if (_canTakeDamage)
+          {
+               base.TakeDamage(damage);
+               _canTakeDamage = false;
+               StartCoroutine(WaitInterDamage());
+          }
+     }
+
+     IEnumerator WaitInterDamage()
+     {
+          spriteRenderer.color = Color.red;
+          yield return new WaitForSeconds(damageInterval/3);
+          spriteRenderer.color = Color.white;
+          yield return new WaitForSeconds(damageInterval/3);
+          spriteRenderer.color = Color.red;
+          yield return new WaitForSeconds(damageInterval/3);
+          spriteRenderer.color = Color.white;
+          _canTakeDamage = true;
+     }
      protected override void Die()
      {
           ShipController ShipControllerScript = GameObject.Find("ShipController").GetComponent<ShipController>();

@@ -21,12 +21,12 @@ public class SpawnItemInspector : MonoBehaviour
         {
             positionIsTaken[point] = false; 
         }
-        SpawnItem(Item1);
-        Debug.Log(Item1.data.name);
-        SpawnItem(Item2);
-        Debug.Log(Item2.data.name);
-        SpawnItem(Item3);
-        Debug.Log(Item3.data.name);
+        // SpawnItem(Item1);
+        // Debug.Log(Item1.data.name);
+        // SpawnItem(Item2);
+        // Debug.Log(Item2.data.name);
+        // SpawnItem(Item3);
+        // Debug.Log(Item3.data.name);
     }
 
     private Transform GetPosition()

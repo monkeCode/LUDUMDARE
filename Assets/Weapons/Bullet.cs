@@ -56,6 +56,4 @@ public abstract class Bullet : MonoBehaviour
     public abstract void DealDamage(IDamagable enemy);
     public abstract void OnCollisionWithGround(Collision2D other);
     public abstract void Overheat();
-
-    public abstract void Cooling();
 }

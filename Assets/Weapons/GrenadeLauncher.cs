@@ -28,11 +28,6 @@ public class GrenadeLauncher : Bullet
         }
     }
 
-    public override void Cooling()
-    {
-        
-    }
-
     private void Explosion()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
