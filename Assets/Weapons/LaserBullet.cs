@@ -68,10 +68,4 @@ public class LaserBullet : Bullet
     {
         reflections += overheatReflectionCount;
     }
-    
-
-    public override void Cooling()
-    {
-        //attackCooldown /= overheatAttackCooldownCoefficient;
-    }
 }

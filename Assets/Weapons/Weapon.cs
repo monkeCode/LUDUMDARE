@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using ReactorScripts;
 using UnityEngine;
+using Weapons;
 
 public class Weapon : MonoBehaviour
 {
@@ -46,8 +47,16 @@ public class Weapon : MonoBehaviour
             StartCoroutine(AttackCooldown());
         }
     }
-    
-    IEnumerator AttackCooldown()
+
+    public void Cooling(float cooling)
+    {
+        overheat = Mathf.Max(0, overheat - cooling);
+        OverheatChanged?.Invoke(this, overheat);
+        if (FlamethrowerBullet.PlayerBurning != null)
+            StopCoroutine(FlamethrowerBullet.PlayerBurning);
+    }
+
+    private IEnumerator AttackCooldown()
     {
         onCooldown = true;
         yield return new WaitForSeconds(attackCooldown);

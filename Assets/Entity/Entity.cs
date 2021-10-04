@@ -26,6 +26,12 @@ public class Entity : MonoBehaviour, IDamagable
             Die();
     }
 
+    public virtual void RestoreHp(int restore)
+    {
+        Hp = Mathf.Min(Hp + restore, MaxHp);
+        HealthChanged?.Invoke(this, (Hp, MaxHp));
+    }
+
     protected virtual void Die()
     {
         Destroy(this.gameObject);

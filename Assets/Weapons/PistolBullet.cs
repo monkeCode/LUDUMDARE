@@ -18,10 +18,4 @@ public class PistolBullet : Bullet
     {
         attackCooldown *= overheatAttackCooldownCoefficient;
     }
-    
-
-    public override void Cooling()
-    {
-        attackCooldown /= overheatAttackCooldownCoefficient;
-    }
 }
