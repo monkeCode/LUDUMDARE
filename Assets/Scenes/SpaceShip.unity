@@ -3185,7 +3185,7 @@ PrefabInstance:
       objectReference: {fileID: 7750600248470440678, guid: 8dc1828d9f1d7794792bc33db9c2032d, type: 3}
     - target: {fileID: 6811746380630183504, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: mobCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
@@ -39531,10 +39531,10 @@ PrefabInstance:
     - target: {fileID: 6811746380630183504, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: Mob
       value: 
-      objectReference: {fileID: 7750600248470440678, guid: 8dc1828d9f1d7794792bc33db9c2032d, type: 3}
+      objectReference: {fileID: 2428027731902861484, guid: 887803fb5e86fd0439b0322aadca2257, type: 3}
     - target: {fileID: 6811746380630183504, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: mobCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
@@ -40286,7 +40286,7 @@ PrefabInstance:
     - target: {fileID: 6811746380630183504, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: Mob
       value: 
-      objectReference: {fileID: 2428027731902861484, guid: 887803fb5e86fd0439b0322aadca2257, type: 3}
+      objectReference: {fileID: 2603434086958113029, guid: e56972aa625a2d9479fac6865cc06ba7, type: 3}
     - target: {fileID: 6811746380630183504, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
       propertyPath: mobCount
       value: 2
