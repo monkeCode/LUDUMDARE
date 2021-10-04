@@ -23,13 +23,15 @@ public class EyeBallScript : Entity
    private static readonly int Die1 = Animator.StringToHash("die");
    private bool _onGround;
    private int dir;
+   private AudioSource _source;
    private void Start()
    {
       _rb = GetComponent<Rigidbody2D>();
       _animator = GetComponent<Animator>();
       _collider = GetComponent<CircleCollider2D>();
       target = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+      _source = GetComponent<AudioSource>();
+   }
 
    private void Update()
    {
@@ -55,7 +57,8 @@ public class EyeBallScript : Entity
             _rb.velocity += Vector2.right * Speed * Time.deltaTime * dir;
             if (WallEnter())
             {
-               _rb.velocity = new Vector2(-_rb.velocity.x, _rb.velocity.y);
+               _source.Play();
+               _rb.velocity = new Vector2(-_rb.velocity.x/2, _rb.velocity.y);
             }
             if (_lastSpeed != (_rb.velocity.x > 0?1:-1) && _onGround)
             {

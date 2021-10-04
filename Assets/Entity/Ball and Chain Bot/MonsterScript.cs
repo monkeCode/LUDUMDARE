@@ -16,6 +16,7 @@ public class MonsterScript : Entity
     private Rigidbody2D _rb;
     private Animator _animator;
     private bool _readyToAtk;
+    private AudioSource _source;
     
     private static readonly int Move1 = Animator.StringToHash("move");
     private static readonly int die = Animator.StringToHash("die");
@@ -27,6 +28,7 @@ public class MonsterScript : Entity
         _animator = GetComponent<Animator>();
         _target = GameObject.FindGameObjectWithTag("Player").transform;
         _readyToAtk = true;
+        _source = GetComponent<AudioSource>();
     }
 
 
@@ -82,6 +84,7 @@ public class MonsterScript : Entity
 
     void DealDamage()
     {
+        _source.Play();
         if (Vector2.Angle(((Vector2) _target.position - _rb.position).Abs(), Vector2.right) < _atkAngle)
         {
             var hits = Physics2D.RaycastAll(_rb.position, (Vector2) _target.position - _rb.position, _distanceToAtk)
