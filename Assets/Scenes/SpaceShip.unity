@@ -49645,6 +49645,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1472549895}
     - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
+      propertyPath: maxTurnBackSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
+      propertyPath: speedBackSmoothener
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
+      propertyPath: timeSpeedDependence
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
       propertyPath: maxTimeStartSpinning
       value: 80
       objectReference: {fileID: 0}

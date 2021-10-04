@@ -10,16 +10,19 @@ public class ShipController : MonoBehaviour
     private GameObject Player; 
 
 
-    private float SpinTime = 0;
-    private float TimeAfterTurnBack = 0;
+    private float spinTime = 0;
+    private float turningBackTime = 0;
+    private float timeAfterTurnBack = 0;
+    private float timeTurningBack = 0;
     private PlayerInput input;
     
     [Header("Select manually (SpaceShip/Canvas)")]
     public GameObject DeadMenu;
     public GameObject OffCourseMenu;
 
-    
-    [Header("Stats")]
+
+    [Header("Stats")] 
+    public float speedBackSmoothener; // suggestion 125
     public float maxTurnBackSpeed = 0.5f;
     public float timeSpeedDependence;
     public bool EbuttonIsPressed = false;
@@ -35,7 +38,7 @@ public class ShipController : MonoBehaviour
     private float rapidTurnDegreeSpeed;
     private bool isRapidTurnAway = false;
     private bool isTurningBack = false;
-    private int turnDirection;
+    public int turnDirection;
     private bool isTurningAway = false;
 
     private void Awake()
@@ -58,30 +61,58 @@ public class ShipController : MonoBehaviour
     }
     void TurnAway()
     {
+        timeTurningBack = 0;
+        turnBackSpeed = 0;
         isTurningAway = true;
-        turnBackSpeed = 0.0f;
-        currentTurnSpeed += SpinTime * timeSpeedDependence;
+        currentTurnSpeed += spinTime * timeSpeedDependence;
         LevelCamera.transform.Rotate(0.0f, 0.0f, turnDirection*currentTurnSpeed);
     }
 
     void TurnBack()
     {
+        timeTurningBack += Time.deltaTime;
+        spinTime = 0;
         isTurningBack = true;
-        turnBackSpeed = Mathf.Lerp(turnBackSpeed, maxTurnBackSpeed, SpinTime);
-        if (LevelCamera.transform.localRotation.eulerAngles.z - turnBackSpeed < 0)
+        turnBackSpeed = Mathf.Lerp(turnBackSpeed, maxTurnBackSpeed, timeTurningBack/speedBackSmoothener);
+        //Debug.Log("TurnBackSpeed = " + turnBackSpeed);
+        
+       // Debug.Log("IF +1 " + (LevelCamera.transform.localRotation.eulerAngles.z - turnBackSpeed));
+        if (LevelCamera.transform.localRotation.eulerAngles.z - turnBackSpeed <= 0 && turnDirection == 1)
         {
+           // Debug.Log("1 here 1");
             LevelCamera.transform.localRotation = Quaternion.Euler(LevelCamera.transform.localRotation.eulerAngles.x,LevelCamera.transform.localRotation.eulerAngles.y , 0);
         }
         else
         {
-            LevelCamera.transform.Rotate(0.0f, 0.0f, turnDirection*(-turnBackSpeed));   
+            if (turnDirection == 1)
+            {
+                //Debug.Log("1 here 2");
+                LevelCamera.transform.Rotate(0.0f, 0.0f, turnDirection*(-turnBackSpeed));
+            }
+        }
+        
+        
+       // Debug.Log("IF -1 " + (LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed));
+        if ((LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed >= -1) && (LevelCamera.transform.localRotation.eulerAngles.z + turnBackSpeed <= 0.02f) && (turnDirection == -1))
+        {
+         //   Debug.Log("2 here 1");
+            LevelCamera.transform.localRotation = Quaternion.Euler(LevelCamera.transform.localRotation.eulerAngles.x,LevelCamera.transform.localRotation.eulerAngles.y , 0);
+        }
+        else
+        {
+            if (turnDirection == -1)
+            {
+             //   Debug.Log("2 here 2");
+                LevelCamera.transform.Rotate(0.0f, 0.0f, turnDirection*(-turnBackSpeed));
+            }
         }
         
         if (LevelCamera.transform.localRotation.eulerAngles.z == 0)
         {
-            TimeAfterTurnBack = 0;
+            timeAfterTurnBack = 0;
+            timeTurningBack = 0;
             maxTimeAfterTurnBack = UnityEngine.Random.Range(minTimeStartSpinning,maxTimeStartSpinning);
-            SpinTime = 0;
+            spinTime = 0;
             currentTurnSpeed = 0;
             ChooseTurnDirection();
             isTurningAway = false;
@@ -96,7 +127,7 @@ public class ShipController : MonoBehaviour
     
     void RapidTurnAway()
     {
-        rapidTurnDegreeSpeed = Mathf.Lerp(0, 0.01f, SpinTime);
+        rapidTurnDegreeSpeed = Mathf.Lerp(0, 0.01f, spinTime);
         LevelCamera.transform.Rotate(0.0f,0.0f, turnDirection*rapidTurnDegreeSpeed);
         rapidTurnDegree -= rapidTurnDegreeSpeed;
     }
@@ -130,37 +161,16 @@ public class ShipController : MonoBehaviour
         LevelCamera = GameObject.FindWithTag("MainCamera");
         OffCourseMenu.SetActive(false);
         DeadMenu.SetActive(false);
-        SpinTime = 0.0f;
+        spinTime = 0.0f;
         maxTimeAfterTurnBack = timeNotSpinAfterLevelStart;
         ChooseTurnDirection();
     }
 
     void Update()
     {
-
-        SpinTime += Time.deltaTime;
-        TimeAfterTurnBack += Time.deltaTime;
+        spinTime += Time.deltaTime;
+        timeAfterTurnBack += Time.deltaTime;
         
-        if (SpinTime > 2)
-        {
-            if (turnDirection < 0)
-            {
-                if ((LevelCamera.transform.localRotation.eulerAngles.z <= 180) && !DeadMenu.activeSelf)
-                {
-                    OffCourseMenu.SetActive(true);
-                    Player.GetComponent<Player>().OnDisable();
-                }
-            }
-            else
-            {
-                if ((LevelCamera.transform.localRotation.eulerAngles.z >= 180) && !DeadMenu.activeSelf)
-                {
-                    OffCourseMenu.SetActive(true);
-                    Player.GetComponent<Player>().OnDisable();
-                }
-            }
-        }
-
         if ((EbuttonIsPressed)  && (playerNearYoke) && (isTurningAway))
         {
             TurnBack();
@@ -169,20 +179,51 @@ public class ShipController : MonoBehaviour
         {
             isTurningBack = false;
         }
-        //
-
+        
+   //     Debug.Log(LevelCamera.transform.localRotation.eulerAngles.z);
+   
 
         if (!isTurningAway)
         {
-            SpinTime = 0;
+            spinTime = 0;
             currentTurnSpeed = 0;
         }
 
         
-        if (!isTurningBack && (TimeAfterTurnBack > maxTimeAfterTurnBack))
+        if (!isTurningBack && (timeAfterTurnBack > maxTimeAfterTurnBack))
         {
+            turnBackSpeed = 0;
+            timeTurningBack = 0;
             TurnAway();
+            
         }
+        
+     //   Debug.Log("IsTurningBack = " + isTurningBack);
+       // Debug.Log("CurrentDirection = " + turnDirection);
+        //Debug.Log("CurrentAngle = " + LevelCamera.transform.localRotation.eulerAngles.z);
+        
+        if (!isTurningBack)
+        {
+            if (turnDirection < 0)
+            {
+                if ((LevelCamera.transform.localRotation.eulerAngles.z <= 180) && !DeadMenu.activeSelf && (LevelCamera.transform.localRotation.eulerAngles.z > 0))
+                {
+                    OffCourseMenu.SetActive(true);
+                    Player.GetComponent<Player>().OnDisable();
+                    //Debug.Log("Dead 1");
+                }
+            }
+            else
+            {
+                if ((LevelCamera.transform.localRotation.eulerAngles.z >= 180) && !DeadMenu.activeSelf)
+                {
+                    OffCourseMenu.SetActive(true);
+                    Player.GetComponent<Player>().OnDisable();
+                    //Debug.Log("Dead 2");
+                }
+            }
+        }
+
 
         if (isRapidTurnAway)
         {
