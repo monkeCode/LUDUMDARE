@@ -167,9 +167,12 @@ public class Player : Entity
         {
              if (Out != null)
              {
+                  var weaponSprite = GameObject.FindGameObjectWithTag("WeaponSprite");
+                var weaponSpriteRenderer = weaponSprite.GetComponent<SpriteRenderer>();
                   _canTakeDamage = false;
                   OnDisable();
                   yield return new WaitForSeconds(1);
+                weaponSpriteRenderer.sortingOrder = 4;
                   spriteRenderer.sortingOrder = 4;
                   yield return new WaitForSeconds(1);
                   transform.position = Out.transform.position;
@@ -177,7 +180,8 @@ public class Player : Entity
                   otherDoor.Open();
                   yield return new WaitForSeconds(1);
                   spriteRenderer.sortingOrder = 8;
-                  yield return new WaitForSeconds(1);
+                weaponSpriteRenderer.sortingOrder = 8;
+                yield return new WaitForSeconds(1);
                   OnEnable();
                   _canTakeDamage = true;
              }
@@ -233,7 +237,6 @@ public class Player : Entity
                 isDelay = true;
                 StartCoroutine(playSound(LaserSound));
             }
-                
         }
             
         weapon.Shoot(vector, inventoryItem);
