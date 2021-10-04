@@ -3,6 +3,7 @@ using ReactorScripts;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Player : Entity
 {
@@ -21,6 +22,8 @@ public class Player : Entity
     // public LayerMask layerSideDoors;
     public SpawnItemInspector itemInspector;
     public static List<string> Keys;
+    public Light2D LeftLight;
+    public Light2D RightLight;
 
 
     [SerializeField] private Transform attackPoint;
@@ -156,9 +159,12 @@ public class Player : Entity
     }
     private void Move(float axis)
      {
-          if (axis != 0)
-               spriteRenderer.flipX = axis < 0;
-          movementX = axis * Speed;
+          if (axis != 0) {
+            spriteRenderer.flipX = axis < 0;
+            LeftLight.enabled = axis < 0;
+            RightLight.enabled = !(axis < 0);
+        }
+        movementX = axis * Speed;
      }
      
      public Vector3 GetVectorToMouse() => 
