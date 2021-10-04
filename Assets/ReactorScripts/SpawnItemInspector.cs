@@ -9,6 +9,9 @@ public class SpawnItemInspector : MonoBehaviour
     public ReactorScripts.Item Item1;
     public ReactorScripts.Item Item2;
     public ReactorScripts.Item Item3;
+    public GameObject firstSpawnPosition1;
+    public GameObject firstSpawnPosition2;
+    public GameObject firstSpawnPosition3;
     private List<Transform> possibleSpawnPositions;
     private Dictionary<Transform, bool> positionIsTaken = new Dictionary<Transform, bool>();
     [SerializeField]private Dictionary<string, Transform> ItemsPositions = new Dictionary<string, Transform>();
@@ -21,12 +24,12 @@ public class SpawnItemInspector : MonoBehaviour
         {
             positionIsTaken[point] = false; 
         }
-        SpawnItem(Item1);
-        Debug.Log(Item1.data.name);
-        SpawnItem(Item2);
-        Debug.Log(Item2.data.name);
-        SpawnItem(Item3);
-        Debug.Log(Item3.data.name);
+        SpawnItem(Item1, firstSpawnPosition1.transform);
+        // Debug.Log(Item1.data.name);
+        SpawnItem(Item2, firstSpawnPosition2.transform);
+        // Debug.Log(Item2.data.name);
+        SpawnItem(Item3, firstSpawnPosition3.transform);
+        // Debug.Log(Item3.data.name);
     }
 
     private Transform GetPosition()
@@ -43,6 +46,12 @@ public class SpawnItemInspector : MonoBehaviour
         Debug.Log("spawned");
         ItemsPositions[item.data.name] = position;
         positionIsTaken[position] = true;
+    }
+
+    private void SpawnItem(ReactorScripts.Item item, Transform position)
+    {
+        Instantiate(item, position.position, position.rotation);
+        ItemsPositions[item.data.name] = position;
     }
 
     public void TakeItem(ReactorScripts.Item item)
