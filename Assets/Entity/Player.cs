@@ -11,6 +11,7 @@ public class Player : Entity
     public float fallMultiplier = 2.5f;
     [Range(0, 10)] public float jumpVelocity;
     public ItemData inventoryItem = new ItemData();
+    public SpriteRenderer weaponSprite;
 
     public Transform groundCheck;
     public float groundRadius;
@@ -88,7 +89,11 @@ public class Player : Entity
           rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
           var vector = GetVectorToMouse();
           var angle = Mathf.Atan2(vector.y, vector.x)  * Mathf.Rad2Deg - 90f;
+          var isRight = -180 < angle && angle < 0;
           rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
+          weaponSprite.flipY = !isRight;
+          spriteRenderer.flipX = !isRight;
+
      }
 
      private void TakeItem()
@@ -191,8 +196,7 @@ public class Player : Entity
     private void Move(float axis)
      {
           if (axis != 0) {
-            spriteRenderer.flipX = axis < 0;
-            LeftLight.enabled = axis < 0;
+               LeftLight.enabled = axis < 0;
             RightLight.enabled = !(axis < 0);
           }
           movementX = axis * Speed;
