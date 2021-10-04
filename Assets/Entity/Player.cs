@@ -22,6 +22,7 @@ public class Player : Entity
     // public LayerMask layerSideDoors;
     public SpawnItemInspector itemInspector;
     public static List<string> Keys;
+    public LayerMask layerKeys;
     public Light2D LeftLight;
     public Light2D RightLight;
 
@@ -56,6 +57,7 @@ public class Player : Entity
           Input.Player.Shot.performed += ctx => isShoted = true;
           Input.Player.Shot.canceled += ctx => isShoted = false;
           Input.Player.OpenDoor.performed += ctx => OpenDoor();
+          Input.Player.Action.performed += ctx => TakeKey();
           // Input.Player.OpenDoor.performed += ctx => InteractSideDoor();
      }
  
@@ -105,6 +107,16 @@ public class Player : Entity
           inventoryItem.type = TypeItem.Default;
           itemChanged?.Invoke(this, inventoryItem);
      }
+
+    private void TakeKey()
+    {
+         var keyCollider = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerKeys);
+         if (keyCollider != null)
+         {
+              Keys.Add(keyCollider.GetComponent<Key>().name);
+              Destroy(keyCollider.gameObject);
+         }
+    }
 
     private void OpenDoor()
     {
