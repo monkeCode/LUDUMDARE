@@ -17,6 +17,7 @@ namespace Weapons
             base.Start();
             Rigidbody.velocity = Vector2.zero;
             Destroy(gameObject.GetComponent<Collider2D>(), timeAlive);
+            Destroy(gameObject, timeAlive + burnTimes * timeBetweenBurn);
         }
         
         public override void DealDamage(IDamagable enemy)
@@ -55,7 +56,6 @@ namespace Weapons
             }
             if (isPlayer)
                 PlayerBurning = null;
-            Destroy(gameObject, timeAlive);
         }
     }
 }

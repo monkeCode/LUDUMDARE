@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     public Slider OverheatSlider;
     public Slider HealthSlider;
     public Slider ReactorSlider;
+    public Slider ShipSlider;
     public RawImage reactorBgImage;
     public RawImage reactorImage;
     public RawImage inventoryImage;
@@ -24,6 +25,7 @@ public class UIController : MonoBehaviour
         Reactor.OnHealthChanged += (sender, data) => UpdateScrollbar(ReactorSlider, data.Health, 100);
         player.itemChanged += (sender, data) => ChangeImage(data.type);
         Reactor.OnItemRequired += (sender, item) => ChangeReactorRequirement(item);
+        SpaceShipTimer.TimeChanged += (sender, time) => UpdateScrollbar(ShipSlider, time.Current, time.Max);
     }
 
     private static void UpdateScrollbar(Slider slider, float current, float max)
