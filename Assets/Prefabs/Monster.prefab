@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1c58e8eb31f24d85e00620b03438c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 10
+  Hp: 100
   MaxHp: 0
-  Damage: 2
+  Damage: 12
   Speed: 300
   _target: {fileID: 0}
   _distanceToAtk: 3

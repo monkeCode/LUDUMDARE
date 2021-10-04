@@ -31,6 +31,7 @@ public class GrenadeLauncher : Bullet
 
     private void Explosion()
     {
+        Debug.Log(damage);
         Instantiate(explosion, transform.position, Quaternion.identity);
         Instantiate(sound, transform.position, Quaternion.identity);
         var enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerEnemies);
