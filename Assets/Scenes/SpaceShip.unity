@@ -5779,7 +5779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034622154022105682, guid: fe4359e547a133245beaddce52e25a65, type: 3}
       propertyPath: health
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5034622154022105682, guid: fe4359e547a133245beaddce52e25a65, type: 3}
       propertyPath: ExplosionMenu
