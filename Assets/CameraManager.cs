@@ -27,6 +27,7 @@ public class CameraManager : MonoBehaviour
 
     private void FollowPlayer()
     {
+        Debug.LogError("followPlayer");
         size = 5;
         // player.OnEnable();
         // if (player.isWithSword && camera.orthographicSize < 4.9)
