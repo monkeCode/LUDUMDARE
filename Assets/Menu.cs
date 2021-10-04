@@ -25,6 +25,7 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
-        SceneManager.UnloadSceneAsync("SpaceShip");
+        Time.timeScale = 1;
+        // SceneManager.UnloadSceneAsync("SpaceShip");
     }
 }
