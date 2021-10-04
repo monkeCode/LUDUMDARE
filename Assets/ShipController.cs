@@ -7,12 +7,18 @@ using Random = System.Random;
 public class ShipController : MonoBehaviour
 {
     private GameObject LevelCamera;
-    private GameObject Player;
+    private GameObject Player; 
+
+
     private float SpinTime = 0;
     private float TimeAfterTurnBack = 0;
     private PlayerInput input;
+    
+    [Header("Select manually (SpaceShip/Canvas)")]
+    public GameObject DeadMenu;
+    public GameObject OffCourseMenu;
 
-
+    
     [Header("Stats")]
     public float maxTurnBackSpeed = 0.5f;
     public float timeSpeedDependence;
@@ -122,6 +128,8 @@ public class ShipController : MonoBehaviour
         inputPlayer.Player.Action.performed += ctx => EbuttonIsPressed = true;
         inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
         LevelCamera = GameObject.FindWithTag("MainCamera");
+        OffCourseMenu.SetActive(false);
+        DeadMenu.SetActive(false);
         SpinTime = 0.0f;
         maxTimeAfterTurnBack = timeNotSpinAfterLevelStart;
         ChooseTurnDirection();
@@ -133,7 +141,24 @@ public class ShipController : MonoBehaviour
         SpinTime += Time.deltaTime;
         TimeAfterTurnBack += Time.deltaTime;
         
-        //
+        if (SpinTime > 2)
+        {
+            if (turnDirection < 0)
+            {
+                if ((LevelCamera.transform.localRotation.eulerAngles.z <= 180) && !DeadMenu.activeSelf)
+                {
+                    OffCourseMenu.SetActive(true);
+                }
+            }
+            else
+            {
+                if ((LevelCamera.transform.localRotation.eulerAngles.z >= 180) && !DeadMenu.activeSelf)
+                {
+                    OffCourseMenu.SetActive(true);
+                }
+            }
+        }
+
         if ((EbuttonIsPressed)  && (playerNearYoke) && (isTurningAway))
         {
             TurnBack();
