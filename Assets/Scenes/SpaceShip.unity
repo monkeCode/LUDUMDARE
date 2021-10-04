@@ -6215,6 +6215,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1312053375, guid: 155e3e3b061bc904599ee5e2bab6980c, type: 3}
+      propertyPath: ShipSlider
+      value: 
+      objectReference: {fileID: 1358302511}
+    - target: {fileID: 1312053375, guid: 155e3e3b061bc904599ee5e2bab6980c, type: 3}
       propertyPath: reactorImage
       value: 
       objectReference: {fileID: 915110180}
@@ -17613,7 +17617,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 62
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -49887,6 +49891,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e2463146c10da148830f0519635bd57, type: 3}
+--- !u!1 &6368366179719733774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6368366179945628064, guid: 9e2463146c10da148830f0519635bd57, type: 3}
+  m_PrefabInstance: {fileID: 6368366179719733773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6368366179719733775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368366179719733774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d1f8f76a12ac645ac9c18bbbb5cb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToWin: 300
+  timeTick: 1
 --- !u!1001 &7971857941821030743
 PrefabInstance:
   m_ObjectHideFlags: 0
