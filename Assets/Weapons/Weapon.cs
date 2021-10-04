@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         ConvertTypeItemToBulletType = convertor.GetBulletDictionary();
+        FlamethrowerBullet.PlayerBurning = null;
     }
 
     public void Shoot(Vector3 direction, ItemData bullet)
