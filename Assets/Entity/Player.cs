@@ -101,6 +101,7 @@ public class Player : Entity
 
     IEnumerator EnterDoor(Collider2D doorCollider)
     {
+<<<<<<< Updated upstream
         var door = doorCollider.GetComponent<Door>();
         var Out = door.Out;
         door.State = States.open;
@@ -118,6 +119,55 @@ public class Player : Entity
     }
 
      private void Move(float axis)
+=======
+        // var door = doorCollider.GetComponent<Door>();
+        var door = doorCollider.GetComponent<RootDoor>();
+        var Out = door.@out;
+        var doorIsOpening = door.TryOpen();
+        if (doorIsOpening)
+        {
+             if (Out != null)
+             {
+                  _canTakeDamage = false;
+                  OnDisable();
+                  yield return new WaitForSeconds(1);
+                  spriteRenderer.sortingOrder = 4;
+                  yield return new WaitForSeconds(1);
+                  transform.position = Out.transform.position;
+                  var otherDoor = Out.GetComponentInParent<Door>();
+                  otherDoor.Open();
+                  yield return new WaitForSeconds(1);
+                  spriteRenderer.sortingOrder = 8;
+                  yield return new WaitForSeconds(1);
+                  OnEnable();
+                  _canTakeDamage = true;
+             }
+             else
+             {
+                  StartCoroutine(EnterSideDoor(doorCollider));
+             }
+        }
+    }
+
+    // void InteractSideDoor()
+    // {
+    //      var doorCollider = Physics2D.OverlapCircle(transform.position, takeRadius, layerSideDoors);
+    //      if (doorCollider != null)
+    //      {
+    //         StartCoroutine(EnterSideDoor(doorCollider));
+    //          ;
+    //      }
+    // }
+    IEnumerator EnterSideDoor(Collider2D doorCollider)
+    {
+         _canTakeDamage = false;
+         OnDisable(); 
+         yield return new WaitForSeconds(1); 
+         OnEnable();
+         _canTakeDamage = true;
+    }
+    private void Move(float axis)
+>>>>>>> Stashed changes
      {
           if (axis != 0)
                spriteRenderer.flipX = axis < 0;

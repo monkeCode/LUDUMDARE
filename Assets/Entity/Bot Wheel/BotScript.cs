@@ -6,6 +6,7 @@ using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -16,6 +17,11 @@ public class BotScript : Entity
     [SerializeField] private float minimalDistance;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform gunPos;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private LayerMask retreatlayers;
+    [SerializeField] private LayerMask lookMask;
+>>>>>>> Stashed changes
     [Range(0,10)]
     [SerializeField] private float bulletForce;
     private Rigidbody2D _rb;
@@ -25,12 +31,18 @@ public class BotScript : Entity
     private static readonly int Shoot1 = Animator.StringToHash("shoot");
     private static readonly int Move1 = Animator.StringToHash("move");
     private static readonly int Die1 = Animator.StringToHash("die");
-
+    private CapsuleCollider2D _collider;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+<<<<<<< Updated upstream
         _collider = GetComponent<BoxCollider2D>();
+=======
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        _source = GetComponent<AudioSource>();
+        _collider = GetComponent<CapsuleCollider2D>();
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -40,17 +52,29 @@ public class BotScript : Entity
         {
            bool isWall = WallCheck();
            float distance = Vector2.Distance(target.position, _rb.position);
-          if ((distance > distanceToAtk || (distance < minimalDistance && !isWall )) && _canShoot)
+          if ((distance > distanceToAtk || (distance < minimalDistance && !isWall)) && _canShoot )
             {
                 Move((distance > distanceToAtk?1:-1) * (target.position.x - _rb.position.x> 0?1:-1));
             }
-            else
+            else if(LookOnTarget())
             {
                 Shoot();
             }
+          else _animator.SetBool(Move1, false);
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    bool LookOnTarget()
+    {
+        var vec = (Vector2) target.position -new Vector2(_rb.position.x, _rb.position.y + _collider.size.y/2);
+        //Debug.DrawRay(new Vector2(_rb.position.x,_collider.size.y/2 + _rb.position.y), vec);
+     var hit =  Physics2D.Raycast(new Vector2(_rb.position.x,_collider.size.y/2 + _rb.position.y), vec, vec.magnitude,lookMask);
+        Debug.Log(hit.rigidbody?.gameObject?.name);
+        return hit.rigidbody?.gameObject?.tag == "Player";
+    }
+>>>>>>> Stashed changes
     bool WallCheck()
     {
         var hits = Physics2D.RaycastAll(_rb.position,

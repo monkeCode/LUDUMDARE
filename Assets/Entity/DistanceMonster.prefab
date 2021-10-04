@@ -153,6 +153,15 @@ MonoBehaviour:
   minimalDistance: 3
   bullet: {fileID: 8857660191386235388, guid: eeabeac2a28bbb54193c286eb7609ee6, type: 3}
   gunPos: {fileID: 7894064436515027538}
+<<<<<<< Updated upstream:Assets/Entity/DistanceMonster.prefab
+=======
+  retreatlayers:
+    serializedVersion: 2
+    m_Bits: 72
+  lookMask:
+    serializedVersion: 2
+    m_Bits: 584
+>>>>>>> Stashed changes:Assets/Prefabs/DistanceMonster.prefab
   bulletForce: 1.54
 --- !u!50 &7894064436176353326
 Rigidbody2D:

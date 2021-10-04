@@ -148,9 +148,9 @@ MonoBehaviour:
   Damage: 1
   Speed: 200
   target: {fileID: 0}
-  distanceOvertarget: 3
+  distanceOvertarget: 2
   attackDistance: 7
-  timeInterAttack: 10
+  timeInterAttack: 7
   thunder: {fileID: 4704155704702040857, guid: 9d08463761230b442be5d1a2674f7ea8, type: 3}
 --- !u!50 &7750600248470440681
 Rigidbody2D:
