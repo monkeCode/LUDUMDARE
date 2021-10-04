@@ -148,6 +148,7 @@ public class ShipController : MonoBehaviour
                 if ((LevelCamera.transform.localRotation.eulerAngles.z <= 180) && !DeadMenu.activeSelf)
                 {
                     OffCourseMenu.SetActive(true);
+                    Player.GetComponent<Player>().OnDisable();
                 }
             }
             else
@@ -155,6 +156,7 @@ public class ShipController : MonoBehaviour
                 if ((LevelCamera.transform.localRotation.eulerAngles.z >= 180) && !DeadMenu.activeSelf)
                 {
                     OffCourseMenu.SetActive(true);
+                    Player.GetComponent<Player>().OnDisable();
                 }
             }
         }

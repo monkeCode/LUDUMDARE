@@ -144,7 +144,7 @@ public class Player : Entity
              var otherDoor = Out.GetComponentInParent<Door>();
              otherDoor.Open();
              yield return new WaitForSeconds(1);
-             spriteRenderer.sortingOrder = 6;
+             spriteRenderer.sortingOrder = 8;
              yield return new WaitForSeconds(1);
              OnEnable();
         }
@@ -190,11 +190,12 @@ public class Player : Entity
 
      private void OnEnable() => Input.Enable();
 
-     private void OnDisable() => Input.Disable();
+     public void OnDisable() => Input.Disable();
 
      protected override void Die()
      {
           ShipController ShipControllerScript = GameObject.Find("ShipController").GetComponent<ShipController>();
           ShipControllerScript.DeadMenu.SetActive(true);
+          OnDisable();
      }
 }
