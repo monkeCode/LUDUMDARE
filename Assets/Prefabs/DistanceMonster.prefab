@@ -132,6 +132,9 @@ MonoBehaviour:
   retreatlayers:
     serializedVersion: 2
     m_Bits: 72
+  lookMask:
+    serializedVersion: 2
+    m_Bits: 584
   bulletForce: 1.54
 --- !u!50 &7894064436176353326
 Rigidbody2D:

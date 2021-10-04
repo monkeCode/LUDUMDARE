@@ -159,6 +159,7 @@ public class Player : Entity
         {
              if (Out != null)
              {
+                  _canTakeDamage = false;
                   OnDisable();
                   yield return new WaitForSeconds(1);
                   spriteRenderer.sortingOrder = 4;
@@ -170,6 +171,7 @@ public class Player : Entity
                   spriteRenderer.sortingOrder = 8;
                   yield return new WaitForSeconds(1);
                   OnEnable();
+                  _canTakeDamage = true;
              }
              else
              {
@@ -188,10 +190,12 @@ public class Player : Entity
     //      }
     // }
     IEnumerator EnterSideDoor(Collider2D doorCollider)
-    { 
+    {
+         _canTakeDamage = false;
          OnDisable(); 
          yield return new WaitForSeconds(1); 
          OnEnable();
+         _canTakeDamage = true;
     }
     private void Move(float axis)
      {
