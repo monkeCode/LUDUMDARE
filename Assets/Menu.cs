@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    
     public void PlayGame ()
     {
         SceneManager.LoadScene("SpaceShip");
@@ -21,6 +20,11 @@ public class Menu : MonoBehaviour
     {
         Debug.Log("QUIT!"); // because you can't quit from unity editor
         Application.Quit();
+    }
+
+    void Start()
+    {
+        SceneManager.UnloadSceneAsync("SpaceShip");
     }
 
 }
