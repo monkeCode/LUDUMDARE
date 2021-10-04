@@ -96,7 +96,9 @@ public class Player : Entity
           var vector = GetVectorToMouse();
           var angle = Mathf.Atan2(vector.y, vector.x)  * Mathf.Rad2Deg - 90f;
           var isRight = -180 < angle && angle < 0;
-          rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
+        LeftLight.enabled = !isRight;
+        RightLight.enabled = isRight;
+        rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
           weaponSprite.flipY = !isRight;
           spriteRenderer.flipX = !isRight;
 
@@ -206,8 +208,7 @@ public class Player : Entity
     private void Move(float axis)
      {
           if (axis != 0) {
-               LeftLight.enabled = axis < 0;
-            RightLight.enabled = !(axis < 0);
+               
           }
           movementX = axis * Speed;
      }
