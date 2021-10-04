@@ -30,6 +30,7 @@ public class Player : Entity
     public AudioClip FlamethrowerSound;
     public AudioClip LaserSound;
     public AudioClip GunSound;
+    private bool isDelay;
 
 
     [SerializeField] private Transform attackPoint;
@@ -41,7 +42,7 @@ public class Player : Entity
      private SpriteRenderer spriteRenderer;
      private float movementX;
      private bool isGrounded;
-     private bool isShoted;
+     [SerializeField]private bool isShoted;
 
      public event EventHandler<ItemData> itemChanged;  
 
@@ -82,16 +83,16 @@ public class Player : Entity
           }
      }
 
-     private void FixedUpdate()
-     {
-          if (isShoted)
-               Shot();
-          isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, layerGrounds);
-          rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
-          var vector = GetVectorToMouse();
-          var angle = Mathf.Atan2(vector.y, vector.x)  * Mathf.Rad2Deg - 90f;
-          rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
-     }
+    private void FixedUpdate()
+    {
+        if (isShoted)
+            Shot();
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, layerGrounds);
+        rigidbody.velocity = new Vector2(movementX, rigidbody.velocity.y);
+        var vector = GetVectorToMouse();
+        var angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg - 90f;
+        rotatePoint.rotation = Quaternion.Euler(0, 0, angle);
+    }
 
      private void TakeItem()
      { 
@@ -202,12 +203,33 @@ public class Player : Entity
 
      private void Shot()
      {
-          var vector = GetVectorToMouse();
-        if (inventoryItem.type == TypeItem.Default && !weapon.onCooldown)
-            sound.PlayOneShot(GunSound);
+            var vector = GetVectorToMouse();
+            if (!weapon.onCooldown)
+        {
+            if (inventoryItem.type == TypeItem.Default)
+                sound.PlayOneShot(GunSound);
+            if (inventoryItem.type == TypeItem.Flamethrower && !isDelay)
+            {
+                isDelay = true;
+                StartCoroutine(playSound(FlamethrowerSound));
+            }
+            if (inventoryItem.type == TypeItem.Laser && !isDelay)
+            {
+                isDelay = true;
+                StartCoroutine(playSound(LaserSound));
+            }
+                
+        }
+            
         weapon.Shoot(vector, inventoryItem);
-        
      }
+
+    IEnumerator playSound(AudioClip soundclip)
+    {
+        yield return new WaitForSeconds(0.3f);
+        sound.PlayOneShot(soundclip);
+        isDelay = false;
+    }
 
      private void OnEnable() => Input.Enable();
 

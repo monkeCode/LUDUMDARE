@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 171990469392406468}
   - component: {fileID: 1793768032366601420}
   - component: {fileID: -298587657632779659}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FlameBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,7 @@ MonoBehaviour:
   flyDistance: 1
   overheatIncrement: 2
   velocity: {x: 0, y: 0}
+  onTheEdgeConst: 0
   burnDamage: 1
   burnTimes: 3
   timeBetweenBurn: 1
@@ -110,7 +111,7 @@ GameObject:
   - component: {fileID: 8952970865478323941}
   - component: {fileID: 1179379140801995520}
   - component: {fileID: 8180632241463275421}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
