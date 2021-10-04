@@ -26,6 +26,9 @@ namespace ReactorScripts
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            isRequested = true;
+            requiredItem.type = TypeItem.Flamethrower;
+            OnItemRequired?.Invoke(this, requiredItem.type);
         }
 
         private void LateUpdate()
@@ -64,6 +67,7 @@ namespace ReactorScripts
             else
                 state = States.lowHP;
         }
+        
         public States state
         {
             get

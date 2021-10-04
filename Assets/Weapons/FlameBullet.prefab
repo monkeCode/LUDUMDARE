@@ -1529,8 +1529,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1648,7 +1648,11 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -4162122909835288923, guid: a31ea70dc50db304c89ef9c0da899f25, type: 3}
+    - sprite: {fileID: 7028379676450906074, guid: a31ea70dc50db304c89ef9c0da899f25, type: 3}
+    - sprite: {fileID: -8444236688633586484, guid: a31ea70dc50db304c89ef9c0da899f25, type: 3}
+    - sprite: {fileID: 5469438470169829125, guid: a31ea70dc50db304c89ef9c0da899f25, type: 3}
+    - sprite: {fileID: -6998844140798697261, guid: a31ea70dc50db304c89ef9c0da899f25, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
