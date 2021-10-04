@@ -3,6 +3,7 @@ using ReactorScripts;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class Player : Entity
@@ -26,7 +27,7 @@ public class Player : Entity
     public LayerMask layerKeys;
     public Light2D LeftLight;
     public Light2D RightLight;
-
+    public float damageInterval;
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform rotatePoint;
@@ -38,6 +39,7 @@ public class Player : Entity
      private float movementX;
      private bool isGrounded;
      private bool isShoted;
+     private bool _canTakeDamage = true;
 
      public event EventHandler<ItemData> itemChanged;  
 
@@ -209,6 +211,27 @@ public class Player : Entity
 
      public void OnDisable() => Input.Disable();
 
+     public override void TakeDamage(int damage)
+     {
+          if (_canTakeDamage)
+          {
+               base.TakeDamage(damage);
+               _canTakeDamage = false;
+               StartCoroutine(WaitInterDamage());
+          }
+     }
+
+     IEnumerator WaitInterDamage()
+     {
+          spriteRenderer.color = Color.red;
+          yield return new WaitForSeconds(damageInterval/3);
+          spriteRenderer.color = Color.white;
+          yield return new WaitForSeconds(damageInterval/3);
+          spriteRenderer.color = Color.red;
+          yield return new WaitForSeconds(damageInterval/3);
+          spriteRenderer.color = Color.white;
+          _canTakeDamage = true;
+     }
      protected override void Die()
      {
           ShipController ShipControllerScript = GameObject.Find("ShipController").GetComponent<ShipController>();

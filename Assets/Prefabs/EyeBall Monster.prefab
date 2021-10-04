@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 5
   MaxHp: 0
-  Damage: 15
-  Speed: 100
+  Damage: 3
+  Speed: 80
   target: {fileID: 0}
   waitBeforeRoll: 1
   pushForce: 10

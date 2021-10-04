@@ -317,6 +317,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6276078128542789048, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
+      propertyPath: damageInterval
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276078128542789048, guid: bafdfb457ceb90043b38f686d681abf3, type: 3}
       propertyPath: layerDoors.m_Bits
       value: 6144
       objectReference: {fileID: 0}
