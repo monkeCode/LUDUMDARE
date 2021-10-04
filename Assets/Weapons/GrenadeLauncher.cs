@@ -38,6 +38,7 @@ public class GrenadeLauncher : Bullet
         {
             enemy.GetComponent<IDamagable>().TakeDamage(damage);
         }
+        Destroy(gameObject);
     }
 
     private IEnumerator OverheatExplosion()
