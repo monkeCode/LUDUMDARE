@@ -6,7 +6,8 @@ public class GrenadeLauncher : Bullet
     public float explosionRadius;
     public float overheatTimeToExplosion = .3f;
     public GameObject explosion;
-        
+    public GameObject sound;
+
     public override void DealDamage(IDamagable enemy)
     {
         enemy.TakeDamage(damage);
@@ -30,6 +31,7 @@ public class GrenadeLauncher : Bullet
     private void Explosion()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
+        Instantiate(sound, transform.position, Quaternion.identity);
         var enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerEnemies);
         foreach (var enemy in enemies)
         {

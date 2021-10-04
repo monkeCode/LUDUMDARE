@@ -28,6 +28,12 @@ public class Player : Entity
     public LayerMask layerKeys;
     public Light2D LeftLight;
     public Light2D RightLight;
+    public AudioSource sound;
+    public AudioClip FlamethrowerSound;
+    public AudioClip LaserSound;
+    public AudioClip GunSound;
+    private bool isDelay;
+
     public float damageInterval;
 
     [SerializeField] private Transform attackPoint;
@@ -211,9 +217,33 @@ public class Player : Entity
 
      private void Shot()
      {
-          var vector = GetVectorToMouse();
-          weapon.Shoot(vector, inventoryItem);
+            var vector = GetVectorToMouse();
+            if (!weapon.onCooldown)
+        {
+            if (inventoryItem.type == TypeItem.Default)
+                sound.PlayOneShot(GunSound);
+            if (inventoryItem.type == TypeItem.Flamethrower && !isDelay)
+            {
+                isDelay = true;
+                StartCoroutine(playSound(FlamethrowerSound));
+            }
+            if (inventoryItem.type == TypeItem.Laser && !isDelay)
+            {
+                isDelay = true;
+                StartCoroutine(playSound(LaserSound));
+            }
+                
+        }
+            
+        weapon.Shoot(vector, inventoryItem);
      }
+
+    IEnumerator playSound(AudioClip soundclip)
+    {
+        yield return new WaitForSeconds(0.3f);
+        sound.PlayOneShot(soundclip);
+        isDelay = false;
+    }
 
      private void OnEnable() => Input.Enable();
 
