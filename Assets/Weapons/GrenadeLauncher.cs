@@ -10,7 +10,8 @@ public class GrenadeLauncher : Bullet
 
     public override void DealDamage(IDamagable enemy)
     {
-        enemy.TakeDamage(damage);
+        Explosion();
+        Destroy(gameObject);
     }
 
     public override void OnCollisionWithGround(Collision2D other)
@@ -35,7 +36,7 @@ public class GrenadeLauncher : Bullet
         var enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius, layerEnemies);
         foreach (var enemy in enemies)
         {
-            DealDamage(enemy.GetComponent<IDamagable>());
+            enemy.GetComponent<IDamagable>().TakeDamage(damage);
         }
     }
 
