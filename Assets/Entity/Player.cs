@@ -245,7 +245,7 @@ public class Player : Entity
         isDelay = false;
     }
 
-     private void OnEnable() => Input.Enable();
+     public void OnEnable() => Input.Enable();
 
      public void OnDisable() => Input.Disable();
 

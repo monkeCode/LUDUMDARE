@@ -9,9 +9,11 @@ public class CameraManager : MonoBehaviour
     private Vector3 position;
     public bool isFocused;
     public int CameraSize;
-    public GameObject objectInFocus;
+    public GameObject offCourceFocusPoint;
+    public GameObject GameOverFocusPoint;
     public float size = 5;
     public static CameraManager Instance;
+    public GameObject offCourceMenu;
 
     private void Awake()
     {
@@ -51,34 +53,37 @@ public class CameraManager : MonoBehaviour
     }
 
 
-    // public void FocusOnObject(GameObject gameObject)
-    // {
-    //     if (camera.orthographicSize < size)
-    //     {
-    //         position.y += 2;
-    //         camera.orthographicSize += Time.deltaTime * 4;
-    //     }
-    //     else if (camera.orthographicSize > size+0.3)
-    //     {
-    //         position.y += 2;
-    //         camera.orthographicSize -= Time.deltaTime * 4;
-    //     }
-    //     player.OnDisable();
-    //     transform.position = Vector3.Lerp(this.transform.position, objectInFocus.transform.position, Time.deltaTime);
-    //     var distance = this.transform.position.magnitude - objectInFocus.transform.position.magnitude;
-    //     if (distance*distance < 0.2)
-    //     {
-    //         Player.Instance.OnEnable();
-    //         isFocused = false;
-    //     }
-    //     position.z = -10f;
-    // }
+    public void FocusOnObject(GameObject gameObject, float cameraSize)
+    {
+        /*         if (camera.orthographicSize < size)
+                 {
+                     position.y += 2;
+                     camera.orthographicSize += Time.deltaTime * 4;
+                 }
+                 else if (camera.orthographicSize > size+0.3)
+                 {
+                     position.y += 2;
+                     camera.orthographicSize -= Time.deltaTime * 4;
+                 }*/
+         if(camera.orthographicSize < cameraSize)
+            camera.orthographicSize  += 0.03f;
+         player.OnDisable();
+         transform.position = Vector3.Lerp(this.transform.position, offCourceFocusPoint.transform.position, Time.deltaTime);
+         var distance = this.transform.position.magnitude - offCourceFocusPoint.transform.position.magnitude;
+         /*if (distance*distance < 0.2)
+         {
+             player.OnEnable();
+             isFocused = false;
+         }*/
+         position.z = -10f;
+     }
 
     void Update()
     {
-        // if (isFocused)
-        //     FocusOnObject(objectInFocus);
-        // else
+        isFocused = offCourceMenu.activeSelf;
+        if (isFocused)
+             FocusOnObject(offCourceFocusPoint, 40f);
+        else
             FollowPlayer();
     }
 }
