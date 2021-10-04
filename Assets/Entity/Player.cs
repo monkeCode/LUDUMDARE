@@ -178,11 +178,12 @@ public class Player : Entity
 
      private void OnEnable() => Input.Enable();
 
-     private void OnDisable() => Input.Disable();
+     public void OnDisable() => Input.Disable();
 
      protected override void Die()
      {
           ShipController ShipControllerScript = GameObject.Find("ShipController").GetComponent<ShipController>();
           ShipControllerScript.DeadMenu.SetActive(true);
+          OnDisable();
      }
 }
