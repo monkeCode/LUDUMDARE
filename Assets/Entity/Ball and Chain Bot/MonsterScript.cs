@@ -13,6 +13,7 @@ public class MonsterScript : Entity
     [SerializeField] private float _distanceToAtk;
     [SerializeField] private float _timeToAtk;
     [SerializeField] private float _atkAngle;
+    [SerializeField] private LayerMask lookMask;
     private Rigidbody2D _rb;
     private Animator _animator;
     private bool _readyToAtk;
@@ -21,7 +22,6 @@ public class MonsterScript : Entity
     private static readonly int Move1 = Animator.StringToHash("move");
     private static readonly int die = Animator.StringToHash("die");
     private static readonly int Attack = Animator.StringToHash("atk");
-
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -38,28 +38,39 @@ public class MonsterScript : Entity
         {
             //Debug.DrawRay(_rb.position, (Vector2)_target.position - _rb.position, Color.white);
             //Debug.Log(Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right));
-            if (Vector2.Distance(_target.position, _rb.position) > _distanceToAtk || Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right) > _atkAngle)
+            int dir = _target.position.x - _rb.position.x > 0 ? 1 : -1;
+            if (Vector2.Distance(_target.position, _rb.position) > _distanceToAtk /* || Vector2.Angle(((Vector2)_target.position -_rb.position).Abs() , Vector2.right) > _atkAngle */)
             {
-                Move();
+                Move(dir);
             }
-            else
+            else if(LookAtPlayer())
             {
                 Atk();
             }
+            else
+            {
+                _animator.SetBool(Move1, false);
+            }
+            
+            _rb.transform.localScale = new Vector3(dir * Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
 
-    void Move()
+    bool LookAtPlayer()
     {
-        _rb.velocity = new Vector2(
-            (_target.position.x -
-            _rb.position.x) / Math.Abs(_target.position.x - _rb.position.x) * Speed * Time.deltaTime,
+        var vec = (Vector2) _target.position - _rb.position;
+        Debug.DrawRay(_rb.position, vec);
+        var hit =  Physics2D.Raycast(_rb.position, vec, vec.magnitude,lookMask);
+        return hit.rigidbody?.gameObject?.tag == "Player";
+    }
+    void Move(int dir)
+    {
+        _animator.SetBool(Move1, true);
+       
+        _rb.velocity = new Vector2( dir * Speed * Time.deltaTime,
             _rb.velocity.y);
-        _rb.transform.localScale = new Vector3((_rb.velocity.x >0?1:-1) * Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        if (Math.Abs(_rb.velocity.x) > 0.1f)
-            _animator.SetBool(Move1, true);
-        else
-            _animator.SetBool(Move1, false);
+        
+      
     }
 
     public override void TakeDamage(int damage)
@@ -74,7 +85,7 @@ public class MonsterScript : Entity
 
     
     void Atk()
-    {
+    {   
         if (!_readyToAtk) return;
         
         _animator.SetTrigger(Attack);
