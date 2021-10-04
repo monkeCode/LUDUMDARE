@@ -102,12 +102,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 10
   MaxHp: 0
-  Damage: 10
+  Damage: 2
   Speed: 300
   _target: {fileID: 0}
   _distanceToAtk: 3
   _timeToAtk: 2
   _atkAngle: 20
+  lookMask:
+    serializedVersion: 2
+    m_Bits: 584
 --- !u!95 &2603434086958113024
 Animator:
   serializedVersion: 3
@@ -161,8 +164,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000011920929, y: -0.13840753}
-  m_Size: {x: 0.9095161, y: 1.3792628}
+  m_Offset: {x: -0.00000011920929, y: -0.20970845}
+  m_Size: {x: 0.9095161, y: 1.236661}
   m_Direction: 0
 --- !u!82 &-5923861988333985510
 AudioSource:

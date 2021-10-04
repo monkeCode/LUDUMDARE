@@ -53,8 +53,6 @@ public class RoomBlocks : MonoBehaviour
 
     void StateChanged(object sender, ReactorEventHealth reactorEventHealth)
     {
-       Debug.Log(roomBlocks[0].isLight+" "+ roomBlocks[1].isLight+" "+ roomBlocks[2].isLight);
-       Debug.Log(reactorEventHealth.State);
         if (_reactorState != reactorEventHealth.State)
         {
             if ((int)_reactorState > (int)reactorEventHealth.State)
@@ -81,7 +79,6 @@ public class RoomBlocks : MonoBehaviour
 
    void LightOn()
    {
-       Debug.Log("lightOn");
        var r = roomBlocks.FindAll(room => room.isLight == false);
        if(r.Count != 0)
        r[new Random().Next(0, r.Count-1)].LightOn();

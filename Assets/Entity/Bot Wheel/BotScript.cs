@@ -59,9 +59,7 @@ public class BotScript : Entity
     bool LookOnTarget()
     {
         var vec = (Vector2) target.position - new Vector2(_rb.position.x, _rb.position.y + _collider.size.y/2);
-        //Debug.DrawRay(new Vector2(_rb.position.x,_collider.size.y/2 + _rb.position.y), vec);
         var hit =  Physics2D.Raycast(new Vector2(_rb.position.x,_collider.size.y/2 + _rb.position.y), vec, vec.magnitude,lookMask);
-        Debug.Log(hit.rigidbody?.gameObject?.name);
         return hit.rigidbody?.gameObject?.tag == "Player";
     }
     bool WallCheck()
