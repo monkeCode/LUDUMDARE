@@ -147,24 +147,27 @@ public class Player : Entity
         // var door = doorCollider.GetComponent<Door>();
         var door = doorCollider.GetComponent<RootDoor>();
         var Out = door.@out;
-        door.TryOpen();
-        if (Out != null)
+        var doorIsOpening = door.TryOpen();
+        if (doorIsOpening)
         {
-             OnDisable();
-             yield return new WaitForSeconds(1);
-             spriteRenderer.sortingOrder = 4;
-             yield return new WaitForSeconds(1);
-             transform.position = Out.transform.position;
-             var otherDoor = Out.GetComponentInParent<Door>();
-             otherDoor.Open();
-             yield return new WaitForSeconds(1);
-             spriteRenderer.sortingOrder = 8;
-             yield return new WaitForSeconds(1);
-             OnEnable();
-        }
-        else
-        {
-             StartCoroutine(EnterSideDoor(doorCollider));
+             if (Out != null)
+             {
+                  OnDisable();
+                  yield return new WaitForSeconds(1);
+                  spriteRenderer.sortingOrder = 4;
+                  yield return new WaitForSeconds(1);
+                  transform.position = Out.transform.position;
+                  var otherDoor = Out.GetComponentInParent<Door>();
+                  otherDoor.Open();
+                  yield return new WaitForSeconds(1);
+                  spriteRenderer.sortingOrder = 8;
+                  yield return new WaitForSeconds(1);
+                  OnEnable();
+             }
+             else
+             {
+                  StartCoroutine(EnterSideDoor(doorCollider));
+             }
         }
     }
 
