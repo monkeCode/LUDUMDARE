@@ -7,13 +7,15 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Player player;
     public Camera camera;
     private Vector3 position;
-    public bool isFocused;
+    public bool IsFocusedOffCource;
+    public bool IsFocusedGameOver;
     public int CameraSize;
     public GameObject offCourceFocusPoint;
     public GameObject GameOverFocusPoint;
     public float size = 5;
     public static CameraManager Instance;
     public GameObject offCourceMenu;
+    public GameObject planet;
 
     private void Awake()
     {
@@ -52,6 +54,12 @@ public class CameraManager : MonoBehaviour
 
     }
 
+    public void ChangePlanetSize(GameObject planet)
+    {
+        planet.transform.localScale += new Vector3(0.0005f, 0.0005f, 0.0005f) ;
+
+    }
+
 
     public void FocusOnObject(GameObject gameObject, float cameraSize)
     {
@@ -66,23 +74,36 @@ public class CameraManager : MonoBehaviour
                      camera.orthographicSize -= Time.deltaTime * 4;
                  }*/
          if(camera.orthographicSize < cameraSize)
-            camera.orthographicSize  += 0.03f;
+            camera.orthographicSize  += 0.05f;
          player.OnDisable();
-         transform.position = Vector3.Lerp(this.transform.position, offCourceFocusPoint.transform.position, Time.deltaTime);
-         var distance = this.transform.position.magnitude - offCourceFocusPoint.transform.position.magnitude;
-         /*if (distance*distance < 0.2)
-         {
-             player.OnEnable();
-             isFocused = false;
-         }*/
-         position.z = -10f;
+         transform.position = Vector3.Lerp(this.transform.position, gameObject.transform.position, Time.deltaTime);
+         var distance = this.transform.position.magnitude - gameObject.transform.position.magnitude;
+        if (distance * distance < 0.2)
+        {
+            /**/player.OnEnable();
+            IsFocusedGameOver = false;
+        }
+        camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, -10f);
+        if (IsFocusedGameOver)
+        {
+            ChangePlanetSize(planet);
+        }
      }
 
     void Update()
     {
-        isFocused = offCourceMenu.activeSelf;
-        if (isFocused)
-             FocusOnObject(offCourceFocusPoint, 40f);
+        IsFocusedOffCource = offCourceMenu.activeSelf;
+        if (IsFocusedOffCource)
+        {
+            IsFocusedOffCource = true;
+            FocusOnObject(offCourceFocusPoint, 40f);
+        }
+        else if (IsFocusedGameOver)
+        {
+            FocusOnObject(GameOverFocusPoint, 150f);
+            position.z = -10f;
+        }
+            
         else
             FollowPlayer();
     }
