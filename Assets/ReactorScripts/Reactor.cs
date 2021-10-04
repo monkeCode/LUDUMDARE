@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ReactorScripts
 {
@@ -15,10 +16,10 @@ namespace ReactorScripts
         public float delayBetweenDamage = 1f;
         
         private float lastTimeDamageTaken;
-        private bool isRequested;
+        internal bool isRequested;
 
         public static event EventHandler<ReactorEventHealth> OnHealthChanged;
-        public static event EventHandler<ReactorEventRequirement> OnItemRequired;
+        public static event EventHandler<TypeItem> OnItemRequired;
         
         private Animator animator;
 
@@ -42,6 +43,7 @@ namespace ReactorScripts
                 return;
             isRequested = false;
             health = Mathf.Min(health + item.repair, maxHealth);
+            OnItemRequired?.Invoke(this, TypeItem.Default);
             Notify(new ReactorEventHealth(health, state, false));
         }
 
@@ -52,7 +54,8 @@ namespace ReactorScripts
             if (health < requirementHpForRequestItem && isRequested == false)
             {
                 isRequested = true;
-                OnItemRequired?.Invoke(this, new ReactorEventRequirement(requiredItem.type));
+                GenerateRequirement();
+                OnItemRequired?.Invoke(this, requiredItem.type);
             }
             if (health > maxHealth * 0.66)
                 state = States.fullHP;
@@ -76,6 +79,14 @@ namespace ReactorScripts
         private void Notify(ReactorEventHealth eventHealth)
         {
             OnHealthChanged?.Invoke(this, eventHealth);
+        }
+
+        private void GenerateRequirement()
+        {
+            var values = Enum.GetValues(typeof(TypeItem));
+            var random = new System.Random();
+            var randomItem = (TypeItem)values.GetValue(random.Next(values.Length - 1) + 1);
+            requiredItem.type = randomItem;
         }
     }
 }

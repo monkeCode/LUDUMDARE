@@ -19,6 +19,7 @@ public class Player : Entity
     public Camera mainCamera;
     public Weapon weapon;
     public LayerMask layerDoors;
+    public LayerMask layerReactor;
     // public LayerMask layerSideDoors;
     public SpawnItemInspector itemInspector;
     public static List<string> Keys;
@@ -52,6 +53,7 @@ public class Player : Entity
           Input.Player.Jump.performed += ctx => Jump();
           Input.Player.Jump.canceled += ctx => StartCoroutine(CanceledJump());
           Input.Player.Action.performed += ctx => TakeItem();
+          Input.Player.Action.performed += ctx => ReactorRepair();
           Input.Player.Throw.performed += ctx => ThrowItem();
           Input.Player.Shot.performed += ctx => isShoted = true;
           Input.Player.Shot.canceled += ctx => isShoted = false;
@@ -86,8 +88,8 @@ public class Player : Entity
      }
 
      private void TakeItem()
-     {
-         var itemCollider = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
+     { 
+          var itemCollider = Physics2D.OverlapCircle (groundCheck.position, takeRadius, layerItem);
           if (itemCollider != null)
           {
             var item = itemCollider.GetComponent<Item>();
@@ -105,6 +107,18 @@ public class Player : Entity
           inventoryItem.type = TypeItem.Default;
           itemChanged?.Invoke(this, inventoryItem);
      }
+
+    private void ReactorRepair()
+    {
+         var reactor = Physics2D.OverlapCircle (transform.position, takeRadius, layerReactor);
+         if (reactor != null)
+         {
+              var reactorScript = reactor.GetComponent<Reactor>();
+              reactorScript.GetRepair(inventoryItem);
+              if (!reactorScript.isRequested) 
+                   ThrowItem();
+         }
+    }
 
     private void OpenDoor()
     {
@@ -152,10 +166,10 @@ public class Player : Entity
     //      }
     // }
     IEnumerator EnterSideDoor(Collider2D doorCollider)
-    {
-         OnDisable();
-        yield return new WaitForSeconds(1);
-        OnEnable();
+    { 
+         OnDisable(); 
+         yield return new WaitForSeconds(1); 
+         OnEnable();
     }
     private void Move(float axis)
      {
@@ -163,8 +177,8 @@ public class Player : Entity
             spriteRenderer.flipX = axis < 0;
             LeftLight.enabled = axis < 0;
             RightLight.enabled = !(axis < 0);
-        }
-        movementX = axis * Speed;
+          }
+          movementX = axis * Speed;
      }
      
      public Vector3 GetVectorToMouse() => 

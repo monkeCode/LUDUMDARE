@@ -50,7 +50,7 @@ MonoBehaviour:
   data:
     name: FlameThrower
     type: 3
-    repair: 0
+    repair: 25
 --- !u!61 &-6339245197060980291
 BoxCollider2D:
   m_ObjectHideFlags: 0

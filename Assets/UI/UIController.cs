@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour
     public Slider OverheatSlider;
     public Slider HealthSlider;
     public Slider ReactorSlider;
+    public RawImage reactorBgImage;
+    public RawImage reactorImage;
     public RawImage inventoryImage;
 
     public Texture[] images;
@@ -21,6 +23,7 @@ public class UIController : MonoBehaviour
         weapon.OverheatChanged += (sender, overheat) => UpdateScrollbar(OverheatSlider, overheat, 100);
         Reactor.OnHealthChanged += (sender, data) => UpdateScrollbar(ReactorSlider, data.Health, 100);
         player.itemChanged += (sender, data) => ChangeImage(data.type);
+        Reactor.OnItemRequired += (sender, item) => ChangeReactorRequirement(item);
     }
 
     private static void UpdateScrollbar(Slider slider, float current, float max)
@@ -32,5 +35,13 @@ public class UIController : MonoBehaviour
     {
         inventoryImage.texture = images[(int)type];
         inventoryImage.color = new Color(1, 1, 1, images[(int) type] != null  ? 1 : 0);
+    }
+
+    private void ChangeReactorRequirement(TypeItem type)
+    {
+        var isNotNull = images[(int) type] != null;
+        reactorBgImage.enabled = isNotNull;
+        reactorImage.texture = images[(int)type];
+        reactorImage.color = new Color(1, 1, 1, isNotNull ? 1 : 0);
     }
 }
