@@ -12,6 +12,7 @@ public class GameEnd : MonoBehaviour
         LevelCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>() as Camera;
         CameraManagerScript = GameObject.FindWithTag("MainCamera").GetComponent<CameraManager>();
         SpaceShipTimer.TimeExceeded += (sender, b) => GameWin();
+        Debug.Log("start");
     }
 
     void Update()
@@ -21,6 +22,6 @@ public class GameEnd : MonoBehaviour
 
     void GameWin()
     {
-        CameraManagerScript.FocusOnObject(CameraManagerScript.GameOverFocusPoint, 100);
+        CameraManagerScript.IsFocusedGameOver = true;
     }
 }
