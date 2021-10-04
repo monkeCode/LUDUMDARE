@@ -12,6 +12,7 @@ public class SpaceShipTimer : MonoBehaviour
     private float currentTime;
 
     public static event EventHandler<(float Current, float Max)> TimeChanged;
+    public static event EventHandler<bool> TimeExceeded;
 
     private void FixedUpdate()
     {
@@ -20,6 +21,8 @@ public class SpaceShipTimer : MonoBehaviour
             lastTimeTick = Time.time;
             currentTime += timeTick;
             TimeChanged?.Invoke(this, (currentTime, timeToWin));
+            if (timeToWin < currentTime)
+                TimeExceeded?.Invoke(this, true);
         }
     }
 }
