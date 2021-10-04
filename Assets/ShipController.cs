@@ -13,6 +13,7 @@ public class ShipController : MonoBehaviour
     private float SpinTime = 0;
     private float TimeAfterTurnBack = 0;
     private PlayerInput input;
+    Player PlayerDisable;
     
     [Header("Select manually (SpaceShip/Canvas)")]
     public GameObject DeadMenu;
@@ -127,6 +128,7 @@ public class ShipController : MonoBehaviour
         var inputPlayer = Player.GetComponent<Player>().Input;
         inputPlayer.Player.Action.performed += ctx => EbuttonIsPressed = true;
         inputPlayer.Player.Action.canceled += ctx => EbuttonIsPressed = false;
+        PlayerDisable = Player.GetComponent<Player>();
         LevelCamera = GameObject.FindWithTag("MainCamera");
         OffCourseMenu.SetActive(false);
         DeadMenu.SetActive(false);
@@ -148,6 +150,7 @@ public class ShipController : MonoBehaviour
                 if ((LevelCamera.transform.localRotation.eulerAngles.z <= 180) && !DeadMenu.activeSelf)
                 {
                     OffCourseMenu.SetActive(true);
+                    Player.GetComponent<Player>().OnDisable();
                 }
             }
             else
@@ -155,6 +158,7 @@ public class ShipController : MonoBehaviour
                 if ((LevelCamera.transform.localRotation.eulerAngles.z >= 180) && !DeadMenu.activeSelf)
                 {
                     OffCourseMenu.SetActive(true);
+                    Player.GetComponent<Player>().OnDisable();
                 }
             }
         }
