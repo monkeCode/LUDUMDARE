@@ -26,6 +26,10 @@ public class Player : Entity
     public LayerMask layerKeys;
     public Light2D LeftLight;
     public Light2D RightLight;
+    public AudioSource sound;
+    public AudioClip FlamethrowerSound;
+    public AudioClip LaserSound;
+    public AudioClip GunSound;
 
 
     [SerializeField] private Transform attackPoint;
@@ -199,7 +203,10 @@ public class Player : Entity
      private void Shot()
      {
           var vector = GetVectorToMouse();
-          weapon.Shoot(vector, inventoryItem);
+        if (inventoryItem.type == TypeItem.Default && !weapon.onCooldown)
+            sound.PlayOneShot(GunSound);
+        weapon.Shoot(vector, inventoryItem);
+        
      }
 
      private void OnEnable() => Input.Enable();
