@@ -132,7 +132,7 @@ public class Player : Entity
              var otherDoor = Out.GetComponentInParent<Door>();
              otherDoor.Open();
              yield return new WaitForSeconds(1);
-             spriteRenderer.sortingOrder = 6;
+             spriteRenderer.sortingOrder = 8;
              yield return new WaitForSeconds(1);
              OnEnable();
         }
