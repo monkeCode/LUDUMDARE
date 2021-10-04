@@ -40103,8 +40103,10 @@ MonoBehaviour:
   camera: {fileID: 1587984435}
   isFocused: 0
   CameraSize: 0
-  objectInFocus: {fileID: 0}
+  offCourceFocusPoint: {fileID: 0}
+  GameOverFocusPoint: {fileID: 0}
   size: 5
+  offCourceMenu: {fileID: 1472549895}
 --- !u!1001 &1604795058
 PrefabInstance:
   m_ObjectHideFlags: 0
