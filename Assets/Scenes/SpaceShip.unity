@@ -6045,6 +6045,10 @@ PrefabInstance:
       propertyPath: ExplosionMenu
       value: 
       objectReference: {fileID: 216054787}
+    - target: {fileID: 5034622154022105682, guid: fe4359e547a133245beaddce52e25a65, type: 3}
+      propertyPath: delayBetweenDamage
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5034622154022105683, guid: fe4359e547a133245beaddce52e25a65, type: 3}
       propertyPath: m_Name
       value: Reactor
@@ -51498,7 +51502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d1f8f76a12ac645ac9c18bbbb5cb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToWin: 300
+  timeToWin: 900
   timeTick: 1
 --- !u!1001 &7971857941821030743
 PrefabInstance:

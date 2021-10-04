@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  attackCooldown: 0.1
+  attackCooldown: 1
   layerEnemies:
     serializedVersion: 2
     m_Bits: 1536
