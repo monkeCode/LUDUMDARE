@@ -75,7 +75,7 @@ public class MonsterScript : Entity
 
     public override void TakeDamage(int damage)
     {
-        Hp -= Damage;
+        Hp -= damage;
         if (Hp <= 0 && isLife)
         {
             _animator.SetTrigger(die);

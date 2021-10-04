@@ -10,7 +10,9 @@ namespace ReactorScripts
         public int maxHealth;
 
         public ItemData requiredItem;
-        public int requirementHpForRequestItem; 
+        public int requirementHpForRequestItem;
+
+        public GameObject ExplosionMenu;
 
         public int damagePerPeriod = 1;
         public float delayBetweenDamage = 1f;
@@ -23,20 +25,26 @@ namespace ReactorScripts
         
         private Animator animator;
 
-        private void Awake()
+        private void Start()
         {
+            Time.timeScale = 1;
             animator = GetComponent<Animator>();
             isRequested = true;
             requiredItem.type = TypeItem.Flamethrower;
             OnItemRequired?.Invoke(this, requiredItem.type);
         }
 
-        private void LateUpdate()
+        private void FixedUpdate()
         {
             if (Time.time - lastTimeDamageTaken > delayBetweenDamage)
             {
                 lastTimeDamageTaken = Time.time;
                 TakeDamage(damagePerPeriod);
+            }
+            if (health <= 0)
+            {
+                ExplosionMenu.SetActive(true);
+                Time.timeScale = 0;
             }
         }
 
@@ -53,7 +61,7 @@ namespace ReactorScripts
         public void TakeDamage(int damage)
         {
             health = Mathf.Max(health - damage, 0);
-            Notify(new ReactorEventHealth(health, state, health == 0));
+            Notify(new ReactorEventHealth(health, state, health <= 0));
             if (health < requirementHpForRequestItem && isRequested == false)
             {
                 isRequested = true;

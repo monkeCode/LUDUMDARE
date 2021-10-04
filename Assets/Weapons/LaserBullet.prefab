@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1761082000116883384}
   - component: {fileID: 3085961415410244354}
   - component: {fileID: 5263105422311923449}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: LaserBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,9 +129,9 @@ MonoBehaviour:
   map:
     serializedVersion: 2
     m_Bits: 6208
-  damage: 10
+  damage: 7
   flyDistance: 10
-  overheatIncrement: 10
+  overheatIncrement: 3
   velocity: {x: 0, y: 0}
   onTheEdgeConst: 0.01
   reflections: 2

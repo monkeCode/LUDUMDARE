@@ -140,9 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf65869d4542d04ebbb412afb76b7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 5
+  Hp: 60
   MaxHp: 0
-  Damage: 3
+  Damage: 7
   Speed: 80
   target: {fileID: 0}
   waitBeforeRoll: 1
