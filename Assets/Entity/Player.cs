@@ -37,6 +37,8 @@ public class Player : Entity
      private bool isGrounded;
      private bool isShoted;
 
+     public event EventHandler<ItemData> itemChanged;  
+
      private void Awake()
      {
           Keys = new List<string>();
@@ -45,7 +47,6 @@ public class Player : Entity
           rigidbody = GetComponent<Rigidbody2D>();
           spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
           Input = new PlayerInput();
-        Debug.Log("PlayerInput");
           Input.Player.Move.performed += ctx => Move(ctx.ReadValue<float>());
           Input.Player.Move.canceled += ctx => Move(0);
           Input.Player.Jump.performed += ctx => Jump();
@@ -90,11 +91,9 @@ public class Player : Entity
           if (itemCollider != null)
           {
             var item = itemCollider.GetComponent<Item>();
-            Debug.Log("1");
             inventoryItem = item.data;
-            Debug.Log("2");
+            itemChanged?.Invoke(this, inventoryItem);
             itemInspector.TakeItem(item);
-            Debug.Log("3");
             Destroy(itemCollider.gameObject);
           }
      }
@@ -104,6 +103,7 @@ public class Player : Entity
           if (inventoryItem != null) 
                Debug.Log($"Throw {inventoryItem.name} {inventoryItem.type}");
           inventoryItem.type = TypeItem.Default;
+          itemChanged?.Invoke(this, inventoryItem);
      }
 
     private void OpenDoor()

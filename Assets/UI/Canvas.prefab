@@ -203,14 +203,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 7f19e5298a02fb64688f4b9b5a2f98c9, type: 3}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 38
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1806,6 +1806,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OverheatSlider: {fileID: 8212455248753109583}
   HealthSlider: {fileID: 6741026929381450855}
+  ReactorSlider: {fileID: 0}
+  inventoryImage: {fileID: 1461669053}
+  images:
+  - {fileID: 0}
+  - {fileID: 2800000, guid: 54784168c69ac364bab8fe0ec4f2e777, type: 3}
+  - {fileID: 2800000, guid: 6a100a7e3dd777842b6305c26c6b5eb1, type: 3}
+  - {fileID: 2800000, guid: 9a39b550ba42bac469a8d027ec3b7fcb, type: 3}
 --- !u!1 &8352837294282865960
 GameObject:
   m_ObjectHideFlags: 0
