@@ -5673,6 +5673,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1027492450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1205475489139338312, guid: 155e3e3b061bc904599ee5e2bab6980c, type: 3}
+  m_PrefabInstance: {fileID: 1031232469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1028341898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17414,6 +17419,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfcf92c156510324889c86fb2d3e08b9, type: 3}
+--- !u!1 &1472549895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7301363517157644722, guid: 155e3e3b061bc904599ee5e2bab6980c, type: 3}
+  m_PrefabInstance: {fileID: 1031232469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1474525048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48886,6 +48896,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipController
       objectReference: {fileID: 0}
+    - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
+      propertyPath: DeadMenu
+      value: 
+      objectReference: {fileID: 1027492450}
+    - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
+      propertyPath: OffCourseMenu
+      value: 
+      objectReference: {fileID: 1472549895}
     - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
       propertyPath: maxTimeStartSpinning
       value: 80
