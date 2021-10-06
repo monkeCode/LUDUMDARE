@@ -67,7 +67,7 @@ public class Player : Entity
           Input.Player.Throw.performed += ctx => ThrowItem();
           Input.Player.Shot.performed += ctx => isShoted = true;
           Input.Player.Shot.canceled += ctx => isShoted = false;
-          Input.Player.OpenDoor.performed += ctx => OpenDoor();
+          Input.Player.Action.performed += ctx => OpenDoor();
           Input.Player.Action.performed += ctx => TakeKey();
           // Input.Player.OpenDoor.performed += ctx => InteractSideDoor();
      }
