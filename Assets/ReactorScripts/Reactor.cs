@@ -24,9 +24,10 @@ namespace ReactorScripts
         public static event EventHandler<TypeItem> OnItemRequired;
         
         private Animator animator;
-
+        public static Reactor reactor;
         private void Start()
         {
+            reactor = this;
             Time.timeScale = 1;
             animator = GetComponent<Animator>();
             isRequested = true;
