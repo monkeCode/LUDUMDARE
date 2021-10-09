@@ -20,9 +20,10 @@ public class SpawnItemInspector : MonoBehaviour
     void Start()
     {
         possibleSpawnPositions = new List<Transform>(transform.GetComponentsInChildren<Transform>());
+        possibleSpawnPositions.Remove(possibleSpawnPositions.Find(transform1 => transform1.position == Vector3.zero));
         foreach(var point in possibleSpawnPositions)
         {
-            positionIsTaken[point] = false; 
+            positionIsTaken[point] = false;
         }
         SpawnItem(Item1, firstSpawnPosition1.transform);
         // Debug.Log(Item1.data.name);
