@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Bits: 6208
   damage: 7
   flyDistance: 10
-  overheatIncrement: 3
+  overheatIncrement: 1
   velocity: {x: 0, y: 0}
   onTheEdgeConst: 0.01
   reflections: 2
