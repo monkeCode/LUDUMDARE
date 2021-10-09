@@ -6320,7 +6320,7 @@ PrefabInstance:
       objectReference: {fileID: 216054787}
     - target: {fileID: 5034622154022105682, guid: fe4359e547a133245beaddce52e25a65, type: 3}
       propertyPath: delayBetweenDamage
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5034622154022105683, guid: fe4359e547a133245beaddce52e25a65, type: 3}
       propertyPath: m_Name
@@ -51881,11 +51881,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
       propertyPath: maxTimeStartSpinning
-      value: 80
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
       propertyPath: minTimeStartSpinning
-      value: 60
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6368366179945628066, guid: 9e2463146c10da148830f0519635bd57, type: 3}
       propertyPath: timeNotSpinAfterLevelStart
