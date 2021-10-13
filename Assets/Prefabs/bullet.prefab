@@ -166,7 +166,7 @@ MonoBehaviour:
   lifeTime: 3
   explosiveRadiusModifier: 4
   pushForce: 100
-  damage: 20
+  damage: 25
   timeToDestroyParticles: 1
 --- !u!198 &8857660191386235333
 ParticleSystem:

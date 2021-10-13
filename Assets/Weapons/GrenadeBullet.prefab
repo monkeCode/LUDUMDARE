@@ -136,16 +136,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  attackCooldown: 1
+  attackCooldown: 0.5
   layerEnemies:
     serializedVersion: 2
     m_Bits: 1536
   map:
     serializedVersion: 2
     m_Bits: 6208
-  damage: 35
+  damage: 20
   flyDistance: 10
-  overheatIncrement: 2
+  overheatIncrement: 4
   velocity: {x: 0, y: 0}
   onTheEdgeConst: 0
   explosionRadius: 1.5

@@ -75,9 +75,9 @@ MonoBehaviour:
   map:
     serializedVersion: 2
     m_Bits: 0
-  damage: 20
+  damage: 6
   flyDistance: 2
-  overheatIncrement: 1.5
+  overheatIncrement: 1
   velocity: {x: 0, y: 0}
   onTheEdgeConst: 0
   burnDamage: 1

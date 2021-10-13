@@ -20,7 +20,11 @@ public class LaserBullet : Bullet
         lineRenderer.endWidth = 0.1f;
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(currentReflection, shootPos);
-        // LaserMagic(shootPos, Rigidbody.velocity);
+        var hits = Physics2D.RaycastAll(transform.position, Rigidbody.velocity, flyDistance, layerEnemies);
+        foreach (var hit in hits)
+        {
+            DealDamage(hit.rigidbody.gameObject.GetComponent<IDamagable>());
+        }
         StartCoroutine(DestroyAfterTime());
     }
     public override void DealDamage(IDamagable enemy)

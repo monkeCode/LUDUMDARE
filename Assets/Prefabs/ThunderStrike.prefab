@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4704155704702041061}
   - component: {fileID: -6231444560270824824}
   - component: {fileID: -8312814620815854557}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: ThunderStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
