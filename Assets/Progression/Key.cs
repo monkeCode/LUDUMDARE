@@ -22,7 +22,7 @@ public class Key : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(transform.position.y - _startPosition.y);
+        // Debug.Log(transform.position.y - _startPosition.y);
         transform.position +=(Vector3)(upNow ? Vector2.up : Vector2.down) * tickOffcet;
         if (transform.position.y - _startPosition.y > offset)
             upNow = false;

@@ -10,7 +10,7 @@ public class LaserBullet : Bullet
     private int overheatReflectionCount = 2;
     public int currentReflection = 0;
     private LineRenderer lineRenderer;
-    private float destroyTime = 1f;
+    private float destroyTime = 0.2f;
 
     private new void Start()
     {
@@ -20,12 +20,13 @@ public class LaserBullet : Bullet
         lineRenderer.endWidth = 0.1f;
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(currentReflection, shootPos);
-        var hits = Physics2D.RaycastAll(transform.position, Rigidbody.velocity, flyDistance, layerEnemies);
-        foreach (var hit in hits)
-        {
-            DealDamage(hit.rigidbody.gameObject.GetComponent<IDamagable>());
-        }
+        // var hits = Physics2D.RaycastAll(transform.position, Rigidbody.velocity, flyDistance, layerEnemies);
+        // foreach (var hit in hits)
+        // {
+        //     DealDamage(hit.rigidbody.gameObject.GetComponent<IDamagable>());
+        // }
         StartCoroutine(DestroyAfterTime());
+        LaserMagic(shootPos, transform.right);
     }
     public override void DealDamage(IDamagable enemy)
     {
@@ -34,23 +35,45 @@ public class LaserBullet : Bullet
 
     public override void OnCollisionWithGround(Collision2D other)
     {
-        if (currentReflection < reflections)
+        // if (currentReflection < reflections)
+        // {
+        //     var reflection = Vector2.Reflect(velocity, other.contacts[0].normal);
+        //     lineRenderer.positionCount++;
+        //     lineRenderer.SetPosition(currentReflection+1, other.contacts[0].point);
+        //     // Rigidbody.velocity = reflection;
+        //     // transform.right = reflection.normalized;
+        //     var hits = Physics2D.RaycastAll(other.contacts[0].point, Rigidbody.velocity, flyDistance, layerEnemies);
+        //     foreach (var hit in hits)
+        //     {
+        //         DealDamage(hit.rigidbody.gameObject.GetComponent<IDamagable>());
+        //     }
+        //     currentReflection++;
+        // }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
+    }
+
+    public void LaserMagic(Vector2 startPosition, Vector2 direction)
+    {
+        var hit = Physics2D.Raycast(startPosition, direction, flyDistance, map);
+        var hits = Physics2D.RaycastAll(startPosition, direction, hit.distance, layerEnemies);
+        foreach (var enemyHit in hits)
         {
-            var reflection = Vector2.Reflect(velocity, other.contacts[0].normal);
-            lineRenderer.positionCount++;
-            lineRenderer.SetPosition(currentReflection+1, other.contacts[0].point);
-            Rigidbody.velocity = reflection;
-            transform.right = reflection.normalized;
-            var hits = Physics2D.RaycastAll(other.contacts[0].point, Rigidbody.velocity, flyDistance, layerEnemies);
-            foreach (var hit in hits)
-            {
-                DealDamage(hit.rigidbody.gameObject.GetComponent<IDamagable>());
-            }
-            currentReflection++;
+            DealDamage(enemyHit.rigidbody.gameObject.GetComponent<IDamagable>());
         }
-        else
+        Debug.Log(hit.rigidbody.gameObject);
+        if (hit.rigidbody.gameObject != null)
         {
-            Destroy(gameObject);
+            // Debug.DrawLine(startPosition, hit.point,Color.cyan);
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(currentReflection+1, hit.point);
+            currentReflection++;
+            if (currentReflection < reflections)
+            {
+               LaserMagic(hit.point + hit.normal, Vector2.Reflect(direction, hit.normal).normalized);
+            }
         }
     }
 

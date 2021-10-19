@@ -34,6 +34,7 @@ public class SideDoor : RootDoor
         else
             _animator.SetTrigger(OpenAnim);
         sound.Play();
+        // Destroy(blockCollider.GetComponent<Rigidbody2D>());
         blockCollider.enabled = isClose;
     }
 }

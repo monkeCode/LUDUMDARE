@@ -128,9 +128,9 @@ MonoBehaviour:
     m_Bits: 1536
   map:
     serializedVersion: 2
-    m_Bits: 6208
+    m_Bits: 64
   damage: 7
-  flyDistance: 10
+  flyDistance: 20
   overheatIncrement: 1
   velocity: {x: 0, y: 0}
   onTheEdgeConst: 0.01
