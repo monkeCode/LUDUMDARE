@@ -58,7 +58,7 @@ public class LaserBullet : Bullet
     public void LaserMagic(Vector2 startPosition, Vector2 direction)
     {
         var hit = Physics2D.Raycast(startPosition, direction, flyDistance, map);
-        var hits = Physics2D.RaycastAll(startPosition, direction, hit.distance, layerEnemies);
+        var hits = Physics2D.RaycastAll(startPosition, direction, hit.collider != null?hit.distance:flyDistance, layerEnemies);
         foreach (var enemyHit in hits)
         {
             DealDamage(enemyHit.rigidbody.gameObject.GetComponent<IDamagable>());
