@@ -130,7 +130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 7
-  flyDistance: 20
+  flyDistance: 30
   overheatIncrement: 1
   velocity: {x: 0, y: 0}
   onTheEdgeConst: 0.01
